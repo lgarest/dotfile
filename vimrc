@@ -7,33 +7,45 @@ augroup filetype javascript syntax=javascript
 
 " INDENTATION
 set hlsearch     "filetype plugin indent on
-set tabstop=4    " show existing tab with 4 spaces width
-set shiftwidth=4 " when indenting with '>', use 4 spaces width
+set tabstop=2    " show existing tab with 4 spaces width
+set shiftwidth=2 " when indenting with '>', use 4 spaces width
 set expandtab    " On pressing tab, insert 4 spaces
+
+
+" COLOR COLUMN
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
+" LINE NUMBERS
+set number
 
 
 " STATUSLINE
 set laststatus=2
 
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
+" returns a string <branch/XX> where XX corresponds to the git status (for example "<master/ M>")
+function CurrentGitStatus()
+    let gitoutput = split(system('git status --porcelain -b '.shellescape(expand('%')).' 2>/dev/null'),'\n')
+    if len(gitoutput) > 0
+        let b:gitstatus = strpart(get(gitoutput,0,''),3) . '/' . strpart(get(gitoutput,1,'  '),0,2)
+    else
+        let b:gitstatus = ''
+    endif
+endfunc
+autocmd BufEnter,BufWritePost * call CurrentGitStatus()
+" example of use in the status line:
+set stl=%f\ %(<%{b:gitstatus}>%)
+set stl+=%m\
+set stl+=%=
+set stl+=%#CursorColumn#
+set stl+=\ %y
+set stl+=\ %{&fileencoding?&fileencoding:&encoding}
+set stl+=\[%{&fileformat}\]
+set stl+=\ %p%%
+set stl+=\ %l:%c
+set stl+=\
 
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\ 
+colorscheme OceanicNext

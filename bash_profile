@@ -20,11 +20,12 @@ alias lo='ls -o'
 alias la='ls -la'
 alias grep='grep --color=auto'
 alias tre='tree -L 3'
+alias ls='exa'
 
 # Defaults replaced for better commands
 alias cat='bat'
 alias ping='prettyping --nolegend'
-alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclude venv"
 
 # Git shorthands
 alias gitb='git branch'
