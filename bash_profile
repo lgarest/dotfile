@@ -5,6 +5,8 @@ export HISTCONTROL=ignoredups:erasedups  # Ignore duplicate lines
 shopt -s histappend  # When the shell exits, append to the history file instead of overwriting it
 # After each command, append to the history file  and reread it
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+# Add ctrlp vim plugin to quick jump between files
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 # Bash profile modifications
 alias bsh='vim ~/dev/dotfile/bash_profile'
