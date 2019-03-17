@@ -1,0 +1,14 @@
+
+
+function NumberToggle()
+  augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  augroup END
+endfunc
+ 
+if has("autocmd")
+  call NumberToggle()
+endif
+
