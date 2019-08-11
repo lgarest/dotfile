@@ -16,8 +16,11 @@ vnoremap <leader>a "ty:Ack! '<C-r>t'<space><Home>
 " manage tabs
 nnoremap <leader>q :tabclose<CR>
 nnoremap <leader>t :tabnew .<CR>
-
-
+nnoremap <leader>v :vnew<CR>
+nnoremap <leader>D :r! date "+\%d-\%m-\%Y \%H:\%M:\%S"<CR>
+nnoremap <leader>d :r! date "+\%d-\%m-\%Y"<CR>
+nnoremap <leader>f :let @" = expand("%")<CR>
+nnoremap <leader>F :let @" = expand("%:p")<CR>
 " Truly toggl the netrw
 let g:NetrwIsOpen=0
 function! ToggleNetrw()
@@ -25,7 +28,7 @@ function! ToggleNetrw()
         let i = bufnr("$")
         while (i >= 1)
             if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
+                silent exe "bwipeout! " . i 
             endif
             let i-=1
         endwhile
