@@ -6,6 +6,11 @@ export HISTCONTROL=ignoredups:erasedups  # Ignore duplicate lines
 # After each command, append to the history file  and reread it
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
+# Language support
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_CTYPE=UTF-8
+
 # Dir navigations
 alias ..="cd .."
 alias ...="cd ../.."
@@ -22,6 +27,9 @@ alias grep='grep --color=auto'
 alias cat='bat'
 alias ping='prettyping --nolegend'
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclude venv"
+# Vim
+alias vim="nvim"
+alias ctags="`brew --prefix`/bin/ctags"
 
 # Git shorthands
 alias gitb="git branch"
@@ -33,8 +41,10 @@ alias gitrt="git fetch upstream && git rebase upstream/test"
 alias gitrm="git fetch upstream && git rebase upstream/master"
 alias gitrd="git fetch upstream && git rebase upstream/develop"
 alias fetch-prs="git fetch upstream +refs/pull-requests/*:refs/remotes/origin/pr/*"
-alias vim="nvim"
-alias ctags="`brew --prefix`/bin/ctags"
+
+# Lazyness
+alias venv=". venv/bin/activate"
+
 
 export DEV_DIR="$HOME/dev"
 
@@ -43,12 +53,21 @@ export DEV_DIR="$HOME/dev"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh virtualenv dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
-
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_ETC_ICON=''
+POWERLEVEL9K_VCS_GIT_HOOKS=''
 # fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# zsh syntax highlighting
+. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# PATH extensions
+
+#### PATH extensions
+## Custom scripts folder
 export PATH="$HOME/bin:$PATH"
 
 # Pyenv
@@ -66,6 +85,9 @@ export NVM_DIR="$HOME/.nvm"
 # load nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Lazyness
-alias venv=". venv/bin/activate"
-
+# Android Studio
+export ANDROID_DIR=$HOME/Library/Android/sdk
+export PATH=$ANDROID_DIR/platform-tools/:$PATH
+export PATH=$ANDROID_DIR/emulator/:$PATH
+export PATH=$ANDROID_DIR/tools/:$PATH
+export PATH=$ANDROID_DIR/tools/bin/:$PATH
