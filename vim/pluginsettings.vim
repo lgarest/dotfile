@@ -8,11 +8,10 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
-
-" Ale settings
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let b:ale_linters = {'javascript': ['eslint'], 'python': ['flake8', 'pylint']}
-let g:ale_linters_explicit = 1
-
+" emmet plugin
+" enable emmet just for html/css
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_expandabbr_key='<Tab>'
+" enable emmet in all modes
+let g:user_emmet_mode='inv'
