@@ -22,3 +22,7 @@ let g:user_emmet_leader_key=','
 " display all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" vim-jsx-pretty
+let g:vim_jsx_pretty_highlight_close_tag = 1
+let g:vim_jsx_pretty_colorful_config = 0
