@@ -45,6 +45,12 @@ alias fetch-prs="git fetch upstream +refs/pull-requests/*:refs/remotes/origin/pr
 # Lazyness
 alias venv=". venv/bin/activate"
 
+export SUBLIME_USER_DIR="~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/"
+export SUBLIME_BCKP_DIR="~/MEGA/backups/sublime.user.folder/"
+alias sublime-backup="cp -R $SUBLIME_USER_DIR $SUBLIME_BCKP_DIR;\
+echo Sublime Settings backed up in $SUBLIME_BCKP_DIR"
+alias sublime-backup-restore="cp -R $SUBLIME_BCKP_DIR $SUBLIME_USER_DIR;\
+echo Sublime Settings restored into $SUBLIME_USER_DIR"
 
 export DEV_DIR="$HOME/dev"
 
