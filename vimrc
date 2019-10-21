@@ -5,9 +5,10 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-" colorscheme solarized
-colorscheme OceanicNext
-let g:airline_theme='base16_oceanicnext'
+" colorscheme OceanicNext
+" let g:airline_theme='base16_oceanicnext'
+set background=dark
+colorscheme candid
 
 " Options, commands, and autocommands
 source ~/dev/dotfile/vim/base.vim
