@@ -17,3 +17,8 @@ autocmd FileType html,css EmmetInstall
 let g:user_emmet_mode='inv'
 " use double , as emmet expander
 let g:user_emmet_leader_key=','
+
+" airline plugin
+" display all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_alt_sep = '|'
