@@ -12,6 +12,8 @@ let g:ctrlp_custom_ignore = {
 " enable emmet just for html/css
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-let g:user_emmet_expandabbr_key='<Tab>'
+" let g:user_emmet_expandabbr_key='<Tab>'
 " enable emmet in all modes
 let g:user_emmet_mode='inv'
+" use double , as emmet expander
+let g:user_emmet_leader_key=','
