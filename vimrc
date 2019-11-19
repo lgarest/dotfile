@@ -6,7 +6,6 @@ if (has("termguicolors"))
 endif
 
 " colorscheme OceanicNext
-" let g:airline_theme='base16_oceanicnext'
 set background=dark
 colorscheme candid
 
@@ -24,7 +23,6 @@ source ~/dev/dotfile/vim/maps.vim
 
 " Plugins settings
 source ~/dev/dotfile/vim/pluginsettings.vim
-
 
 " nvim settings
 if (has("nvim"))
