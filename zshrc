@@ -39,7 +39,7 @@ alias gitlo="git log --graph --decorate --oneline"
 alias gitss="clear && git branch && git status"
 alias gitrt="git fetch upstream && git rebase upstream/test"
 alias gitrm="git fetch upstream && git rebase upstream/master"
-alias gitrd="git fetch upstream && git rebase upstream/develop"
+alias gitrd="git fetch --all --prune && git rebase upstream/develop"
 alias fetch-prs="git fetch upstream +refs/pull-requests/*:refs/remotes/origin/pr/*"
 
 # Lazyness
