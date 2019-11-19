@@ -17,7 +17,7 @@ set incsearch
 " ignore case by default
 set ignorecase
 " display line numbers
-set number
+set number relativenumber
 " highlight the current cursor line
 set cursorline
 highlight CursorLine ctermbg=236
