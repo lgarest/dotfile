@@ -8,6 +8,9 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+" ack plugin
+let g:ack_default_options = " -s -H --nopager --column -i"
+
 " emmet plugin
 " enable emmet just for html/css
 let g:user_emmet_install_global = 0
