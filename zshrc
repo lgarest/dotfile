@@ -94,6 +94,10 @@ export NVM_DIR="$HOME/.nvm"
 
 # Android Studio
 export ANDROID_DIR=$HOME/Library/Android/sdk
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export ANDROID_AVD_HOME=$HOME/.android/avd
+
 export PATH=$ANDROID_DIR/platform-tools/:$PATH
 export PATH=$ANDROID_DIR/emulator/:$PATH
 export PATH=$ANDROID_DIR/tools/:$PATH
