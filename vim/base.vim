@@ -1,19 +1,31 @@
-set nocompatible
-" set hidden
-set ttyfast
-set smartcase
-" enables syntax highlight
-syntax on
+" These configurations are enabled by default in NVim
+" So we only set up for VIM
+if !has('nvim')
+    set nocompatible
+    " set hidden
+    set ttyfast
+    set smartcase
+    " enables syntax highlight
+    syntax on
 
-set nopaste
-" Enabling filetype support provides filetype-specific indenting, syntax
-" highlighting, omni-completion and other useful settings
-filetype plugin indent on
+    set nopaste
+    " Enabling filetype support provides filetype-specific indenting, syntax
+    " highlighting, omni-completion and other useful settings
+    filetype plugin indent on
+    " display highlight on search
+    set hlsearch
+    " display incremental highlight on search
+    set incsearch
+    " always display the status line
+    set laststatus=2
+    " a better menu in command mode
+    set wildmenu
+    " proper backspace behavior
+    set backspace=indent,eol,start
+    " always set autoindenting on
+    set autoindent
+endif
 
-" display highlight on search
-set hlsearch
-" display incremental highlight on search
-set incsearch
 " ignore case by default
 set ignorecase
 " display line numbers
@@ -22,22 +34,12 @@ set number relativenumber
 set cursorline
 highlight CursorLine ctermbg=236
 
-" always display the status line
-set laststatus=2
-" a better menu in command mode
-set wildmenu
-
-" Tab config - 2 spaces on tab782 27D2 5BD8 4FA1 44C9 EFE9 292F 2518 250A
 " number of spaces per tab
 set softtabstop=4
 " # of columns of text are indented
 set shiftwidth=4
 " insert spaces on tab
 set expandtab
-" proper backspace behavior
-set backspace=indent,eol,start
-" always set autoindenting on
-" set autoindent
 
 " Splits
 set splitbelow
@@ -52,7 +54,7 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " Ruler
 if exists('+colorcolumn')
-  " add rulerson lines 80 and 100
+  " add rulers on lines 80 and 100
   set colorcolumn=80,100
 endif
 
