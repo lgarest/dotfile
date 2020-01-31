@@ -7,6 +7,8 @@ nnoremap <leader>h :tabnew ~/dev/notes/<CR>
 nnoremap <leader>l :tabnew ~/dev/easygrow_backend/src/clean.db.txt<CR>
 " run the file through black
 nnoremap <leader>b :!black -l 100 %<CR>
+" create a session
+nnoremap <leader>m :mks! /tmp/session.vim
 
 cnoreabbrev Ack Ack!
 " quick find
@@ -21,6 +23,7 @@ nnoremap <leader>D :r! date "+\%d-\%m-\%Y \%H:\%M:\%S"<CR>
 nnoremap <leader>d :r! date "+\%d-\%m-\%Y"<CR>
 nnoremap <leader>f :let @" = expand("%")<CR>
 nnoremap <leader>F :let @" = expand("%:p")<CR>
+
 " Truly toggl the netrw
 let g:NetrwIsOpen=0
 function! ToggleNetrw()
