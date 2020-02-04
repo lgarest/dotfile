@@ -30,13 +30,14 @@ call plug#begin()
     Plug 'kien/ctrlp.vim'
     Plug 'Yilin-Yang/vim-markbar'
     Plug 'tpope/vim-surround'
+    Plug 'vim-scripts/Tabmerge'
 
     " IDE like
     Plug 'Valloric/YouCompleteMe'
     Plug 'janko/vim-test'
     Plug 'ervandew/supertab'
 
-    " Deactivated
+    " Deactivated because it was causing syntax highlighting issues
     " Plug 'xolox/vim-easytags'
 call plug#end()
 

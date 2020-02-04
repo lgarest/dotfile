@@ -6,13 +6,13 @@ nnoremap <leader>, :tabnew ~/dev/dotfile/vimrc<CR>
 nnoremap <leader>h :tabnew ~/dev/notes/<CR>
 
 " check the list of tasks to do
-nnoremap <leader>l :tabnew ~/dev/easygrow_backend/src/clean.db.txt<CR>
+nnoremap <leader>l :tabnew /tmp/todos.txt<CR>
 
 " run the file through black
 nnoremap <leader>b :!black -l 100 %<CR>
 
 " store the current session
-nnoremap <leader>s :mks! /tmp/session.vim
+nnoremap <leader>s :mks! /tmp/session.vim<CR>
 
 " alias Ack -> Ack!
 cnoreabbrev Ack Ack!
