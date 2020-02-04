@@ -14,7 +14,6 @@ call plug#begin()
     Plug 'flrnd/candid.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'junegunn/vim-emoji'
 
     " language support
     Plug 'sheerun/vim-polyglot'
