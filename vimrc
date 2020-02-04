@@ -1,5 +1,6 @@
 " Load plugins via plug
 
+" install plug if not already installed
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -7,38 +8,52 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
+    Plug 'xolox/vim-misc'
+
+    " theme plugins
     Plug 'flrnd/candid.vim'
-    Plug 'yuezk/vim-js'
-    Plug 'maxmellon/vim-jsx-pretty'
-    Plug 'mileszs/ack.vim'
-    Plug 'kien/ctrlp.vim'
-    Plug 'mattn/emmet-vim'
-    Plug 'ervandew/supertab'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'xolox/vim-misc'
-    Plug 'xolox/vim-easytags'
+    Plug 'junegunn/vim-emoji'
+
+    " language support
+    Plug 'sheerun/vim-polyglot'
+    Plug 'yuezk/vim-js'
+    Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'mattn/emmet-vim'
+
+    " git utils
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
+
+    " utils
+    Plug 'mileszs/ack.vim'
+    Plug 'kien/ctrlp.vim'
     Plug 'Yilin-Yang/vim-markbar'
-    Plug 'sheerun/vim-polyglot'
-    Plug 'junegunn/vim-emoji'
     Plug 'tpope/vim-surround'
+
+    " IDE like
+    Plug 'Valloric/YouCompleteMe'
     Plug 'janko/vim-test'
+    Plug 'ervandew/supertab'
+
+    " Deactivated
+    " Plug 'xolox/vim-easytags'
 call plug#end()
 
+" Enable 24-bit RGB color in the |TUI| if they are supported
 if (has("termguicolors"))
   set termguicolors
 endif
 
-" colorscheme OceanicNext
 set background=dark
+" colorscheme OceanicNext
 colorscheme candid
 
 " Options, commands, and autocommands
 source ~/dev/dotfile/vim/base.vim
 
-" Netrw settings
+" Netrw settings & mappings
 source ~/dev/dotfile/vim/netrw.vim
 
 " Snippets
@@ -52,7 +67,6 @@ source ~/dev/dotfile/vim/pluginsettings.vim
 
 " nvim settings
 if (has("nvim"))
-    " python executable for nvim
-    let g:python3_host_prog = '/Users/luis/venvs/py3nvim/bin/python'
+    source ~/dev/dotfile/vim/nvim.vim
 endif
 
