@@ -78,9 +78,11 @@ POWERLEVEL9K_VCS_GIT_HOOKS=''
 export PATH="$HOME/bin:$PATH"
 
 # Pyenv
-export PATH="~/.pyenv/versions/3.6.7/bin/:$PATH"
+export PATH="~/.pyenv/versions/3.7.0/bin/:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
