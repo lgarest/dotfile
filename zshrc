@@ -42,6 +42,7 @@ alias gitrm="git fetch --all --prune && git rebase upstream/master"
 alias gitrd="git fetch --all --prune && git rebase upstream/develop"
 alias fetch-prs="git fetch --all --prune +refs/pull-requests/*:refs/remotes/origin/pr/*"
 alias ydiff="ydiff -s -w 100"
+alias ydiffs="ydiff -s -w 100 --staged"
 
 # Lazyness
 alias venv=". venv/bin/activate"
