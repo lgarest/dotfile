@@ -9,7 +9,7 @@ nnoremap <leader>h :tabnew ~/dev/notes/<CR>
 nnoremap <leader>l :tabnew /tmp/todos.txt<CR>
 
 " run the file through black
-nnoremap <leader>b :!black -l 100 %<CR>
+nnoremap <leader>b :!$(which black) -l 100 %<CR>
 
 " store the current session
 nnoremap <leader>s :mks! /tmp/session.vim<CR>
