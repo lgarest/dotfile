@@ -40,7 +40,8 @@ nnoremap <leader>F :let @" = expand("%:p")<CR>
 
 "" Plugin mappings
 " You complete me go to declaration
-nnoremap <leader>gd :YcmCompleter GoToDeclaration<cr>
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gD :YcmCompleter GoToReferences<CR>
 
 " CtrlP in Buffer mode
 " nnoremap <leader>. :CtrlPBuffer<cr>
