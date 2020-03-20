@@ -18,7 +18,7 @@ nnoremap <leader>s :mks! /tmp/session.vim<CR>
 cnoreabbrev Ack Ack!
 
 " quick find
-nnoremap <leader>a "tyiw:Ack! '<C-r>t'<space>
+nnoremap <leader>a "tyiw:Ack! --ignore-dir venv/ '<C-r>t'<space>
 vnoremap <leader>a "ty:Ack! '<C-r>t'<space><Home>
 
 " fast gitblame
