@@ -42,6 +42,5 @@ nnoremap <leader>F :let @" = expand("%:p")<CR>
 " You complete me go to declaration
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<cr>
 
-" CtrlP in Tag mode
-nnoremap <leader>. :CtrlPTag<cr>
-
+" CtrlP in Buffer mode
+" nnoremap <leader>. :CtrlPBuffer<cr>
