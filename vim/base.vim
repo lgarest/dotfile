@@ -58,6 +58,10 @@ autocmd FileType yaml,json,javascrip,markdown :call SetIndentation(2)
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufWritePost *.md :silent !markdown -o <afile>:p:h/<afile>:t:r.html <afile>:p
 
+" Javascript and typescript improved support
+autocmd BufNewFile,BufRead *.ts,*.tsx set filetype=typescript
+autocmd BufNewFile,BufRead *.js,*jsx set filetype=javascript
+
 " Insert mode: Use the appropriate number of spaces to insert a <Tab>.
 set expandtab
 
