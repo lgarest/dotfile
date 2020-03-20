@@ -39,3 +39,12 @@ let g:vim_jsx_pretty_colorful_config = 0
 let g:ycm_confirm_extra_conf = 0
 " use the python version of the virtualenv to do completions
 let g:ycm_python_binary_path = split(system("which python"))[0]
+
+
+" NERDTree https://github.com/preservim/nerdtree
+" Close vim if the only window left is NERDtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Toggle opening NERDTree in Version Control System mode
+noremap <silent> <leader>n :NERDTreeToggleVCS<CR>
+
