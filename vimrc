@@ -11,7 +11,8 @@ call plug#begin()
     Plug 'xolox/vim-misc'
 
     " theme plugins
-    Plug 'flrnd/candid.vim'
+    Plug 'flrnd/candid.vim' " For dark environments
+    Plug 'ayu-theme/ayu-vim' " For light environments
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
@@ -51,9 +52,16 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-set background=dark
-" colorscheme OceanicNext
-colorscheme candid
+
+" Main theme configuration
+" Dark theme
+" set background=dark
+" colorscheme candid
+
+" Light theme
+let ayucolor="light"
+colorscheme ayu
+
 
 " Options, commands, and autocommands
 source ~/dev/dotfile/vim/base.vim
