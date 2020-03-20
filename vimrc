@@ -83,3 +83,4 @@ if (has("nvim"))
     source ~/dev/dotfile/vim/nvim.vim
 endif
 
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
