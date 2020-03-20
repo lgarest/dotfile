@@ -25,4 +25,5 @@ function! ToggleNetrw()
         silent Lexplore
     endif
 endfunction
-noremap <silent> <leader>n :call ToggleNetrw()<CR>
+" Disable this behaviour when using NERDTree
+" noremap <silent> <leader>n :call ToggleNetrw()<CR>

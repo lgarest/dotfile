@@ -37,6 +37,7 @@ call plug#begin()
     Plug 'Valloric/YouCompleteMe'
     Plug 'janko/vim-test'
     Plug 'ervandew/supertab'
+    Plug 'preservim/nerdtree'
 
     " Deactivated because it was causing syntax highlighting issues
     " Plug 'xolox/vim-easytags'
