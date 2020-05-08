@@ -37,11 +37,17 @@ call plug#begin()
     Plug 'Valloric/YouCompleteMe'
     Plug 'janko/vim-test'
     Plug 'ervandew/supertab'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'preservim/nerdtree'
+
+    " Track the snippets engine and add some
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
 
     " Deactivated because it was causing syntax highlighting issues
     " Plug 'xolox/vim-easytags'
 call plug#end()
+
 
 " Enable 24-bit RGB color in the |TUI| if they are supported
 if (has("termguicolors"))
@@ -56,12 +62,12 @@ endif
 
 " Main theme configuration
 " Dark theme
-" set background=dark
-" colorscheme candid
+set background=dark
+colorscheme candid
 
 " Light theme
-let ayucolor="light"
-colorscheme ayu
+" let ayucolor="light"
+" colorscheme ayu
 
 
 " Options, commands, and autocommands

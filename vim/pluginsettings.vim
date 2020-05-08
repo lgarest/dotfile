@@ -43,8 +43,13 @@ let g:ycm_python_binary_path = split(system("which python"))[0]
 
 " NERDTree https://github.com/preservim/nerdtree
 " Close vim if the only window left is NERDtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Toggle opening NERDTree in Version Control System mode
 noremap <silent> <leader>n :NERDTreeToggleVCS<CR>
 
+" UltiSnippets
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-f>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
