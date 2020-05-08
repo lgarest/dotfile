@@ -34,6 +34,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 # Git shorthands
 alias gitb="git branch"
 alias gitc="git checkout "
+alias gitcc="git checkout -"
 alias gitl="git log --graph --decorate"
 alias gitlo="git log --graph --decorate --oneline"
 alias gitss="clear && git branch && git status"
