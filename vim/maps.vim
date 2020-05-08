@@ -11,6 +11,9 @@ nnoremap <leader>l :tabnew /tmp/todos.txt<CR>
 " run the file through black
 nnoremap <leader>b :!$(which black) -l 100 %<CR>
 
+" run the file through prettier
+nnoremap <leader>p :!node_modules/.bin/prettier --write %<CR>
+
 " store the current session
 nnoremap <leader>s :mks! /tmp/session.vim<CR>
 
@@ -45,3 +48,8 @@ nnoremap <leader>gD :YcmCompleter GoToReferences<CR>
 
 " CtrlP in Buffer mode
 " nnoremap <leader>. :CtrlPBuffer<cr>
+
+
+
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-l> <C-w><C-l>
