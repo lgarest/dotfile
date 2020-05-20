@@ -44,6 +44,9 @@ call plug#begin()
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
 
+    " Diffing like a boss
+    Plug 'will133/vim-dirdiff' " Run a diff on 2 directories
+
     " Deactivated because it was causing syntax highlighting issues
     " Plug 'xolox/vim-easytags'
 call plug#end()
