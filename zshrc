@@ -27,6 +27,7 @@ alias grep='grep --color=auto'
 alias cat='bat'
 alias ping='prettyping --nolegend'
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclude venv"
+
 # Vim
 alias vim="nvim"
 alias ctags="`brew --prefix`/bin/ctags"
@@ -47,6 +48,25 @@ alias ydiffs="ydiff -s -w 100 --staged"
 
 # Lazyness
 alias venv=". venv/bin/activate"
+
+# Diff files or directories
+vdiff () {
+    if [ "${#}" -ne 2 ] ; then
+        echo "vdiff requires two arguments"
+        echo "  comparing dirs:  vdiff dir_a dir_b"
+        echo "  comparing files: vidff file_a file_b"
+        return 1
+    fi
+
+    local left="${1}"
+    local right="${2}"
+
+    if [ -d "${left}" ] && [ -d "${right}" ] ; then
+        vim +"DirDiff ${left} ${right}"
+    else
+        vim -d "${left}" "${right}"
+    fi
+}
 
 export SUBLIME_USER_DIR="~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/"
 export SUBLIME_BCKP_DIR="~/MEGA/backups/sublime.user.folder/"
