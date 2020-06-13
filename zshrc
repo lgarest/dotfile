@@ -50,6 +50,12 @@ alias ydiffs="ydiff -s -w 100 --staged"
 # Lazyness
 alias venv=". venv/bin/activate"
 
+#### Cool commands
+
+# Weather
+alias weather="curl 'wttr.in/Barcelona' && curl 'wttr.in/Barcelona?format=v2'"
+alias moon="curl wttr.in/Moon"
+
 # Diff files or directories
 vdiff () {
     if [ "${#}" -ne 2 ] ; then
