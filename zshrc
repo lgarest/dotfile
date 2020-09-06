@@ -28,8 +28,10 @@ alias cat='bat'
 alias ping='prettyping --nolegend'
 # alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclude venv"
 alias du="ncdu --color dark -x --exclude .git --exclude node_modules --exclude venv"
+# alias tldr="tealdeer"
 
 # Vim
+# let g:coc_node_path = trim(system('which node'))
 alias vim="nvim"
 alias ctags="`brew --prefix`/bin/ctags"
 
@@ -40,9 +42,11 @@ alias gitcc="git checkout -"
 alias gitl="git log --graph --decorate"
 alias gitlo="git log --graph --decorate --oneline"
 alias gitss="clear && git branch && git status"
-alias gitrt="git fetch --all --prune && git rebase upstream/test"
-alias gitrm="git fetch --all --prune && git rebase upstream/master"
-alias gitrd="git fetch --all --prune && git rebase upstream/develop"
+alias gitrut="git fetch --all --prune && git rebase upstream/test"
+alias gitrum="git fetch --all --prune && git rebase upstream/master"
+alias gitrud="git fetch --all --prune && git rebase upstream/develop"
+alias gitrom="git fetch --all --prune && git rebase origin/master"
+alias gitrod="git fetch --all --prune && git rebase origin/develop"
 alias fetch-prs="git fetch --all --prune +refs/pull-requests/*:refs/remotes/origin/pr/*"
 alias ydiff="ydiff -s -w 100"
 alias ydiffs="ydiff -s -w 100 --staged"
@@ -133,3 +137,4 @@ export PATH=$ANDROID_DIR/platform-tools/:$PATH
 export PATH=$ANDROID_DIR/emulator/:$PATH
 export PATH=$ANDROID_DIR/tools/:$PATH
 export PATH=$ANDROID_DIR/tools/bin/:$PATH
+export PATH=/usr/local/opt/mysql-client/bin/:$PATH

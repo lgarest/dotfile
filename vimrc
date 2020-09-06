@@ -13,13 +13,31 @@ call plug#begin()
     " theme plugins
     Plug 'flrnd/candid.vim' " For dark environments
     Plug 'ayu-theme/ayu-vim' " For light environments
+    Plug 'joshdick/onedark.vim' " Atom One Dark theme
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
     " language support
     Plug 'sheerun/vim-polyglot'
-    Plug 'yuezk/vim-js'
+
+    Plug 'pangloss/vim-javascript'
+    Plug 'leafgarland/typescript-vim'
+
+    " JSX support
     Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'heavenshell/vim-jsdoc', { 
+      \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+      \ 'do': 'make install'
+    \}
+
+    " Styled components support
+    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+    " GraphQL
+    " Plug 'jparise/vim-graphql'
+
+    " Emmet support
     Plug 'mattn/emmet-vim'
 
     " git utils
@@ -29,28 +47,28 @@ call plug#begin()
     " utils
     Plug 'mileszs/ack.vim'
     Plug 'kien/ctrlp.vim'
-    Plug 'Yilin-Yang/vim-markbar'
     Plug 'tpope/vim-surround'
     Plug 'vim-scripts/Tabmerge'
 
     " IDE like
-    Plug 'Valloric/YouCompleteMe'
-    Plug 'janko/vim-test'
-    Plug 'ervandew/supertab'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'preservim/nerdtree'
-
-    " Track the snippets engine and add some
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
+    " Plug 'janko/vim-test'
 
     " Diffing like a boss
     Plug 'will133/vim-dirdiff' " Run a diff on 2 directories
+
+    " Better dealing with buffers
+    Plug 'Asheq/close-buffers.vim'
+
+    Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
     " Deactivated because it was causing syntax highlighting issues
     " Plug 'xolox/vim-easytags'
 call plug#end()
 
+" let g:vim_jsx_pretty_highlight_close_tag=1
 
 " Enable 24-bit RGB color in the |TUI| if they are supported
 if (has("termguicolors"))
@@ -65,13 +83,14 @@ endif
 
 " Main theme configuration
 " Dark theme
-set background=dark
-colorscheme candid
+" set background=dark
+" colorscheme candid
 
 " Light theme
-" let ayucolor="light"
-" colorscheme ayu
+let ayucolor="dark"
+colorscheme ayu
 
+let g:coc_node_path = trim(system('which node'))
 
 " Options, commands, and autocommands
 source ~/dev/dotfile/vim/base.vim
@@ -80,7 +99,7 @@ source ~/dev/dotfile/vim/base.vim
 source ~/dev/dotfile/vim/netrw.vim
 
 " Snippets
-source ~/dev/dotfile/vim/snippets.vim
+" source ~/dev/dotfile/vim/snippets.vim
 
 " Maps
 source ~/dev/dotfile/vim/maps.vim
@@ -93,4 +112,4 @@ if (has("nvim"))
     source ~/dev/dotfile/vim/nvim.vim
 endif
 
-let g:vim_jsx_pretty_colorful_config = 1 " default 0
+

@@ -37,7 +37,9 @@ set number relativenumber
 " highlight the current cursor line
 set cursorline
 highlight CursorLine ctermbg=236
-
+highlight Cursor guifg=white guibg=black
+set guicursor+=n-v-c:blinkon0
+highlight iCursor guifg=white guibg=steelblue
 
 " Set indentations, spaces, and tab behavior
 function! SetIndentation(size)
@@ -52,15 +54,21 @@ endfunction
 call SetIndentation(4)
 
 " Indentation for specific file formats.
-autocmd FileType yaml,json,javascript,markdown :call SetIndentation(2)
+autocmd FileType yaml,json,javascript,markdown,css,scss :call SetIndentation(2)
 
 " Markdown improved support
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufWritePost *.md :silent !markdown -o <afile>:p:h/<afile>:t:r.html <afile>:p
 
 " Javascript and typescript improved support
-autocmd BufNewFile,BufRead *.ts,*.tsx set filetype=typescript
-autocmd BufNewFile,BufRead *.js,*jsx set filetype=javascript
+" autocmd BufNewFile,BufRead *.js set filetype=javascript
+" autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
+" autocmd BufNewFile,BufRead *.ts set filetype=typescriptreact
+" autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
+
+
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " Insert mode: Use the appropriate number of spaces to insert a <Tab>.
 set expandtab
