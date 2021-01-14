@@ -12,7 +12,7 @@ nnoremap <leader>oo :tabnew ~/notes/<CR>
 nnoremap <leader>oj :tabnew ~/dev/swiss-army-knife/<CR>
 
 " run the file through black
-nnoremap <leader>b :!$(which black) -l 100 -S %<CR>
+nnoremap <leader>b :!$(which black) -S %<CR>
 
 " run the file through prettier
 nnoremap <leader>p :!node_modules/.bin/prettier --write %<CR>
