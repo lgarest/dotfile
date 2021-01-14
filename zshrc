@@ -20,6 +20,9 @@ alias ll='ls -l'
 alias lo='ls -o'
 alias la='ls -la'
 alias tre='tree -L 3'
+mk() {
+    mkdir $1 && cd $1
+}
 
 # Defaults replaced for better commands
 alias ls='exa'
@@ -50,6 +53,9 @@ alias gitrod="git fetch --all --prune && git rebase origin/develop"
 alias fetch-prs="git fetch --all --prune +refs/pull-requests/*:refs/remotes/origin/pr/*"
 alias ydiff="ydiff -s -w 100"
 alias ydiffs="ydiff -s -w 100 --staged"
+gclone() {
+    git clone "$1" && cd "$(basename "$1" .git)"
+}
 
 # Lazyness
 alias venv=". venv/bin/activate"
