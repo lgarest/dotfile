@@ -221,6 +221,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " Project rename word
 nnoremap <silent> <space>prw  :CocSearch <C-R>=expand("<cword>")<CR><CR>
+" Project search
+nnoremap <space>f :CocSearch -S 
 
 
 " Sublime-like C-D to multiselect words

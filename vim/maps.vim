@@ -6,13 +6,13 @@ nnoremap <leader>, :tabnew ~/dev/dotfile/vimrc<CR>
 nnoremap <leader>oh :tabnew ~/dev/notes/<CR>
 
 " check my notes
-nnoremap <leader>oo :tabnew ~/MEGA/notes/<CR>
+nnoremap <leader>oo :tabnew ~/notes/<CR>
 
 " check my notes
 nnoremap <leader>oj :tabnew ~/dev/swiss-army-knife/<CR>
 
 " run the file through black
-nnoremap <leader>b :!$(which black) -l 100 %<CR>
+nnoremap <leader>b :!$(which black) -l 100 -S %<CR>
 
 " run the file through prettier
 nnoremap <leader>p :!node_modules/.bin/prettier --write %<CR>
@@ -57,6 +57,9 @@ cnoreabbrev WQ wq
 cnoreabbrev wQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
+cnoreabbrev Vs vs
+cnoreabbrev vS vs
+cnoreabbrev VS vs
 
 
 "" Plugin mappings
@@ -79,8 +82,10 @@ nnoremap <C-k> <C-w><C-k>
 nnoremap <S-Tab> <C-w><C-w>
 
 " Easy resize
-nnoremap <silent><leader>w1 :exe "vertical resize " . (winwidth(0) * 3/2)<CR> 
-nnoremap <silent><leader>w2 :exe "vertical resize " . (winwidth(1) * 2/3)<CR> 
+" nnoremap <silent><leader>w1 :exe "vertical resize " . (winwidth(0) * 3/2)<CR> 
+" nnoremap <silent><leader>w2 :exe "vertical resize " . (winwidth(0) * 2/3)<CR> 
+nnoremap <silent><leader>w1 :exe "vertical resize " . (winwidth(0) * 5/4)<CR> 
+nnoremap <silent><leader>w2 :exe "vertical resize " . (winwidth(0) * 3/4)<CR> 
 
 " Toggle spell check
 map <F5> :setlocal spell!<CR>

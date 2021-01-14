@@ -42,6 +42,7 @@ call plug#begin()
 
     " git utils
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-commentary'
     Plug 'airblade/vim-gitgutter'
 
     " utils
@@ -52,7 +53,9 @@ call plug#begin()
 
     " IDE like
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+    " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'preservim/nerdtree'
     " Plug 'janko/vim-test'
 
@@ -91,6 +94,7 @@ let ayucolor="dark"
 colorscheme ayu
 
 let g:coc_node_path = trim(system('which node'))
+let g:coc_npm_path = trim(system('which npm'))
 
 " Options, commands, and autocommands
 source ~/dev/dotfile/vim/base.vim

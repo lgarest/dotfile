@@ -53,11 +53,13 @@ alias ydiffs="ydiff -s -w 100 --staged"
 
 # Lazyness
 alias venv=". venv/bin/activate"
+alias nud="nvm use default"
+alias lzd="lazydocker"
 
 #### Cool commands
 
 # Weather
-alias weather="curl 'wttr.in/Barcelona' && curl 'wttr.in/Barcelona?format=v2'"
+alias weather="curl 'wttr.in/Marratxi' && curl 'wttr.in/Marratxi?format=v2'"
 alias moon="curl wttr.in/Moon"
 
 # Diff files or directories
@@ -89,7 +91,8 @@ echo Sublime Settings restored into $SUBLIME_USER_DIR"
 export DEV_DIR="$HOME/dev"
 
 # PowerLevel10k
-. $DEV_DIR/powerlevel10k/powerlevel10k.zsh-theme
+# . $DEV_DIR/powerlevel10k/powerlevel10k.zsh-theme
+. $HOMEBREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh virtualenv dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
@@ -103,18 +106,20 @@ POWERLEVEL9K_VCS_GIT_HOOKS=''
 # fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # zsh syntax highlighting
-. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 #### PATH extensions
 ## Custom scripts folder
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Pyenv
-export PATH="~/.pyenv/versions/3.7.0/bin/:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
+# export PYTHON_CONFIGURE_OPTS="--enable-framework"
+export PYTHON_CONFIGURE_OPTS="--enable-shared"
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -133,8 +138,8 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export ANDROID_AVD_HOME=$HOME/.android/avd
 
-export PATH=$ANDROID_DIR/platform-tools/:$PATH
-export PATH=$ANDROID_DIR/emulator/:$PATH
-export PATH=$ANDROID_DIR/tools/:$PATH
-export PATH=$ANDROID_DIR/tools/bin/:$PATH
-export PATH=/usr/local/opt/mysql-client/bin/:$PATH
+# export PATH=$ANDROID_DIR/platform-tools/:$PATH
+# export PATH=$ANDROID_DIR/emulator/:$PATH
+# export PATH=$ANDROID_DIR/tools/:$PATH
+# export PATH=$ANDROID_DIR/tools/bin/:$PATH
+# export PATH=/usr/local/opt/mysql-client/bin/:$PATH
