@@ -61,6 +61,10 @@ gclone() {
 alias venv=". venv/bin/activate"
 alias nud="nvm use default"
 alias lzd="lazydocker"
+alias dj="$(which python) manage.py "
+alias djsm="$(which python) manage.py showmigrations "
+alias djmm="$(which python) manage.py makemigrations "
+alias djm="$(which python) manage.py migratemigrate "
 
 #### Cool commands
 
