@@ -42,12 +42,13 @@ call plug#begin()
 
     " git utils
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-commentary'
     Plug 'airblade/vim-gitgutter'
 
     " utils
-    Plug 'mileszs/ack.vim'
     Plug 'kien/ctrlp.vim'
+    Plug 'mileszs/ack.vim'
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'vim-scripts/Tabmerge'
 
