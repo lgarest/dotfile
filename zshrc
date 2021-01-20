@@ -29,9 +29,7 @@ alias ls='exa'
 alias grep='grep --color=auto'
 alias cat='bat'
 alias ping='prettyping --nolegend'
-# alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules --exclude venv"
 alias du="ncdu --color dark -x --exclude .git --exclude node_modules --exclude venv"
-# alias tldr="tealdeer"
 
 # Vim
 # let g:coc_node_path = trim(system('which node'))
