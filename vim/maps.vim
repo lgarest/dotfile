@@ -78,7 +78,7 @@ map <F6> :setlocal invrelativenumber<CR>
 
 " Move lines around
 " Discovered thanks to Nick Janetakis https://youtu.be/gNyNm5DsQ88
-nnoremap <silent><C-J> :m .+1<CR>==
-nnoremap <silent><C-K> :m .-2<CR>==
-vnoremap <silent><C-J> :m '>+1<CR>gv=gv
-vnoremap <silent><C-K> :m '<-2<CR>gv=gv
+nnoremap <silent><A-j> :m .+1<CR>==
+nnoremap <silent><A-k> :m .-2<CR>==
+vnoremap <silent><A-j> :m '>+1<CR>gv=gv
+vnoremap <silent><A-k> :m '<-2<CR>gv=gv
