@@ -64,6 +64,8 @@ alias dj="venv/bin/python manage.py "
 alias djsm="venv/bin/python manage.py showmigrations "
 alias djmm="venv/bin/python manage.py makemigrations "
 alias djm="venv/bin/python manage.py migrate "
+alias agrep="alias | grep "
+alias psgrep="ps aux | grep "
 
 #### Cool commands
 
