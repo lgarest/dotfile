@@ -15,7 +15,7 @@ nnoremap <leader>oj :tabnew ~/dev/swiss-army-knife/<CR>
 nnoremap <leader>b :!$(which black) -S %<CR>
 
 " run the file through prettier
-nnoremap <leader>p :!node_modules/.bin/prettier --write %<CR>
+nnoremap <leader>p :!$(which prettier) --write %<CR>
 
 " store the current session
 nnoremap <leader>s :mks! /tmp/session.vim<CR>
