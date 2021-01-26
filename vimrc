@@ -34,9 +34,6 @@ call plug#begin()
     " Styled components support
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
-    " GraphQL
-    " Plug 'jparise/vim-graphql'
-
     " Emmet support
     Plug 'mattn/emmet-vim'
 
@@ -55,11 +52,8 @@ call plug#begin()
 
     " IDE like
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'preservim/nerdtree'
-    " Plug 'janko/vim-test'
 
     " Diffing like a boss
     Plug 'will133/vim-dirdiff' " Run a diff on 2 directories
@@ -68,9 +62,6 @@ call plug#begin()
     Plug 'Asheq/close-buffers.vim'
 
     Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
-
-    " Deactivated because it was causing syntax highlighting issues
-    " Plug 'xolox/vim-easytags'
 call plug#end()
 
 " let g:vim_jsx_pretty_highlight_close_tag=1
