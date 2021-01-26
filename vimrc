@@ -104,9 +104,6 @@ source ~/dev/dotfile/vim/base.vim
 " Netrw settings & mappings
 source ~/dev/dotfile/vim/netrw.vim
 
-" Snippets
-" source ~/dev/dotfile/vim/snippets.vim
-
 " Maps
 source ~/dev/dotfile/vim/maps.vim
 
