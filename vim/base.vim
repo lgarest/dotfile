@@ -28,6 +28,9 @@ if !has('nvim')
     set backspace=indent,eol,start
     " always set autoindenting on
     set autoindent
+
+    " show a sign column for gitgutter
+    set signcolumn=auto
 endif
 
 " ignore case by default
@@ -96,3 +99,7 @@ set path+=**
 " look for a tags file in the current directory
 set tags=./tags,tags
 
+set noswapfile
+set nobackup
+set scrolloff=8
+set updatetime=50
