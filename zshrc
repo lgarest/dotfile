@@ -55,6 +55,9 @@ alias ydiffs="ydiff -s -w 100 --staged"
 gclone() {
     git clone "$1" && cd "$(basename "$1" .git)"
 }
+reviewcandidate() {
+    cd ~/dev/candidates && gclone "$1" && cp ~/Documents/luis.review.md . && vim .
+}
 
 # Lazyness
 alias venv=". venv/bin/activate"
