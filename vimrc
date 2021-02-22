@@ -49,6 +49,7 @@ call plug#begin()
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
     Plug 'vim-scripts/Tabmerge'
+    Plug 'ryanoasis/vim-devicons'
 
     " IDE like
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
