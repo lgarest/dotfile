@@ -55,6 +55,7 @@ call plug#begin()
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'preservim/nerdtree'
+    Plug 'tpope/vim-obsession'
 
     " Diffing like a boss
     Plug 'will133/vim-dirdiff' " Run a diff on 2 directories
