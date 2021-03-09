@@ -73,6 +73,14 @@ autocmd BufWritePost *.md :silent !markdown -o <afile>:p:h/<afile>:t:r.html <afi
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
+" Copied from Nick Janetakis https://www.youtube.com/watch?v=hrbV5WGxxdY
+" Auto-resize splits when Vim gets resized.
+autocmd VimResized * wincmd =
+" Make sure all types of requirements.txt files get python syntax highlighting
+autocmd BufNewFile,BufReadPost requirements*.txt set syntax=python
+" Make sure .aliases, .bash_aliases and similar files get sh filetypes
+autocmd BufNewFile,BufReadPost *.aliases set filetype=sh
+
 " Insert mode: Use the appropriate number of spaces to insert a <Tab>.
 set expandtab
 
