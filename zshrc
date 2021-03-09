@@ -70,6 +70,7 @@ alias djmm="venv/bin/python manage.py makemigrations "
 alias djm="venv/bin/python manage.py migrate "
 alias agrep="alias | grep "
 alias psgrep="ps aux | grep "
+alias printers="lpstat -a"
 
 #### Cool commands
 
