@@ -20,11 +20,14 @@ nnoremap <leader>p :!$(which prettier) --write %<CR>
 " store the current session
 nnoremap <leader>s :mks! /tmp/session.vim<CR>
 
+" just used to it
+nnoremap <C-s> :w<CR>
+
 " alias Ack -> Ack!
 cnoreabbrev Ack Ack!
 
 " fast gitblame
-nnoremap <leader>B :Gblame<CR>
+nnoremap <silent><leader>B :Git blame<CR>
 
 " manage tabs
 nnoremap <leader>t :tabnew .<CR>
@@ -82,3 +85,5 @@ nnoremap <silent><A-j> :m .+1<CR>==
 nnoremap <silent><A-k> :m .-2<CR>==
 vnoremap <silent><A-j> :m '>+1<CR>gv=gv
 vnoremap <silent><A-k> :m '<-2<CR>gv=gv
+
+let @f='V}kzf'
