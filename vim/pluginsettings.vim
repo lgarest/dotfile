@@ -62,6 +62,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " ---- COC CONFIG ----
 " coc config
+" \ 'coc-python',
 let g:coc_global_extensions = [
     \ 'coc-snippets',
     \ 'coc-pairs',
@@ -69,8 +70,10 @@ let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-tsserver',
     \ 'coc-json',
-    \ 'coc-python',
+    \ 'coc-pyright',
     \ 'coc-terminal',
+    \ 'coc-markdownlint',
+    \ 'coc-sh'
 \ ]
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
