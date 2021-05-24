@@ -37,6 +37,7 @@ alias vim="nvim"
 alias ctags="`brew --prefix`/bin/ctags"
 
 # Git shorthands
+MAIN_BRANCH="main"
 alias gitb="git branch"
 alias gitc="git checkout "
 alias gitcc="git checkout -"
