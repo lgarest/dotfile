@@ -56,6 +56,7 @@ call plug#begin()
     " IDE like
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    " Plug 'plasticboy/vim-markdown' " Doesn't work with coc?
     Plug 'preservim/nerdtree'
     Plug 'tpope/vim-obsession'
     Plug 'crispydrone/vim-tasks'
