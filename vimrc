@@ -41,6 +41,7 @@ call plug#begin()
     " git utils
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
+    Plug 'junegunn/gv.vim'
 
     " utils
     Plug 'kien/ctrlp.vim'
