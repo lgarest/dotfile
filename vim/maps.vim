@@ -9,6 +9,8 @@ nnoremap <leader>oM :vsplit ~/dev/dotfile/vim/maps.vim<CR>
 
 " check the helping notes
 nnoremap <leader>oh :tabnew ~/dev/notes/<CR>
+nnoremap <leader>oH :vsplit ~/dev/notes/<CR>
+
 " check the todo tasks
 nnoremap <leader>ot :tabnew ~/notes/todos.tasks<CR>
 " check the todo tasks in a vsplit
