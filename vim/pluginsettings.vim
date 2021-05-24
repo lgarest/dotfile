@@ -238,6 +238,9 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 nnoremap <silent> <space>prw  :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " Project search term
 nnoremap <space>f :CocSearch -S 
+" Project search current word
+nnoremap <silent><space>F yiw :CocSearch -S <C-R>0<CR>
+nnoremap <silent><space>t :CocSearch -S @TODO <CR>
 
 
 " Sublime-like C-D to multiselect words
