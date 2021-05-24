@@ -1,6 +1,7 @@
 "" Vim mappings
 " modify settings as a breeze
 nnoremap <leader>, :tabnew ~/dev/dotfile/vimrc<CR>
+nnoremap <leader>r :source ~/.vimrc<CR>
 
 " check the helping notes
 nnoremap <leader>oh :tabnew ~/dev/notes/<CR>
