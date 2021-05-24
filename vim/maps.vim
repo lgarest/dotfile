@@ -16,6 +16,7 @@ nnoremap <leader>oT :70 vsplit ~/notes/todos.tasks<CR>
 
 " check my notes
 nnoremap <leader>oo :tabnew ~/notes/<CR>
+nnoremap <leader>oO :vsplit ~/notes/<CR>
 
 " check my notes
 nnoremap <leader>oj :tabnew ~/dev/swiss-army-knife/<CR>
