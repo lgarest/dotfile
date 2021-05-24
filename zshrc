@@ -109,10 +109,19 @@ echo Sublime Settings restored into $SUBLIME_USER_DIR"
 export DEV_DIR="$HOME/dev"
 
 # PowerLevel10k
+# Displays a p10k segment with the current tmux session
+function prompt_my_tmux_session() {
+    if [[ $(echo $TMUX) ]]; then
+        session="$(tmux display-message -p '#S')"
+        p10k segment -f white -b 199 -t $session
+    fi
+}
+
 # . $DEV_DIR/powerlevel10k/powerlevel10k.zsh-theme
 . $HOMEBREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme
 POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh virtualenv dir vcs)
+POWERLEVEL9K_CUSTOM_TMUX_SESSION="show_tmux_session"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh virtualenv custom_tmux_session dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
