@@ -98,6 +98,10 @@ nnoremap <S-Tab> <C-w><C-w>
 nnoremap <silent><leader>w1 :exe "vertical resize " . (winwidth(0) * 5/4)<CR> 
 nnoremap <silent><leader>w2 :exe "vertical resize " . (winwidth(0) * 3/4)<CR> 
 
+" Better buffer navigation
+map <F2> :CtrlPBuffer<CR>
+map <F3> :bn<CR>
+map <F4> :bp<CR>
 " Toggle spell check
 map <F5> :setlocal spell!<CR>
 " Toggle relative line numbers and regular line numbers
