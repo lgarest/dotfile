@@ -3,6 +3,10 @@
 nnoremap <leader>, :tabnew ~/dev/dotfile/vimrc<CR>
 nnoremap <leader>r :source ~/.vimrc<CR>
 
+" open vim mappings
+nnoremap <leader>om :tabnew ~/dev/dotfile/vim/maps.vim<CR>
+nnoremap <leader>oM :vsplit ~/dev/dotfile/vim/maps.vim<CR>
+
 " check the helping notes
 nnoremap <leader>oh :tabnew ~/dev/notes/<CR>
 
