@@ -116,7 +116,11 @@ nnoremap <silent><A-k> :m .-2<CR>==
 vnoremap <silent><A-j> :m '>+1<CR>gv=gv
 vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 
+" Setup macro for folding by scope
 let @f='V}kzf'
+let @s='vi{zf'
+" Setup macro for indenting by scope
+let @i='V}k='
 " Add vim-fugitive keybindings
 nnoremap <space>gg :G<CR>
 nnoremap <space>gd :G diff<CR>
