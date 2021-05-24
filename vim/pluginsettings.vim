@@ -53,8 +53,6 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 " Close vim if the only window left is NERDtree
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Toggle opening NERDTree in Version Control System mode
-noremap <silent> <leader>n :NERDTreeToggleVCS<CR>
 let g:NERDTreeIgnore = ['^node_modules']
 
 " UltiSnippets
