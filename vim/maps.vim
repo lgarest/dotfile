@@ -116,3 +116,11 @@ vnoremap <silent><A-j> :m '>+1<CR>gv=gv
 vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 
 let @f='V}kzf'
+" Add vim-fugitive keybindings
+nnoremap <space>gg :G<CR>
+nnoremap <space>gd :G diff<CR>
+nnoremap <space>gb :G branch<CR>
+nnoremap <space>gB :G blame<CR>
+nnoremap <space>gL :GV<CR>
+nnoremap <space>gl :GV!<CR>
+nnoremap <space>gf :G fetch --all --prune<CR>
