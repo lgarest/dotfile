@@ -234,8 +234,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-" Project rename word
-nnoremap <silent> <space>prw  :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " Project search term
 nnoremap <space>f :CocSearch -S 
 " Project search current word
@@ -244,13 +242,13 @@ nnoremap <silent><space>t :CocSearch -S @TODO <CR>
 
 
 " Sublime-like C-D to multiselect words
-nmap <expr> <silent> <C-d> <SID>select_current_word()
 function! s:select_current_word()
   if !get(g:, 'coc_cursors_activated', 0)
     return "\<Plug>(coc-cursors-word)"
   endif
   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
 endfunc
+nmap <expr> <silent> <C-d> <SID>select_current_word()
 
 " inoremap <silent><expr> <TAB>
 "       \ pumvisible() ? coc#_select_confirm() :
