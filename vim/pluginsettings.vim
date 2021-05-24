@@ -43,10 +43,10 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:vim_jsx_pretty_highlight_close_tag = 1
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
-" YouCompleteMe
-let g:ycm_confirm_extra_conf = 0
-" use the python version of the virtualenv to do completions
-let g:ycm_python_binary_path = split(system("which python"))[0]
+" " YouCompleteMe
+" let g:ycm_confirm_extra_conf = 0
+" " use the python version of the virtualenv to do completions
+" let g:ycm_python_binary_path = split(system("which python"))[0]
 
 
 " NERDTree https://github.com/preservim/nerdtree
