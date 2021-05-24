@@ -66,6 +66,9 @@ call plug#begin()
     Plug 'Asheq/close-buffers.vim'
 
     Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+    " Distraction free writing
+    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
 call plug#end()
 
 " let g:vim_jsx_pretty_highlight_close_tag=1
