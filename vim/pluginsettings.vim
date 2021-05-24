@@ -11,6 +11,9 @@ let g:ctrlp_custom_ignore = {
 " ack plugin
 let g:ack_default_options = " -s -H --nopager --column -i"
 
+" goyo plugin
+let g:goyo_height = 100
+
 " emmet plugin
 " enable emmet just for html/css
 let g:user_emmet_install_global = 0
