@@ -59,6 +59,9 @@ nnoremap <leader>d :r! date "+\%d-\%m-\%Y"<CR>
 nnoremap <leader>f :let @" = expand("%")<CR>
 nnoremap <leader>F :let @" = expand("%:p")<CR>
 
+" vsplit current file and open declaration
+nmap gs :vsplit<CR>gd
+
 " copy and paste
 vmap <C-c> "+y
 vmap <C-x> "+c
