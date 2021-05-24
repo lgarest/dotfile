@@ -58,7 +58,7 @@ gclone() {
     git clone "$1" && cd "$(basename "$1" .git)"
 }
 reviewcandidate() {
-    cd ~/dev/candidates && gclone "$1" && cp ~/Documents/luis.review.md . && vim .
+    cd ~/dev/candidates && gclone "$1" && cp ~/Documents/luis.review.md . && vim luis.review.md
 }
 
 # Lazyness
