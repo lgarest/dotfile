@@ -32,6 +32,9 @@ nnoremap <leader>p :!$(which prettier) --write %<CR>
 " store the current session
 nnoremap <leader>s :Obsession<CR>
 
+" load the file in a node repl
+nnoremap <leader>xf :!$(which node) -i -e "$(< %)"<CR>
+
 " Toggle opening NERDTree in Version Control System mode
 noremap <silent> <leader>n :NERDTreeToggleVCS<CR>
 
@@ -90,6 +93,7 @@ nnoremap <C-l> <C-w><C-l>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <S-Tab> <C-w><C-w>
+
 
 " Easy resize
 nnoremap <silent><leader>w1 :exe "vertical resize " . (winwidth(0) * 5/4)<CR> 
