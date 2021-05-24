@@ -102,6 +102,7 @@ nnoremap <silent><leader>w2 :exe "vertical resize " . (winwidth(0) * 3/4)<CR>
 map <F5> :setlocal spell!<CR>
 " Toggle relative line numbers and regular line numbers
 map <F6> :setlocal invrelativenumber<CR>
+map <F7> :Goyo<CR>
 
 " Move lines around
 " Discovered thanks to Nick Janetakis https://youtu.be/gNyNm5DsQ88
