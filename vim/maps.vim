@@ -121,6 +121,10 @@ let @f='V}kzf'
 let @s='vi{zf'
 " Setup macro for indenting by scope
 let @i='V}k='
+
+" Todos
+let maplocalleader="\<space>"
+
 " Add vim-fugitive keybindings
 nnoremap <space>gg :G<CR>
 nnoremap <space>gd :G diff<CR>
