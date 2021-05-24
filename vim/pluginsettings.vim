@@ -75,6 +75,10 @@ endif
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
+
+endif
+if isdirectory('./node_modules') && isdirectory('./node_modules/vue')
+  let g:coc_global_extensions += ['coc-vetur']
 endif
 
 " TextEdit might fail if hidden is not set.

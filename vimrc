@@ -22,6 +22,7 @@ call plug#begin()
 
     Plug 'pangloss/vim-javascript'
     Plug 'leafgarland/typescript-vim'
+    " Plug 'posva/vim-vue'
 
     " JSX support
     Plug 'maxmellon/vim-jsx-pretty'
