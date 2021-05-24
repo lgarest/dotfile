@@ -57,7 +57,7 @@ endfunction
 call SetIndentation(4)
 
 " Indentation for specific file formats.
-autocmd FileType yaml,json,javascript,markdown,css,scss :call SetIndentation(2)
+autocmd FileType yaml,json,javascript,typescript,markdown,css,scss,vue :call SetIndentation(2)
 
 " Markdown improved support
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
