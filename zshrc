@@ -121,11 +121,18 @@ POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_ETC_ICON=''
 POWERLEVEL9K_VCS_GIT_HOOKS=''
+
 # fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # zsh syntax highlighting
 #. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Better diffing
+fd() {
+  preview="git diff $@ --color=always -- {-1}"
+  git diff $@ --name-only | fzf -m --ansi --preview $preview
+}
 
 
 #### PATH extensions
