@@ -68,10 +68,13 @@ imap <C-v> <ESC>"+pa
 " Delete the buffer without losing the split
 command! Bd bp\|bd #
 
-" Big hands
+" Big fingers
 cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev wQ wq
+cnoreabbrev WQa wqa
+cnoreabbrev WQA wqa
+cnoreabbrev Wqa wqa
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Vs vs
