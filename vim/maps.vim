@@ -32,6 +32,12 @@ nnoremap <leader>p :!$(which prettier) --write %<CR>
 " store the current session
 nnoremap <leader>s :Obsession<CR>
 
+" Toggle opening NERDTree in Version Control System mode
+noremap <silent> <leader>n :NERDTreeToggleVCS<CR>
+
+" show file in nerdtree
+nnoremap <leader>m :NERDTreeFind <CR>
+
 " just used to it
 nnoremap <C-s> :w<CR>
 
