@@ -75,7 +75,7 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " Copied from Nick Janetakis https://www.youtube.com/watch?v=hrbV5WGxxdY
 " Auto-resize splits when Vim gets resized.
-autocmd VimResized * wincmd =
+" autocmd VimResized * wincmd =
 " Make sure all types of requirements.txt files get python syntax highlighting
 autocmd BufNewFile,BufReadPost requirements*.txt set syntax=python
 " Make sure .aliases, .bash_aliases and similar files get sh filetypes
