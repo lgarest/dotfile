@@ -44,9 +44,6 @@ nnoremap <C-s> :w<CR>
 " alias Ack -> Ack!
 cnoreabbrev Ack Ack!
 
-" fast gitblame
-nnoremap <silent><leader>B :Git blame<CR>
-
 " manage tabs
 nnoremap <leader>t :tabnew .<CR>
 nnoremap <leader>v :vnew<CR>
