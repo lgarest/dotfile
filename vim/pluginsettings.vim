@@ -31,8 +31,12 @@ let g:user_emmet_settings = {
 
 " airline plugin
 " display all buffers when there's only one tab open
-let g:airline_section_y = 'BN: %{bufnr("%")}'
-let g:airline#extensions#tabline#enabled = 1
+" remove the filetype part
+let g:airline_section_x=''
+let g:airline_section_y=''
+" remove separators for empty sections
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " vim-jsx-pretty
