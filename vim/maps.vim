@@ -30,7 +30,7 @@ nnoremap <leader>b :!$(which black) -S %<CR>
 nnoremap <leader>p :!$(which prettier) --write %<CR>
 
 " store the current session
-nnoremap <leader>s :mks! /tmp/session.vim<CR>
+nnoremap <leader>s :Obsession<CR>
 
 " just used to it
 nnoremap <C-s> :w<CR>
