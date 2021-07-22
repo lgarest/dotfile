@@ -52,6 +52,7 @@ call plug#begin()
     Plug 'tpope/vim-repeat'
     Plug 'vim-scripts/Tabmerge'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'wsdjeg/vim-fetch'
 
     " IDE like
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -60,6 +61,7 @@ call plug#begin()
     Plug 'preservim/nerdtree'
     Plug 'tpope/vim-obsession'
     Plug 'crispydrone/vim-tasks'
+    Plug 'yaegassy/coc-jsdoc', {'do': 'yarn install --frozen-lockfile'}
 
     " Diffing like a boss
     Plug 'will133/vim-dirdiff' " Run a diff on 2 directories
@@ -111,6 +113,9 @@ source ~/dev/dotfile/vim/maps.vim
 
 " Plugins settings
 source ~/dev/dotfile/vim/pluginsettings.vim
+
+" Zettelkasten
+source ~/dev/dotfile/vim/zettelkasten.vim
 
 " nvim settings
 if (has("nvim"))
