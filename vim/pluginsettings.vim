@@ -53,6 +53,9 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 " Close vim if the only window left is NERDtree
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == 'Session.vim' | NERDTree | endif
 let g:NERDTreeIgnore = ['^node_modules']
 
 " UltiSnippets
@@ -60,7 +63,6 @@ let g:NERDTreeIgnore = ['^node_modules']
 let g:UltiSnipsExpandTrigger="<c-f>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
 
 " ---- COC CONFIG ----
 " coc config
@@ -178,6 +180,7 @@ augroup end
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>A :CocAction<CR>
 
 " Remap keys for applying codeAction to the current line.
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -219,7 +222,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " COC Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
@@ -238,17 +241,18 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 nnoremap <space>f :CocSearch -S 
 " Project search current word
 nnoremap <silent><space>F yiw :CocSearch -S <C-R>0<CR>
+" Project search @TODO
 nnoremap <silent><space>t :CocSearch -S @TODO <CR>
 
 
 " Sublime-like C-D to multiselect words
+nmap <expr> <silent> <C-d> <SID>select_current_word()
 function! s:select_current_word()
-  if !get(g:, 'coc_cursors_activated', 0)
+  if !get(b:, 'coc_cursors_activated', 0)
     return "\<Plug>(coc-cursors-word)"
   endif
   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
 endfunc
-nmap <expr> <silent> <C-d> <SID>select_current_word()
 
 " inoremap <silent><expr> <TAB>
 "       \ pumvisible() ? coc#_select_confirm() :

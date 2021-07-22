@@ -23,6 +23,7 @@ alias tre='tree -L 3'
 mk() {
     mkdir $1 && cd $1
 }
+alias genpass='cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 14'
 
 # Defaults replaced for better commands
 alias ls='exa'
@@ -30,6 +31,7 @@ alias grep='grep --color=auto'
 alias cat='bat'
 alias ping='prettyping --nolegend'
 alias du="ncdu --color dark -x --exclude .git --exclude node_modules --exclude venv"
+alias fvim='vim $(fzf --height 40%)'
 
 # Vim
 # let g:coc_node_path = trim(system('which node'))
@@ -48,7 +50,9 @@ alias gitrut="git fetch --all --prune && git rebase upstream/test"
 alias gitrum="git fetch --all --prune && git rebase upstream/$MAIN_BRANCH"
 alias gitrud="git fetch --all --prune && git rebase upstream/develop"
 alias gitrom="git fetch --all --prune && git rebase origin/$MAIN_BRANCH"
+alias gitromm="git fetch --all --prune && git rebase origin/master"
 alias sgitrom="git stash -u && git fetch --all --prune && git rebase origin/$MAIN_BRANCH && git stash pop"
+alias sgitromm="git stash -u && git fetch --all --prune && git rebase origin/master && git stash pop"
 alias gitrub="git stash -u && git fetch --all --prune && git rebase origin/$(git_current_branch) && git stash pop"
 alias gitrod="git fetch --all --prune && git rebase origin/develop"
 alias fetch-prs="git fetch --all --prune +refs/pull-requests/*:refs/remotes/origin/pr/*"
@@ -138,10 +142,10 @@ POWERLEVEL9K_VCS_GIT_HOOKS=''
 . $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Better diffing
-fd() {
-  preview="git diff $@ --color=always -- {-1}"
-  git diff $@ --name-only | fzf -m --ansi --preview $preview
-}
+# fd() {
+#   preview="git diff $@ --color=always -- {-1}"
+#   git diff $@ --name-only | fzf -m --ansi --preview $preview
+# }
 
 
 #### PATH extensions

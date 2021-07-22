@@ -66,7 +66,7 @@ autocmd BufWritePost *.md :silent !markdown -o <afile>:p:h/<afile>:t:r.html <afi
 " Javascript and typescript improved support
 " autocmd BufNewFile,BufRead *.js set filetype=javascript
 " autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
-" autocmd BufNewFile,BufRead *.ts set filetype=typescriptreact
+" autocmd BufNewFile,BufRead *.ts set filetype=typescript
 " autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
 
 
@@ -126,4 +126,4 @@ if filereadable(getcwd() . '/Session.vim')
 endif
 endfunction
 
-autocmd VimEnter * nested call RestoreSess()
+" autocmd VimEnter * nested call RestoreSess()
