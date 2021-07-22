@@ -133,3 +133,4 @@ nnoremap <space>gB :G blame<CR>
 nnoremap <space>gL :GV<CR>
 nnoremap <space>gl :GV!<CR>
 nnoremap <space>gf :G fetch --all --prune<CR>
+nnoremap <space>grm :G rebase origin/main<CR>
