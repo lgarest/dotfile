@@ -37,9 +37,13 @@ nnoremap <leader>xf :!$(which node) -i -e "$(< %)"<CR>
 
 " Toggle opening NERDTree in Version Control System mode
 noremap <silent> <leader>n :NERDTreeToggleVCS<CR>
+" Toggle opening NERDTree in VCS mode and close other windows
+noremap <silent> <leader>N :NERDTreeToggleVCS<CR><C-w>o
 
 " show file in nerdtree
 nnoremap <leader>m :NERDTreeFind <CR>
+" show file in nerdtree and close other windows
+nnoremap <leader>M :NERDTreeFind <CR><C-w>o
 
 " just used to it
 nnoremap <C-s> :w<CR>
