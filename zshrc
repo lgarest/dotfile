@@ -67,7 +67,7 @@ reviewcandidate() {
 
 # Lazyness
 alias venv=". venv/bin/activate"
-alias nud="nvm use --lts"
+alias nud="nvm use default"
 alias lzd="lazydocker"
 alias lzg="lazygit"
 alias dj="venv/bin/python manage.py "

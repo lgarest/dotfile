@@ -3,7 +3,7 @@
 " by specifying the python executable
 " let g:python3_host_prog = '/Users/luis/venvs/py3nvim/bin/python'
 let g:python3_host_prog = '/home/luis/venvs/py3nvim/bin/python'
-let g:coc_node_path = '/home/luis/.nvm/versions/node/v15.2.1/bin/node'
+let g:coc_node_path = '/home/luis/.nvm/versions/node/v14.18.0/bin/node'
 
 "" mappings
 " Terminal support inside nvim
