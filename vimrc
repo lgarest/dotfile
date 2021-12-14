@@ -44,6 +44,7 @@ call plug#begin()
     Plug 'junegunn/gv.vim'
 
     " utils
+    Plug 'rafamadriz/friendly-snippets'
     Plug 'kien/ctrlp.vim'
     Plug 'mileszs/ack.vim'
     Plug 'tpope/vim-commentary'
