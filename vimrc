@@ -90,6 +90,9 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
+" To open urls (gx) in Windows
+let g:netrw_browsex_viewer="cmd.exe /C start"
+
 
 " Main theme configuration
 " Dark theme

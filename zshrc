@@ -147,6 +147,8 @@ POWERLEVEL9K_VCS_GIT_HOOKS=''
 #   git diff $@ --name-only | fzf -m --ansi --preview $preview
 # }
 
+export BROWSER="wslview"
+
 
 #### PATH extensions
 ## Custom scripts folder
@@ -181,3 +183,4 @@ export ANDROID_AVD_HOME=$HOME/.android/avd
 # export PATH=$ANDROID_DIR/tools/:$PATH
 # export PATH=$ANDROID_DIR/tools/bin/:$PATH
 # export PATH=/usr/local/opt/mysql-client/bin/:$PATH
+
