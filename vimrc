@@ -47,7 +47,7 @@ call plug#begin()
     Plug 'rafamadriz/friendly-snippets'
     Plug 'kien/ctrlp.vim'
     Plug 'mileszs/ack.vim'
-    Plug 'tpope/vim-commentary'
+    Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
