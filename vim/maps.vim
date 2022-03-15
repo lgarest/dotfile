@@ -28,6 +28,7 @@ nnoremap <leader>b :!$(which black) -S %<CR>
 
 " run the file through prettier
 nnoremap <leader>p :!$(which prettier) --write %<CR>
+nnoremap <leader>P :!$(which prettier) --config ~/dev/dotfile/prettierrc --write %<CR>
 
 " store the current session
 nnoremap <leader>s :Obsession<CR>

@@ -56,13 +56,17 @@ call plug#begin()
     Plug 'wsdjeg/vim-fetch'
 
     " IDE like
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     " Plug 'plasticboy/vim-markdown' " Doesn't work with coc?
+    Plug 'godlygeek/tabular'
+    Plug 'preservim/vim-markdown'
     Plug 'preservim/nerdtree'
     Plug 'tpope/vim-obsession'
     Plug 'crispydrone/vim-tasks'
     Plug 'yaegassy/coc-jsdoc', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
+    Plug 'aarleks/zettel.vim' " Zettelkasten enhancing
 
     " Diffing like a boss
     Plug 'will133/vim-dirdiff' " Run a diff on 2 directories
@@ -75,7 +79,6 @@ call plug#begin()
     Plug 'junegunn/limelight.vim'
 
     " Plug 'ThePrimeagen/vim-be-good'
-
 call plug#end()
 
 " let g:vim_jsx_pretty_highlight_close_tag=1
@@ -90,21 +93,24 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-" To open urls (gx) in Windows
+" To open urls (gx) in WSL
 let g:netrw_browsex_viewer="cmd.exe /C start"
+" use with combination of export BROWSER="wslview" in zshrc
 
+" Themes configuration
+function SetDarkTheme()
+    set background=dark
+    colorscheme candid
+endfunction
 
-" Main theme configuration
-" Dark theme
-" set background=dark
-" colorscheme candid
+function SetLightTheme()
+    set background=light
+    let ayucolor="light" "| dark
+    colorscheme ayu
+endfunction
+call SetDarkTheme()
 
-" Light theme
-let ayucolor="dark"
-colorscheme ayu
-
-let g:coc_node_path = trim(system('which node'))
-let g:coc_npm_path = trim(system('which npm'))
+let g:vim_markdown_folding_disabled = 1
 
 " Options, commands, and autocommands
 source ~/dev/dotfile/vim/base.vim

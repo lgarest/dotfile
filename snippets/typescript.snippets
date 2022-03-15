@@ -1,0 +1,98 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet arrow "arrow function" i
+(${1:...params}) => ${2:params.join(',')}
+endsnippet
+
+snippet td "// @TODO:" b
+// @TODO: ${1:something}
+endsnippet
+
+snippet cl "console.log" b
+console.log('____ ${1:variable}:', ${1:variable}); // @TODO: delete this
+endsnippet
+
+snippet desc "describe block" b
+describe('${1:}', () => {
+	${2:}
+})
+endsnippet
+
+snippet it "it block" b
+it('${1:}', () => {
+	${2:}
+})
+endsnippet
+
+snippet testgherkin "full test in the GIVEN WHEN THEN form (gherkin)" b
+// https://www.guru99.com/gherkin-test-cucumber.html
+
+describe('GIVEN: ${1:}', () => {
+	describe('WHEN: ${2:}', () => {
+    it('THEN: ${3:}', () => {
+			${4:}
+		})
+	})
+})
+endsnippet
+
+snippet testaaaa "arrange assert act assert expand" b
+// arrange
+const add = (a,b) => a + b;
+const expected = 5;
+const params = [2,3]
+let actual = 0;
+
+// assert
+expect(actual).toEqual(0)
+expect(params[0]).toEqual(2)
+expect(params[1]).toEqual(3)
+
+// act
+actual = add(...params)
+
+
+// assert
+expect(actual).toEqual(expected)
+endsnippet
+
+snippet assert "assert" i
+// assert
+expect(${1:actual}).toEqual(${2:expected})
+endsnippet
+snippet arrange "arrange" i
+// arrange
+${1:}
+endsnippet
+
+snippet imports "show imports" b
+// 3rd party dependencies
+
+// absolute imports
+
+// local imports
+endsnippet

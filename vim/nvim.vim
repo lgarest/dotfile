@@ -1,9 +1,14 @@
 "" nvim settings
+
+" enable node plugins support for nvim
+let g:coc_node_path = trim(system('which node'))
+" let g:coc_npm_path = trim(system('which npm'))
+let g:coc_node_path = '/home/luis/.nvm/versions/node/v16.13.1/bin/node'
+
 " enable python plugins support for nvim
-" by specifying the python executable
 " let g:python3_host_prog = '/Users/luis/venvs/py3nvim/bin/python'
 let g:python3_host_prog = '/home/luis/venvs/py3nvim/bin/python'
-let g:coc_node_path = '/home/luis/.nvm/versions/node/v16.13.1/bin/node'
+
 
 "" mappings
 " Terminal support inside nvim

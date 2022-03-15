@@ -1,0 +1,69 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet tag "<tag><tag>" b
+	<${1:tag}>${2:content}</${1:tag}>
+endsnippet
+snippet tag2 "<tag attributes=''><tag>" b
+	<${1:tag} ${2:attribute}>${3:content}</${1:tag}>
+endsnippet
+
+snippet context "context with provider" b
+// 3rd party dependencies
+import { createContext, FunctionComponent, useContext, useState } from "react";
+
+// absolute imports
+
+// local imports
+
+
+interface ${1:Game}ContextType {
+  game: boolean;
+  toggleDark?: () => void;
+}
+
+const defaults = {
+  game: false,
+};
+
+export const ${1:Game}Context = createContext<${1:Game}ContextType>(defaults);
+
+export const ${1:Game}ContextProvider: FunctionComponent = ({ children }) => {
+  const [game, setDark] = useState(defaults.game);
+
+  const toggleDark = () => {
+    setDark(!game)
+  }
+  
+  return (
+    <${1:Game}Context.Provider value={{ game, toggleDark }}>
+      {children}
+    </${1:Game}Context.Provider>
+  );
+};
+
+export const use${1:Game}Context = () => useContext(${1:Game}Context)
+endsnippet
