@@ -1,0 +1,151 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet h1 "h1" A
+# ${1:}
+endsnippet
+
+snippet h2 "h2" A
+## ${1:}
+endsnippet
+
+snippet h3 "h3" A
+### ${1:}
+endsnippet
+
+snippet link,url "text: link or url" A
+[${2:title}](${1:url})
+endsnippet
+
+snippet italics,ti "text: italics" i
+_${1:italics}_ ${2:}
+endsnippet
+
+snippet bold,tb "text: bold" i
+**${1:bold}** ${2:}
+endsnippet
+
+snippet strikethrough,ts "text: strikethrough" i
+~~${1:strikethrough}~~ ${2:}
+endsnippet
+
+snippet quote,tq "text: quote" i
+> ${1:quote}
+endsnippet
+
+snippet highlight,th "text: highlight" i
+==${1:highlight}== ${2:}
+endsnippet
+
+snippet code,tc "text: code" i
+`${1:inline code}` ${2:}
+endsnippet
+
+snippet table,tt "text: table" i
+| ${1:variable} | ${2:name} |
+| - | - |
+| ${3:a} | ${4:2} |
+endsnippet
+
+snippet codeblock,tcb "text: code" b
+\`\`\`${1:sh}
+${2:inline code}
+\`\`\`
+endsnippet
+
+snippet list,tl "text: list with items" b
+${1:list header}:
+- ${2:list item}
+endsnippet
+
+snippet todo,td "text: TODO item" b
+- [ ] ${1:todo item}
+endsnippet
+
+snippet todocompleted,tdc "text: TODO item completed" b
+- [x] ${1:todo item completed}
+endsnippet
+
+snippet footnote,tf "text: footnote with definition" i
+[^${1:1}]
+
+[^${1:1}]: ${2:footnote}
+
+endsnippet
+
+
+# ACRONYMS EXPANSION
+
+snippet tbd "To be determined" A
+(to be determined)
+endsnippet
+
+snippet tbc "To be clarified" A
+(to be clarified)
+endsnippet
+
+snippet afaik "As far as I know" A
+(as far as I know)
+endsnippet
+
+snippet afair "As far as I remember" A
+(as far as I remember)
+endsnippet
+
+
+# TEMPLATES
+
+snippet mdinit "Initialize markdown" A
+<!-- markdownlint-disable MD012 MD013 MD022 MD032 -->
+# ${1:}
+
+[TOC]
+
+${2:}
+endsnippet
+
+snippet mdmeeting "Initialize meeting template" A
+<!-- markdownlint-disable MD012 MD013 MD022 MD032 -->
+# ${1:}
+
+[TOC]
+
+## Agenda
+
+- ${2:first topic}
+
+## Atendees
+
+Meeting held in <DATE>
+
+- ${3:LuisG}
+
+## Action items
+
+- [ ] ${4:Share the meeting notes}
+
+endsnippet
+

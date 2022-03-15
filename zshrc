@@ -81,7 +81,6 @@ alias printers="lpstat -a"
 #### Cool commands
 
 # Weather
-alias weather="curl 'wttr.in/Marratxi' && curl 'wttr.in/Marratxi?format=v2'"
 alias moon="curl wttr.in/Moon"
 
 # Diff files or directories
@@ -154,6 +153,11 @@ export BROWSER="wslview"
 ## Custom scripts folder
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+# WSL
+export PATH="/mnt/c/Users/luisg/wsl-bin:$PATH"
+# export PATH="/mnt/c/Users/luisg/wsl-bin:$PATH"
+notify-send() { wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
 
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"

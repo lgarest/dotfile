@@ -76,7 +76,11 @@ let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-pyright',
     \ 'coc-terminal',
+    \ 'coc-webview',
     \ 'coc-markdownlint',
+    \ 'coc-markdown-preview-enhanced',
+    \ 'coc-markmap',
+    \ 'coc-emoji',
     \ 'coc-sh'
 \ ]
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -268,3 +272,4 @@ endfunc
 " let g:coc_snippet_next = '<tab>'
 
 " ---- END OF COC CONFIG ----
+
