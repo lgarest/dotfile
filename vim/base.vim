@@ -86,6 +86,7 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 autocmd BufNewFile,BufReadPost requirements*.txt set syntax=python
 " Make sure .aliases, .bash_aliases and similar files get sh filetypes
 autocmd BufNewFile,BufReadPost *.aliases set filetype=sh
+autocmd BufNewFile,BufReadPost *.prisma set syntax=prisma
 
 
 " Splits

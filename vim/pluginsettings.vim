@@ -83,9 +83,9 @@ let g:coc_global_extensions = [
     \ 'coc-emoji',
     \ 'coc-sh'
 \ ]
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
+" if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+"   let g:coc_global_extensions += ['coc-prettier']
+" endif
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
@@ -93,6 +93,9 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
 endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/vue')
   let g:coc_global_extensions += ['coc-vetur']
+endif
+if isdirectory('./node_modules') && isdirectory('./node_modules/prisma')
+  let g:coc_global_extensions += ['coc-prisma']
 endif
 
 " TextEdit might fail if hidden is not set.

@@ -57,9 +57,10 @@ call plug#begin()
 
     " IDE like
     Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-    " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     " Plug 'plasticboy/vim-markdown' " Doesn't work with coc?
     Plug 'godlygeek/tabular'
+    Plug 'pantharshit00/vim-prisma' " Prisma syntax highlighting
     Plug 'preservim/vim-markdown'
     Plug 'preservim/nerdtree'
     Plug 'tpope/vim-obsession'
