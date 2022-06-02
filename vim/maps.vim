@@ -124,6 +124,7 @@ vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 " Setup macro for folding by scope
 let @f='V}kzf'
 let @s='vi{zf'
+let @g='v%zf'
 " Setup macro for indenting by scope
 let @i='V}k='
 
