@@ -26,7 +26,10 @@ mk() {
 alias genpass='cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 14'
 
 # Defaults replaced for better commands
-alias ls='exa'
+if [ -x "$(command -v exa)" ]; then
+	alias ls='exa'
+	alias la='exa --long --all --group -a'
+fi
 alias grep='grep --color=auto'
 alias cat='bat'
 alias ping='prettyping --nolegend'

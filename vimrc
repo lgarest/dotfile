@@ -9,6 +9,8 @@ endif
 
 call plug#begin()
     Plug 'xolox/vim-misc'
+    " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     " theme plugins
     Plug 'flrnd/candid.vim' " For dark environments
@@ -56,7 +58,6 @@ call plug#begin()
     Plug 'wsdjeg/vim-fetch'
 
     " IDE like
-    Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     " Plug 'plasticboy/vim-markdown' " Doesn't work with coc?
     Plug 'godlygeek/tabular'
