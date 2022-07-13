@@ -77,6 +77,7 @@ reviewcandidate() {
 }
 
 # Lazyness
+alias ta="tmux attach"
 alias venv=". venv/bin/activate"
 alias nud="nvm use default"
 alias lzd="lazydocker"
@@ -92,7 +93,8 @@ alias printers="lpstat -a"
 #### Cool commands
 
 # Weather
-alias moon="curl wttr.in/Moon"
+alias weather="curl 'wttr.in/$WEATHER_LOC' && curl 'v2.wttr.in/$WEATHER_LOC'"
+alias moon="curl wttr.in/moon"
 
 # Diff files or directories
 vdiff () {
@@ -151,14 +153,7 @@ POWERLEVEL9K_VCS_GIT_HOOKS=''
 #. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Better diffing
-# fd() {
-#   preview="git diff $@ --color=always -- {-1}"
-#   git diff $@ --name-only | fzf -m --ansi --preview $preview
-# }
-
-export BROWSER="wslview"
-
+# export BROWSER="wslview"
 
 #### PATH extensions
 ## Custom scripts folder
@@ -166,9 +161,9 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # WSL
-export PATH="/mnt/c/Users/luisg/wsl-bin:$PATH"
 # export PATH="/mnt/c/Users/luisg/wsl-bin:$PATH"
-notify-send() { wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
+# # export PATH="/mnt/c/Users/luisg/wsl-bin:$PATH"
+# notify-send() { wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
 
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -186,16 +181,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 # load nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# Android Studio
-export ANDROID_DIR=$HOME/Library/Android/sdk
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export ANDROID_AVD_HOME=$HOME/.android/avd
-
-# export PATH=$ANDROID_DIR/platform-tools/:$PATH
-# export PATH=$ANDROID_DIR/emulator/:$PATH
-# export PATH=$ANDROID_DIR/tools/:$PATH
-# export PATH=$ANDROID_DIR/tools/bin/:$PATH
-# export PATH=/usr/local/opt/mysql-client/bin/:$PATH
 
