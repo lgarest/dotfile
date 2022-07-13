@@ -64,6 +64,7 @@ let g:NERDTreeIgnore = ['^node_modules']
 let g:UltiSnipsExpandTrigger="<c-f>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "~/dev/dotfile/snippets"]
 
 " ---- COC CONFIG ----
 " coc config
