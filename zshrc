@@ -24,6 +24,10 @@ mk() {
     mkdir $1 && cd $1
 }
 alias genpass='cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 14'
+# Key bindings
+bindkey -s ^f "tmux-sessionizer.sh\n"
+bindkey -s ^u "tmux-fzf-session.sh\n"
+bindkey '^ ' autosuggest-accept
 
 # Defaults replaced for better commands
 if [ -x "$(command -v exa)" ]; then

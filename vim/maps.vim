@@ -17,8 +17,8 @@ nnoremap <leader>ot :tabnew ~/notes/todos.tasks<CR>
 nnoremap <leader>oT :70 vsplit ~/notes/todos.tasks<CR>
 
 " check my notes
-nnoremap <leader>oo :tabnew ~/notes/<CR>
-nnoremap <leader>oO :vsplit ~/notes/<CR>
+nnoremap <leader>oo :tabnew ~/dev/notes/<CR>
+nnoremap <leader>oO :vsplit ~/dev/notes/<CR>
 
 " check my notes
 nnoremap <leader>oj :tabnew ~/dev/swiss-army-knife/<CR>
@@ -49,6 +49,10 @@ nnoremap <leader>M :NERDTreeFind <CR><C-w>o
 " just used to it
 nnoremap <C-s> :w<CR>
 
+" tmux sessionizer
+nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer.sh<CR>
+nnoremap <leader> U :!tmux neww tmux-fzf-session.sh<CR>
+
 " alias Ack -> Ack!
 cnoreabbrev Ack Ack!
 
@@ -57,7 +61,7 @@ nnoremap <leader>t :tabnew .<CR>
 nnoremap <leader>v :vnew<CR>
 
 " insert current date
-nnoremap <leader>D :r! date "+\%d-\%m-\%Y \%H:\%M:\%S"<CR>
+nnoremap <leader>D :r! date "+\%d-\%m-\%Y \%H:\%M"<CR>
 nnoremap <leader>d :r! date "+\%d-\%m-\%Y"<CR>
 
 " yank current file name
