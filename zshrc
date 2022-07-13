@@ -69,6 +69,7 @@ alias gitrod="git fetch --all --prune && git rebase origin/develop"
 alias fetch-prs="git fetch --all --prune +refs/pull-requests/*:refs/remotes/origin/pr/*"
 alias ydiff="ydiff -s -w 100"
 alias ydiffs="ydiff -s -w 100 --staged"
+alias gshowe="git show --name-only -1 | fzf | xargs nvim"
 gclone() {
     git clone "$1" && cd "$(basename "$1" .git)"
 }
