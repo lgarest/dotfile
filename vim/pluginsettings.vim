@@ -7,6 +7,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+let g:ctrlp_working_path_mode = 'a'
 
 " ack plugin
 let g:ack_default_options = " -s -H --nopager --column -i"
