@@ -24,6 +24,10 @@ mk() {
     mkdir $1 && cd $1
 }
 alias genpass='cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 14'
+def() {
+    curl https://api.dictionaryapi.dev/api/v2/entries/en/$1 | json_pp | rg "definition\""
+}
+
 # Key bindings
 bindkey -s ^f "tmux-sessionizer.sh\n"
 bindkey -s ^u "tmux-fzf-session.sh\n"
