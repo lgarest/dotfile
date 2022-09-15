@@ -8,6 +8,8 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 let g:ctrlp_working_path_mode = 'a'
+" let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_cmd = 'CtrlP'
 
 " ack plugin
 let g:ack_default_options = " -s -H --nopager --column -i"
