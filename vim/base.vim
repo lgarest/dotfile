@@ -33,6 +33,8 @@ if !has('nvim')
     set signcolumn=auto
 endif
 
+set smartcase
+
 " ignore case by default
 set ignorecase
 " display line numbers
