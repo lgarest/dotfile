@@ -50,6 +50,7 @@ alias fvim='vim $(fzf --height 40%)'
 # Vim
 # let g:coc_node_path = trim(system('which node'))
 alias vim="nvim"
+alias v="nvim +CtrlPMRU"
 alias ctags="`brew --prefix`/bin/ctags"
 
 # Git shorthands
