@@ -95,6 +95,18 @@ alias psgrep="ps aux | grep "
 alias printers="lpstat -a"
 alias forgith="agrep forgit"
 
+## tb shorthands
+alias tbc="tb | fzf | cut -d '.' -f 1 | xargs tb --check"
+alias tbtc="tb --task @coding"
+alias tbtt="tb --task @this_week"
+alias tbts="tb --task @setup"
+alias tbtr="tb --task @retro"
+alias tbretro="tb --task @retro"
+alias tbtl="tb --task @learn"
+alias tbt="tb --task"
+alias tbn="tb --note"
+alias tbd="tb | fzf | cut -d '.' -f 1 | xargs tb -d"
+
 #### Cool commands
 
 # Weather
