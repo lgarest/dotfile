@@ -81,7 +81,7 @@ reviewcandidate() {
 }
 
 # Lazyness
-alias ta="tmux attach"
+alias ta="tmux attach || tmux"
 alias venv=". venv/bin/activate"
 alias nud="nvm use default"
 alias lzd="lazydocker"
