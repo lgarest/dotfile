@@ -133,8 +133,8 @@ let @i='V}k='
 let maplocalleader="\<space>"
 
 " Add vim-fugitive keybindings
-nnoremap <space>gg :G<CR>
-nnoremap <space>gd :G diff<CR>
+nnoremap <space>gg :tab G<CR>
+nnoremap <space>gd :tab G diff<CR>
 nnoremap <space>gb :G branch<CR>
 nnoremap <space>gB :G blame<CR>
 nnoremap <space>gL :GV<CR>
