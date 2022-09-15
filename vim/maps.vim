@@ -46,9 +46,6 @@ nnoremap <leader>m :NERDTreeFind <CR>
 " show file in nerdtree and close other windows
 nnoremap <leader>M :NERDTreeFind <CR><C-w>o
 
-" just used to it
-nnoremap <C-s> :w<CR>
-
 " tmux sessionizer
 nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer.sh<CR>
 nnoremap <leader> U :!tmux neww tmux-fzf-session.sh<CR>
