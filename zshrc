@@ -33,7 +33,7 @@ def() {
 
 # Key bindings
 bindkey -s ^f "tmux-sessionizer.sh\n"
-bindkey -s ^u "tmux-fzf-session.sh\n"
+bindkey -s ^s "tmux-fzf-session.sh\n"
 bindkey '^ ' autosuggest-accept
 
 # Defaults replaced for better commands
