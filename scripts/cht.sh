@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-languages=$(echo "typescript react ruby javascript vim css" | tr " " "\n")
-core_utils=$(echo "git find xargs sed awk tr cut grep curl bc cat read echo ln head tail less" | tr " " "\n")
+languages=$(echo "typescript react ruby javascript vim css node" | tr " " "\n")
+core_utils=$(echo "git find xargs sed awk tr cut grep curl bc cat read echo ln head tail less gpg" | tr " " "\n")
 
 selected=$(echo -e "$languages\n$core_utils" | fzf)
 
