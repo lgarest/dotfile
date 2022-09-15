@@ -23,7 +23,10 @@ alias tre='tree -L 3'
 mk() {
     mkdir $1 && cd $1
 }
-alias genpass='cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 14'
+getpass() {
+    cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | head -c $1
+}
+alias genpass='getpass 16'
 def() {
     curl https://api.dictionaryapi.dev/api/v2/entries/en/$1 | json_pp | rg "definition\""
 }
