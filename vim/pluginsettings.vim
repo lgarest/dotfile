@@ -30,15 +30,21 @@ let g:user_emmet_settings = {
     \  },
   \}
 
-" airline plugin
-" display all buffers when there's only one tab open
-" remove the filetype part
-let g:airline_section_x=''
-let g:airline_section_y=''
-" remove separators for empty sections
-let g:airline_skip_empty_sections = 1
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#tabline#left_alt_sep = '|'
+"" Airline plugin
+let g:airline_skip_empty_sections = 1 " remove separators for empty sections
+let g:airline_inactive_collapse=1 " inactive windows should have the left section collapsed to only the filename
+let g:airline_powerline_fonts = 1 " enable powerline fonts
+" let g:airline_stl_path_style = 'short' " display a short path in statusline: >
+let g:airline#extensions#branch#displayed_head_limit = 15 " trim long branch names
+"" Coc integration
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#show_coc_status = 1 " enable coc status
+let airline#extensions#coc#error_symbol = 'E'
+let airline#extensions#coc#warning_symbol = 'W'
+"" Sections redefinition
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+let g:webdevicons_enable_airline_statusline_fileformat_symbols = 0 "" Remove file encoding
 
 " vim-jsx-pretty
 let g:vim_jsx_pretty_highlight_close_tag = 1
