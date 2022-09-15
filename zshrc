@@ -28,7 +28,7 @@ getpass() {
 }
 alias genpass='getpass 16'
 def() {
-    curl https://api.dictionaryapi.dev/api/v2/entries/en/$1 | json_pp | rg "definition\""
+    curl -s https://api.dictionaryapi.dev/api/v2/entries/en/$1 | json_pp | rg "definition\""
 }
 
 # Key bindings
