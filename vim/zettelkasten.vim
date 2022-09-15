@@ -2,7 +2,7 @@
 " https://www.edwinwenink.xyz/posts/48-vim_fast_creating_and_linking_notes/
 
 " Zettelkasten
-let g:zettelkasten = '/home/luis/notes/zettelkasten/'
+let g:zettelkasten = '/home/luis/dev/notes/zettelkasten'
 
 " CREATE:
 " Create a new zettel
