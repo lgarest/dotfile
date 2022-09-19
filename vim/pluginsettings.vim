@@ -9,7 +9,11 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_working_path_mode = 'a'
 " let g:ctrlp_cmd = 'CtrlPMRU'
-let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_cmd = 'CtrlPMixed'
+nnoremap <C-P> :CtrlPMRU<CR>
+let g:ctrlp_mruf_relative = 1
+
 
 " ack plugin
 let g:ack_default_options = " -s -H --nopager --column -i"
