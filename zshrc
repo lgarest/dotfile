@@ -203,3 +203,14 @@ export NVM_DIR="$HOME/.nvm"
 # load nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+show_project_contributors ()
+{
+  if [[ $PWD = $project ]]; then
+    contributors_ranking=`git shortlog -sn --all`
+    # echo $contributors_ranking | head --lines 10
+    # echo "$project contributors ranking:"
+    # echo "pos    commits  author"
+    echo $contributors_ranking | rg --context 2 "`git config --get --global user.name`" --pretty
+  fi
+}
+
