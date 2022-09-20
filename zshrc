@@ -99,6 +99,7 @@ alias printers="lpstat -a"
 alias forgith="agrep forgit"
 
 ## tb shorthands
+alias tbh="agrep tb"
 alias tbc="tb | fzf | cut -d '.' -f 1 | xargs tb --check"
 alias tbtc="tb --task @coding"
 alias tbtt="tb --task @this_week"
