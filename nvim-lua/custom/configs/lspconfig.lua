@@ -1,0 +1,43 @@
+local on_attach = require("plugins.configs.lspconfig").on_attach
+local capabilities = require("plugins.configs.lspconfig").capabilities
+
+local lspconfig = require "lspconfig"
+local configs = require ('lspconfig.configs')
+
+-- if you just want default config for the servers then put them in a table
+local servers = { "html", "cssls", "tsserver", "clangd", "tailwindcss" }
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
+
+if not configs.nginx_lsp then
+  configs.nginx_lsp = {
+    default_config = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      cmd = {'nginx-language-server'},
+      filetypes = {'nginx'},
+      root_dir = function(fname)
+        return lspconfig.util.find_git_ancestor(fname)
+      end,
+      settings = {},
+    }
+
+  }
+end
+lspconfig.nginx_lsp.setup({})
+
+-- lspconfig.pyright.setup { blabla}
+vim.diagnostic.config {
+  virtual_text = false,
+}
+-- You will likely want to reduce updatetime which affects CursorHold
+-- note: this setting is global and should be set only once
+vim.o.updatetime = 250
+vim.cmd [[
+  autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})
+  ]]
