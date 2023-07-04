@@ -1,40 +1,44 @@
 "" Vim mappings
 " modify settings as a breeze
-nnoremap <leader>, :tabnew ~/dev/dotfile/vimrc<CR>
-nnoremap <leader>r :source ~/.vimrc<CR>
+nmap <leader>, :tabnew ~/dev/dotfile/vimrc<CR>
+nmap <leader>r :source ~/.vimrc<CR>
 
 " open vim mappings
-nnoremap <leader>om :tabnew ~/dev/dotfile/vim/maps.vim<CR>
-nnoremap <leader>oM :vsplit ~/dev/dotfile/vim/maps.vim<CR>
+nmap <leader>om :tabnew ~/dev/dotfile/vim/maps.vim<CR>
+nmap <leader>oM :vsplit ~/dev/dotfile/vim/maps.vim<CR>
 
 " check the helping notes
-nnoremap <leader>oh :tabnew ~/dev/notes/<CR>
-nnoremap <leader>oH :vsplit ~/dev/notes/<CR>
+nmap <leader>oh :tabnew ~/dev/notes/<CR>
+nmap <leader>oH :vsplit ~/dev/notes/<CR>
 
 " check the todo tasks
-nnoremap <leader>ot :tabnew ~/notes/todos.tasks<CR>
+" nmap <leader>ot :tabnew ~/notes/todos.tasks<CR>
 " check the todo tasks in a vsplit
-nnoremap <leader>oT :70 vsplit ~/notes/todos.tasks<CR>
+nmap <leader>oT :70 vsplit ~/notes/todos.tasks<CR>
 
 " check my notes
-nnoremap <leader>oo :tabnew ~/dev/notes/<CR>
-nnoremap <leader>oO :vsplit ~/dev/notes/<CR>
+nmap <leader>oo :tabnew ~/dev/notes/<CR>
+nmap <leader>oO :vsplit ~/dev/notes/<CR>
 
 " check my notes
-nnoremap <leader>oj :tabnew ~/dev/swiss-army-knife/<CR>
+" nmap <leader>oj :tabnew ~/dev/swiss-army-knife/<CR>
 
 " run the file through black
-nnoremap <leader>b :!$(which black) -S %<CR>
+nmap <leader>b :!$(which black) -S %<CR>
 
 " run the file through prettier
-nnoremap <leader>p :!$(which prettier) --write %<CR>
-nnoremap <leader>P :!$(which prettier) --config ~/dev/dotfile/prettierrc --write %<CR>
+nmap <leader>p :!$(which prettier) --write %<CR>
+nmap <leader>P :w<CR>:!$(which prettier) --config ~/dev/dotfile/prettierrc --write %<CR>
+nmap <leader>e :!$(which eslint) --config ~/dev/bx-evaluation-and-selection/.eslintrc.cjs --fix %<CR>
 
 " store the current session
-nnoremap <leader>s :Obsession<CR>
+nmap <leader>s :Obsession<CR>
 
 " load the file in a node repl
-nnoremap <leader>xf :!$(which node) -i -e "$(< %)"<CR>
+nmap <leader>xf :!$(which node) -i -e "$(< %)"<CR>
+nmap <leader>xx :. !sh<CR>
+vmap <leader>xx :. !sh<CR>
+
 
 " Toggle opening NERDTree in Version Control System mode
 noremap <silent> <leader>n :NERDTreeToggleVCS<CR>
@@ -42,31 +46,34 @@ noremap <silent> <leader>n :NERDTreeToggleVCS<CR>
 noremap <silent> <leader>N :NERDTreeToggleVCS<CR><C-w>o
 
 " show file in nerdtree
-nnoremap <leader>m :NERDTreeFind <CR>
+nmap <leader>m :NERDTreeFind <CR>
 " show file in nerdtree and close other windows
-nnoremap <leader>M :NERDTreeFind <CR><C-w>o
+nmap <leader>M :NERDTreeFind <CR><C-w>o
 
 " tmux sessionizer
-nnoremap <silent> <C-f> :silent !tmux neww tmux-sessionizer.sh<CR>
-nnoremap <leader> U :!tmux neww tmux-fzf-session.sh<CR>
+nmap <silent> <C-f> :silent !tmux neww tmux-sessionizer.sh<CR>
+nmap <silent> <C-s> :silent !tmux neww tmux-fzf-session.sh<CR>
 
 " alias Ack -> Ack!
 cnoreabbrev Ack Ack!
 
 " manage tabs
-nnoremap <leader>t :tabnew .<CR>
-nnoremap <leader>v :vnew<CR>
+nmap <leader>tn :tabnew .<CR>
+nmap <leader>tt :tabnew %<CR>
+nmap <leader>to :tabonly<CR>
+nmap <leader>v :vnew<CR>
 
 " insert current date
-nnoremap <leader>D :r! date "+\%d-\%m-\%Y \%H:\%M"<CR>
-nnoremap <leader>d :r! date "+\%d-\%m-\%Y"<CR>
+nmap <leader>D :r! date "+\%d-\%m-\%Y \%H:\%M"<CR>
+nmap <leader>d :r! date "+\%d-\%m-\%Y"<CR>
 
 " yank current file name
-nnoremap <leader>f :let @" = expand("%")<CR>
-nnoremap <leader>F :let @" = expand("%:p")<CR>
+nmap <leader>f :let @" = expand("%")<CR>
+nmap <leader>F :let @" = expand("%:p")<CR>
 
 " vsplit current file and open declaration
 nmap gs :vsplit<CR>gd
+noremap gF :vsplit<CR>gf
 
 " copy and paste
 vmap <C-c> "+y
@@ -86,24 +93,26 @@ cnoreabbrev WQA wqa
 cnoreabbrev Wqa wqa
 cnoreabbrev W w
 cnoreabbrev Q q
+cnoreabbrev Qa qa
+cnoreabbrev QA qa
 cnoreabbrev Vs vs
 cnoreabbrev vS vs
 cnoreabbrev VS vs
 
 " close-buffers https://github.com/Asheq/close-buffers.vim
-nnoremap <silent> <C-q> :Bdelete menu<CR>
+nmap <silent> <C-q> :Bdelete menu<CR>
 
 " Navigate around splits
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-l> <C-w><C-l>
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <S-Tab> <C-w><C-w>
+nmap <C-h> <C-w><C-h>
+nmap <C-l> <C-w><C-l>
+nmap <C-j> <C-w><C-j>
+nmap <C-k> <C-w><C-k>
+nmap <S-Tab> <C-w><C-w>
 
 
 " Easy resize
-nnoremap <silent><leader>w1 :exe "vertical resize " . (winwidth(0) * 5/4)<CR> 
-nnoremap <silent><leader>w2 :exe "vertical resize " . (winwidth(0) * 3/4)<CR> 
+nmap <silent><leader>w1 :exe "vertical resize " . (winwidth(0) * 5/4)<CR> 
+nmap <silent><leader>w2 :exe "vertical resize " . (winwidth(0) * 3/4)<CR> 
 
 " Better buffer navigation
 map <F2> :CtrlPBuffer<CR>
@@ -117,10 +126,10 @@ map <F7> :Goyo<CR>
 
 " Move lines around
 " Discovered thanks to Nick Janetakis https://youtu.be/gNyNm5DsQ88
-nnoremap <silent><A-j> :m .+1<CR>==
-nnoremap <silent><A-k> :m .-2<CR>==
-vnoremap <silent><A-j> :m '>+1<CR>gv=gv
-vnoremap <silent><A-k> :m '<-2<CR>gv=gv
+nmap <silent><A-j> :m .+1<CR>==
+nmap <silent><A-k> :m .-2<CR>==
+vmap <silent><A-j> :m '>+1<CR>gv=gv
+vmap <silent><A-k> :m '<-2<CR>gv=gv
 
 " Setup macro for folding by scope
 let @f='V}kzf'
@@ -133,11 +142,12 @@ let @i='V}k='
 let maplocalleader="\<space>"
 
 " Add vim-fugitive keybindings
-nnoremap <space>gg :tab G<CR>
-nnoremap <space>gd :tab G diff<CR>
-nnoremap <space>gb :G branch<CR>
-nnoremap <space>gB :G blame<CR>
-nnoremap <space>gL :GV<CR>
-nnoremap <space>gl :GV!<CR>
-nnoremap <space>gf :G fetch --all --prune<CR>
-nnoremap <space>grm :G rebase origin/main<CR>
+" nmap <space>gg :tab G<CR>
+nmap <space>gg :tab G<CR>g?
+nmap <space>gd :tab G diff<CR>
+nmap <space>gb :G branch<CR>
+nmap <space>gB :G blame<CR>
+nmap <space>gL :GV<CR>
+nmap <space>gl :GV!<CR>
+nmap <space>gf :G fetch --all --prune<CR>
+nmap <space>grm :G rebase origin/main<CR>

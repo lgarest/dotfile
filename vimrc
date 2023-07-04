@@ -14,7 +14,8 @@ call plug#begin()
 
     " theme plugins
     Plug 'flrnd/candid.vim' " For dark environments
-    Plug 'ayu-theme/ayu-vim' " For light environments
+    " Plug 'ayu-theme/ayu-vim' " For light environments
+    Plug 'sonph/onehalf', { 'rtp': 'vim' }
     Plug 'joshdick/onedark.vim' " Atom One Dark theme
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -53,6 +54,7 @@ call plug#begin()
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-abolish'
     Plug 'vim-scripts/Tabmerge'
     Plug 'ryanoasis/vim-devicons'
     Plug 'wsdjeg/vim-fetch'
@@ -81,6 +83,8 @@ call plug#begin()
     Plug 'junegunn/limelight.vim'
 
     " Plug 'ThePrimeagen/vim-be-good'
+    "
+    Plug 'jackMort/ChatGPT.nvim'
 call plug#end()
 
 " let g:vim_jsx_pretty_highlight_close_tag=1
@@ -107,10 +111,13 @@ endfunction
 
 function SetLightTheme()
     set background=light
-    let ayucolor="light" "| dark
-    colorscheme ayu
+    " let g:ayucolor="light" "| dark
+    " colorscheme ayu
+    colorscheme onehalflight
+    let g:airline_theme='onehalfdark'
 endfunction
 call SetDarkTheme()
+" call SetLightTheme()
 
 let g:vim_markdown_folding_disabled = 1
 
