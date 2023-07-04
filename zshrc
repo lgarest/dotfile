@@ -41,8 +41,10 @@ bindkey '^ ' autosuggest-accept
 
 # Defaults replaced for better commands
 if [ -x "$(command -v exa)" ]; then
+	alias l='exa --icons --long --all --header'
 	alias ls='exa'
-	alias la='exa --long --all --group -a'
+  alias ll='exa --icons --long --header'
+	alias la='exa --icons --long --all --group -a'
 fi
 alias grep='grep --color=auto'
 alias cat='bat'
@@ -61,15 +63,19 @@ MAIN_BRANCH="main"
 alias gitb="git branch"
 alias gitc="git checkout "
 alias gitcc="git checkout -"
-alias gl="git log --graph --decorate -n 40"
+alias gitl="git log --graph --decorate -n 40"
+alias gl="gitl -n 20 --oneline"
+alias glol='git log -n 40 --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
+alias glola='git log -n 40 --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'' --all'
+
 alias gitss="clear && git branch && git status"
 alias gitrut="git fetch --all --prune && git rebase upstream/test"
 alias gitrum="git fetch --all --prune && git rebase upstream/$MAIN_BRANCH"
 alias gitrud="git fetch --all --prune && git rebase upstream/develop"
 alias gitrom="git fetch --all --prune && git rebase origin/$MAIN_BRANCH"
-alias gitromm="git fetch --all --prune && git rebase origin/master"
+# alias gitromm="git fetch --all --prune && git rebase origin/master"
 alias sgitrom="git stash -u && git fetch --all --prune && git rebase origin/$MAIN_BRANCH && git stash pop"
-alias sgitromm="git stash -u && git fetch --all --prune && git rebase origin/master && git stash pop"
+# alias sgitromm="git stash -u && git fetch --all --prune && git rebase origin/master && git stash pop"
 alias gitrub="git stash -u && git fetch --all --prune && git rebase origin/$(git_current_branch) && git stash pop"
 alias gitrod="git fetch --all --prune && git rebase origin/develop"
 alias fetch-prs="git fetch --all --prune +refs/pull-requests/*:refs/remotes/origin/pr/*"
@@ -77,7 +83,7 @@ alias ydiff="ydiff -s -w 100"
 alias ydiffs="ydiff -s -w 100 --staged"
 alias gshowe="git show --name-only -1 | fzf | xargs nvim"
 gclone() {
-    git clone "$1" && cd "$(basename "$1" .git)"
+    git clone "$1" && cd "$(basename "$1" .git)" && cat README.md
 }
 reviewcandidate() {
     cd ~/dev/candidates && gclone "$1" && cp ~/Documents/luis.review.md . && vim luis.review.md
@@ -97,6 +103,8 @@ alias agrep="alias | grep "
 alias psgrep="ps aux | grep "
 alias printers="lpstat -a"
 alias forgith="agrep forgit"
+alias gds="gd --staged"
+alias dockernuke="docker system prune --all --volumes"
 
 ## tb shorthands
 alias tbh="agrep tb"
