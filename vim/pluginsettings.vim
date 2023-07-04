@@ -8,9 +8,9 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 let g:ctrlp_working_path_mode = 'a'
-" let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_cmd = 'CtrlPMRU'
 " let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_cmd = 'CtrlPMixed'
+" let g:ctrlp_cmd = 'CtrlPMixed'
 nnoremap <C-P> :CtrlPMRU<CR>
 let g:ctrlp_mruf_relative = 1
 
@@ -103,7 +103,6 @@ let g:coc_global_extensions = [
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
-
 endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/vue')
   let g:coc_global_extensions += ['coc-vetur']
@@ -133,13 +132,14 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
+
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -201,10 +201,10 @@ augroup end
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>A :CocAction<CR>
+" nmap <leader>A :CocAction<CR>
 
 " Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>A  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
