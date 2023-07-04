@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # get the interesting directories in a fzf way
-session=$(find ~ ~/dev ~/personal -type d -maxdepth 1 -mindepth 1 | fzf)
+session=$(find ~ ~/dev ~/personal -type d -maxdepth 2 -mindepth 1 | sort | uniq | fzf)
 
 # get the desired session name
 session_name=$(basename "$session" | tr . _)
