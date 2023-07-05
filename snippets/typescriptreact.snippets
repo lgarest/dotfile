@@ -24,46 +24,5 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet tag "<tag><tag>" b
-	<${1:tag}>${2:content}</${1:tag}>
-endsnippet
-snippet tag2 "<tag attributes=''><tag>" b
-	<${1:tag} ${2:attribute}>${3:content}</${1:tag}>
-endsnippet
+extends react
 
-snippet context "context with provider" b
-// 3rd party dependencies
-import { createContext, FunctionComponent, useContext, useState } from "react";
-
-// absolute imports
-
-// local imports
-
-
-interface $1ContextType {
-  isDark: boolean;
-  toggleDark?: () => void;
-}
-game
-const defaults = {
-  isDark: false,
-};
-
-export const $1Context = createContext<$1ContextType>(defaults);
-
-export const $1ContextProvider: FunctionComponent = ({ children }) => {
-  const [isDark, setDark] = useState(defaults.isDark);
-
-  const toggleDark = () => {
-    setDark(!isDark)
-  }
-  
-  return (
-    <$1Context.Provider value={{ isDark, toggleDark }}>
-      {children}
-    </$1Context.Provider>
-  );
-};
-
-export const use$1Context = () => useContext($1Context)
-endsnippet
