@@ -1,90 +1,3 @@
-extends testing
-extends react
-
-snippet td "// @TODO:" i
-// @TODO: ${1:something}
-endsnippet
-
-snippet types "add default import types" b
-/** @type {import("./types").default} */
-endsnippet
-
-snippet clv "console.log" i
-console.log('____ ${1:variable}:', ${1:variable}) // @TODO: delete this
-endsnippet
-
-snippet cl "console.log" i
-console.log('____ $1') // @TODO: delete this
-endsnippet
-
-snippet afn,arrow,function "arrow function" i
-($1) => $2
-endsnippet
-
-snippet afn2,arrow,function "Arrow function () => {}" i
-(${1:}) => {
-	${2:}
-}
-endsnippet
-
-snippet aafn "anoymous arrow function" A
-const $1 = $2 => $3
-endsnippet
-
-snippet caf "anoymous arrow function" A
-const $1 = $2 => $3
-endsnippet
-
-snippet rc "refactorComponent" A
-const $1 = () => (
-	$3
-)
-endsnippet
-
-snippet tern "ternary singleline" i
-${1:condition} ? ${2:true} : ${3:false}
-endsnippet
-
-snippet tern2 "ternary multiline" i
-${1:condition}
-	? ${2:true}
-	: ${3:false}
-endsnippet
-
-snippet tern3,nested "ternary nested" i
-${1:age < 18}
-	? ${2:'young'}
-	: ${3:age < 30}
-	? ${4:'young adult'}
-	: ${6:'adult'}
-endsnippet
-
-snippet switch "no switch case allowed" i
-const ${1:specie} = {
-  '${2:human}': ${3:'homo sapiens sapiens'},
-  '${3:dog}': ${4:'canis familiaris'},
-  '${5:cat}': ${6:'felis catus'},
-  ${7:undefined}: ${8:'unknown'}
-}[${9:}'human']
-endsnippet
-
-snippet imports "show imports" b
-// 3rd party dependencies
-
-// absolute imports
-
-// local imports
-endsnippet
-
-snippet import,statement "import statement" b
-import ${2:React} from '${1:react}'
-endsnippet
-
-snippet /* "multiline comment" A
-/*
- * $0
- */
-endsnippet
 
 snippet tag "<tag><tag>" b
 	<${1:tag}>${2:content}</${1:tag}>
@@ -121,10 +34,6 @@ snippet useState "useState" i
 useState($1)
 endsnippet
 
-snippet rur,useRef "useRef" b
-const $1 = useRef(${2:null})
-endsnippet
-
 snippet useEffect,help "useEffect help" b
 /*
  * useEffect(() => {}) // runs on every render
@@ -141,7 +50,7 @@ useEffect(() => {
 }, [${1:dependencies}])
 endsnippet
 
-snippet comp "small functional component" b
+snippet sfc,component,simple "small functional component" b
 const ${1:Name} = ({ children, className, ...props }) => (
   <div className={clsx('${1:Name}', className)} {...props}>
 		$0
@@ -149,7 +58,7 @@ const ${1:Name} = ({ children, className, ...props }) => (
 )
 endsnippet
 
-snippet newfc,component,simple "new functional component" b
+snippet fc,component,simple "functional component" b
 import React from 'react'
 import clsx from 'clsx'
 
@@ -169,7 +78,7 @@ snippet types "import types.default" b
 /** @type {import("./types").default} */
 endsnippet
 
-snippet newfc,component,extended "new functional component 2" b
+snippet fc,component,extended "functional component 2" b
 import React from 'react'
 import clsx from 'clsx'
 
@@ -190,19 +99,23 @@ endsnippet
 
 snippet context "context with provider" b
 // 3rd party dependencies
-import { createContext, useContext, useState } from 'react'
+import { createContext, FunctionComponent, useContext, useState } from 'react'
 
 // absolute imports
 
 // local imports
 
+interface ContextType {
+  isDark: boolean
+  toggleDark?: () => void
+}
 const defaults = {
   isDark: false,
 }
 
-export const Context = createContext(defaults)
+export const Context = createContext<ContextType>(defaults)
 
-export const ContextProvider = ({ children }) => {
+export const ContextProvider: FunctionComponent = ({ children }) => {
   const [isDark, setDark] = useState(defaults.isDark)
 
   const toggleDark = () => {
@@ -224,26 +137,4 @@ const eventContent = useEventContext({
 	eventLabel: '${3:text-link_view-all}',
 	eventGA4Name: '${4:engagement_search}',
 )}
-endsnippet
-
-snippet dyn "dynamic(() => import ('X'))" b
-import dynamic from 'next/dynamic'
-const $1 = dynamic(() => import('$2'))
-endsnippet
-
-snippet isDev "process.env.NODE_ENV is dev" b
-const dev = process.env.NODE_ENV !== 'production'
-endsnippet
-
-snippet isProd "process.env.NODE_ENV is prod" b
-const prod = process.env.NODE_ENV === 'production'
-endsnippet
-
-snippet newsoftwarecategory "softwarecategory" b
-{
-	id: '${1:accounting}',
-	title: '${1:accounting}',
-	url: '${2:url}',
-	icon: ['ic', '${3:iconname}'],
-},
 endsnippet

@@ -1,0 +1,66 @@
+
+snippet sd,debug "screen.debug" i
+screen.debug(${1:renderer}.container) // @TODO: remove this
+endsnippet
+
+snippet desc "describe block" b
+describe('$1', () => {
+	it$0
+})
+endsnippet
+
+snippet it "it block" b
+it('$1', () => {
+	$0
+})
+endsnippet
+
+snippet testgherkin "full test in the GIVEN WHEN THEN form (gherkin)" b
+// https://www.guru99.com/gherkin-test-cucumber.html
+
+describe('GIVEN: $1', () => {
+	describe('WHEN: $2', () => {
+    it('THEN: $3', () => {
+			$0
+		})
+	})
+})
+endsnippet
+
+snippet assert "assert" i
+// assert
+expect(${1:actual}).toEqual(${2:expected})
+endsnippet
+
+snippet arrange "arrange" i
+// arrange
+$0
+endsnippet
+
+snippet testaaaa "arrange assert act assert expand" b
+// arrange
+const add = (a, b) => a + b
+const expected = 5
+const params = [2, 3]
+let actual = 0
+
+// assert
+expect(actual).toEqual(0)
+expect(params[0]).toEqual(2)
+expect(params[1]).toEqual(3)
+
+// act
+actual = add(...params)
+
+// assert
+expect(actual).toEqual(expected)
+endsnippet
+
+snippet assert "assert" i
+// assert
+expect(${1:actual}).toEqual(${2:expected})
+endsnippet
+snippet arrange "arrange" i
+// arrange
+$0
+endsnippet

@@ -36,60 +36,64 @@ snippet h3 "h3" A
 ### ${1:}
 endsnippet
 
-snippet link,url "text: link or url" A
+snippet h4 "h3" A
+#### ${1:}
+endsnippet
+
+snippet link,url,href "text: link or url" A
 [${2:title}](${1:url})
 endsnippet
 
-snippet italics,ti "text: italics" i
+snippet ti,italics "text: italics" i
 _${1:italics}_ ${2:}
 endsnippet
 
-snippet bold,tb "text: bold" i
+snippet tb,bold "text: bold" i
 **${1:bold}** ${2:}
 endsnippet
 
-snippet strikethrough,ts "text: strikethrough" i
+snippet ts,strikethrough "text: strikethrough" i
 ~~${1:strikethrough}~~ ${2:}
 endsnippet
 
-snippet quote,tq "text: quote" i
+snippet tq,quote "text: quote" i
 > ${1:quote}
 endsnippet
 
-snippet highlight,th "text: highlight" i
+snippet th,highlight "text: highlight" i
 ==${1:highlight}== ${2:}
 endsnippet
 
-snippet code,tc "text: code" i
+snippet tc,code "text: code" i
 `${1:inline code}` ${2:}
 endsnippet
 
-snippet table,tt "text: table" i
+snippet tt,table "text: table" i
 | ${1:variable} | ${2:name} |
 | - | - |
 | ${3:a} | ${4:2} |
 endsnippet
 
-snippet codeblock,tcb "text: code" b
+snippet tcb,codeblock "text: code" b
 \`\`\`${1:sh}
 ${2:inline code}
 \`\`\`
 endsnippet
 
-snippet list,tl "text: list with items" b
+snippet tl,list "text: list with items" b
 ${1:list header}:
 - ${2:list item}
 endsnippet
 
-snippet todo,td "text: TODO item" b
+snippet td,todo "text: TODO item" b
 - [ ] ${1:todo item}
 endsnippet
 
-snippet todocompleted,tdc "text: TODO item completed" b
+snippet tdc,todocompleted "text: TODO item completed" b
 - [x] ${1:todo item completed}
 endsnippet
 
-snippet footnote,tf "text: footnote with definition" i
+snippet tf,footnote "text: footnote with definition" i
 [^${1:1}]
 
 [^${1:1}]: ${2:footnote}
@@ -100,19 +104,19 @@ endsnippet
 # ACRONYMS EXPANSION
 
 snippet tbd "To be determined" A
-(to be determined)
+to be determined
 endsnippet
 
 snippet tbc "To be clarified" A
-(to be clarified)
+to be clarified
 endsnippet
 
 snippet afaik "As far as I know" A
-(as far as I know)
+as far as I know
 endsnippet
 
 snippet afair "As far as I remember" A
-(as far as I remember)
+as far as I remember
 endsnippet
 
 
@@ -127,7 +131,7 @@ snippet mdinit "Initialize markdown" A
 ${2:}
 endsnippet
 
-snippet mdmeeting "Initialize meeting template" A
+snippet !mdmeeting initialize meeting! "Initialize meeting template" A
 <!-- markdownlint-disable MD012 MD013 MD022 MD032 -->
 # ${1:}
 
@@ -139,7 +143,7 @@ snippet mdmeeting "Initialize meeting template" A
 
 ## Atendees
 
-Meeting held in <DATE>
+Meeting held in `date "+%d-%m-%Y %H:%M"`
 
 - ${3:LuisG}
 
@@ -149,3 +153,24 @@ Meeting held in <DATE>
 
 endsnippet
 
+snippet log,entry "new log entry" b
+## `date "+%d-%m-%Y %H:%M"` ${1:Meeting name}
+
+- ${2:item}
+endsnippet
+
+snippet !mdcoffee initialize coffee! "Initialize coffee meeting template" A
+<!-- markdownlint-disable MD012 MD013 MD022 MD032 -->
+# $1
+
+[TOC]
+
+Coffee at: `date "+%d-%m-%Y %H:%M"`
+**${2:Role}**
+
+## Life
+$3
+
+## Work related discussed
+$0
+endsnippet
