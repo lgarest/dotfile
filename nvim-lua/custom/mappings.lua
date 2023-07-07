@@ -62,6 +62,13 @@ M.general = {
       "Run current buffer through eslint --fix",
     },
     ["<leader>xx"] = { ":. !sh<CR>" },
+
+    ["<leader>cb"] = {
+      function()
+        require("nvchad_ui.tabufline").close_buffer()
+      end,
+      "Close buffer",
+    },
   },
   v = {
     ["<leader>xx"] = { ":. !sh<CR>" },
