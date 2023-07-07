@@ -82,12 +82,12 @@ M.general = {
 
 M.lsp = {
   n = {
-    ["<leader>e"] = {
-      function()
-        vim.diagnostic.open_float()
-      end,
-      "Open diagnostic for current line",
-    },
+    -- ["<leader>e"] = {
+    --   function()
+    --     vim.diagnostic.open_float()
+    --   end,
+    --   "Open diagnostic for current line",
+    -- },
   },
 }
 M.tmux = {
