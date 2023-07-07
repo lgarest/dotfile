@@ -32,17 +32,26 @@ M.disabled = {
   },
 }
 
+
+
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
-    ["\\e"] = { "<cmd>NvimTreeFindFile<CR>", "Find file in nvimtree" },
+    ["\\e"] = { "<cmd>NvimTreeFindFile!<CR>", "Find file in nvimtree" },
 
+    -- rompe
     ["gs"] = { "<cmd>split<CR>gd", "Open definition in split", opts = { remap = true } },
     ["gv"] = { "<cmd>vsplit<CR>gd", "Open definition in vsplit", opts = { remap = true } },
+    ["gw"] = {
+      function()
+        require("leap").leap { target_windows = require("leap.util").get_enterable_windows() }
+      end,
+      "Jump in window",
+    },
 
     ["gF"] = { "<cmd>vsplit<CR>gf", "Open file in vsplit", opts = { remap = true } },
-    ["<leader>ss"] = { "<cmd>set spell!<CR>" },
+    ["<leader>ts"] = { "<cmd>set spell!<CR>" },
     ["<leader>rp"] = {
       function()
         vim.cmd "w!"
@@ -93,12 +102,9 @@ M.lsp = {
 }
 M.tmux = {
   n = {
-    ["<C-f>"] = { "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>"},
-    ["<C-s>"] = { "<cmd>silent !tmux neww tmux-fzf-session.sh<CR>"},
-    ["<C-g>"] = { "<cmd>silent !tmux neww lazygit<CR>"},
-    -- " tmux sessionizer
-    -- nmap <silent> <C-f> :silent !tmux neww tmux-sessionizer.sh<CR>
-    -- nmap <silent> <C-s> :silent !tmux neww tmux-fzf-session.sh<CR>
+    ["<C-f>"] = { "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>" },
+    ["<C-s>"] = { "<cmd>silent !tmux neww tmux-fzf-session.sh<CR>" },
+    ["<C-g>"] = { "<cmd>silent !tmux neww lazygit<CR>" },
   },
 }
 M.luaSnip = {
@@ -111,7 +117,9 @@ M.luaSnip = {
       "Open snippet files",
     },
     ["<leader>om"] = { "<cmd>tabnew ~/.config/nvim/lua/custom/mappings.lua<CR>", "Open mappings file" },
-    ["<leader>,"] = { "<cmd>tabnew ~/.config/nvim/lua/custom/plugins.lua<CR>", "Open plugins file" },
+    ["<leader>on"] = { "<cmd>tabnew ~/dev/notes/<CR>", "Open notes file" },
+    ["<leader>oh"] = { "<cmd>tabnew ~/dev/notes/vim.md<CR>", "Open help file" },
+    ["<leader>o,"] = { "<cmd>tabnew ~/.config/nvim/lua/custom/plugins.lua<CR>", "Open plugins file" },
   },
 }
 M.telescope = {
@@ -119,7 +127,7 @@ M.telescope = {
     ["<leader>fc"] = { "<cmd>Telescope grep_string<CR>", "Search for current word" },
     ["<leader>fr"] = { "<cmd>Telescope resume<CR>", "Resume previous Telescope picker" },
     ["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
-    ["<C-P>"] = { "<cmd> Telescope oldfiles<CR>", "Find recent" },
+    ["<C-P>"] = { "<cmd> Telescope oldfiles<CR>", "Find old files" },
   },
 }
 M.vimfugitive = {
@@ -129,14 +137,18 @@ M.vimfugitive = {
         vim.cmd "tab G"
         vim.cmd "h fugitive"
         vim.cmd "wincmd L"
+        vim.cmd "wincmd h"
       end,
       "Open fugitive status",
     },
+
+    -- remove Telescope git_commits <CR>
+    ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
     ["<space>gL"] = {
       function()
         vim.cmd "tab G"
-        vim.cmd ""
         vim.cmd "wincmd L"
+        vim.cmd "wincmd h"
       end,
       "Open fugitive status",
     },
@@ -185,5 +197,4 @@ vim.cmd [[
 -- nnoremap <space>gl :GV!<CR>
 -- nnoremap <space>gf :G fetch --all --prune<CR>
 -- nnoremap <space>grm :G rebase origin/main<CR>
-
 return M
