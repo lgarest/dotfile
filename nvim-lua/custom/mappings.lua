@@ -2,12 +2,33 @@
 local M = {}
 
 M.disabled = {
+  n = {
+
+    ["<leader>e"] = "", -- remove focus nvimtree diagnostics for current file
+
+    ["<leader>rn"] = "", -- remove toggle relative number
+
+    ["<leader>x"] = "", -- remove close buffer
+
+    ["<leader>n"] = "", -- remove line numbers
+
+    ["<leader>/"] = "", -- remove toggle comment
+
+    ["<leader>cm"] = "", -- remove Telescope git_commits <CR>
+  },
   v = {
     ["J"] = "",
     ["C-c"] = "",
-    ["<leader>e"] = "",
-    ["<leader>rn"] = "",
-    ["<leader>tr"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
+    -- ["<A-i>"] = "",
+    ["<A-h>"] = "",
+    ["<A-v>"] = "",
+    ["<leader>h"] = "",
+    ["<leader>v"] = "",
+  },
+  t = {
+    ["<A-i>"] = "",
+    ["<A-h>"] = "",
+    ["<A-v>"] = "",
   },
 }
 
