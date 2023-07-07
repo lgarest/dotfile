@@ -38,8 +38,9 @@ M.general = {
 
     ["\\e"] = { "<cmd>NvimTreeFindFile<CR>", "Find file in nvimtree" },
 
+    ["gs"] = { "<cmd>split<CR>gd", "Open definition in split", opts = { remap = true } },
+    ["gv"] = { "<cmd>vsplit<CR>gd", "Open definition in vsplit", opts = { remap = true } },
 
-    ["gs"] = { "<cmd>vsplit<CR>gd", "Open definition in vsplit", opts = { remap = true } },
     ["gF"] = { "<cmd>vsplit<CR>gf", "Open file in vsplit", opts = { remap = true } },
     ["<leader>ss"] = { "<cmd>set spell!<CR>" },
     ["<leader>rp"] = {
