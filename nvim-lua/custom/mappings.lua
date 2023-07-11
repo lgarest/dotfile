@@ -15,6 +15,8 @@ M.disabled = {
     ["<leader>/"] = "", -- remove toggle comment
 
     ["<leader>cm"] = "", -- remove Telescope git_commits <CR>
+
+    ["<leader>gr"] = "", -- remove Lsp go to references<CR> -> telescope one
   },
   v = {
     ["J"] = "",
@@ -38,11 +40,11 @@ M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
-    ["\\e"] = { "<cmd>NvimTreeFindFile!<CR>", "Find file in nvimtree" },
+    ["\\e"] = { "<cmd> NvimTreeFindFile! <CR>", "Find file in nvimtree" },
 
     -- rompe
-    ["gs"] = { "<cmd>split<CR>gd", "Open definition in split", opts = { remap = true } },
-    ["gv"] = { "<cmd>vsplit<CR>gd", "Open definition in vsplit", opts = { remap = true } },
+    ["gs"] = { "<cmd> split <CR>gd", "Open definition in split", opts = { remap = true } },
+    ["gv"] = { "<cmd> vsplit <CR>gd", "Open definition in vsplit", opts = { remap = true } },
     ["gw"] = {
       function()
         require("leap").leap { target_windows = require("leap.util").get_enterable_windows() }
@@ -50,8 +52,8 @@ M.general = {
       "Jump in window",
     },
 
-    ["gF"] = { "<cmd>vsplit<CR>gf", "Open file in vsplit", opts = { remap = true } },
-    ["<leader>ts"] = { "<cmd>set spell!<CR>" },
+    ["gF"] = { "<cmd> vsplit <CR>gf", "Open file in vsplit", opts = { remap = true } },
+    ["<leader>ts"] = { "<cmd> set spell! <CR>" },
     ["<leader>rp"] = {
       function()
         vim.cmd "w!"
@@ -71,7 +73,7 @@ M.general = {
       end,
       "Run current buffer through eslint --fix",
     },
-    ["<leader>xx"] = { ":. !sh<CR>" },
+    ["<leader>xx"] = { ":. !sh <CR>" },
 
     ["<leader>cb"] = {
       function()
@@ -81,9 +83,9 @@ M.general = {
     },
   },
   v = {
-    ["<leader>xx"] = { ":. !sh<CR>" },
-    ["J"] = { "<cmd>m '>+1<CR>gv=gv" },
-    ["K"] = { "<cmd>m '<-2<CR>gv=gv" },
+    ["<leader>xx"] = { ":. !sh <CR>" },
+    ["J"] = { "<cmd> m '>+1 <CR>gv=gv" },
+    ["K"] = { "<cmd> m '<-2 <CR>gv=gv" },
   },
   t = {
     ["<Esc>"] = { "<C-\\><C-n>" },
@@ -102,9 +104,13 @@ M.lsp = {
 }
 M.tmux = {
   n = {
-    ["<C-f>"] = { "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>" },
-    ["<C-s>"] = { "<cmd>silent !tmux neww tmux-fzf-session.sh<CR>" },
-    ["<C-g>"] = { "<cmd>silent !tmux neww lazygit<CR>" },
+    ["<C-f>"] = { "<cmd> silent !tmux neww tmux-sessionizer.sh <CR>" },
+    ["<C-s>"] = { "<cmd> silent !tmux neww tmux-fzf-session.sh <CR>" },
+    ["<C-g>"] = { "<cmd> silent !tmux neww lazygit <CR>" },
+    ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", "Window left" },
+    ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", "Window down" },
+    ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", "Window up" },
+    ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", "Window right" },
   },
 }
 M.luaSnip = {
@@ -116,18 +122,22 @@ M.luaSnip = {
       end,
       "Open snippet files",
     },
-    ["<leader>om"] = { "<cmd>tabnew ~/.config/nvim/lua/custom/mappings.lua<CR>", "Open mappings file" },
-    ["<leader>on"] = { "<cmd>tabnew ~/dev/notes/<CR>", "Open notes file" },
-    ["<leader>oh"] = { "<cmd>tabnew ~/dev/notes/vim.md<CR>", "Open help file" },
-    ["<leader>o,"] = { "<cmd>tabnew ~/.config/nvim/lua/custom/plugins.lua<CR>", "Open plugins file" },
+    ["<leader>om"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/mappings.lua <CR>", "Open mappings file" },
+    ["<leader>on"] = { "<cmd> tabnew ~/dev/notes/ <CR>", "Open notes file" },
+    ["<leader>oh"] = { "<cmd> tabnew ~/dev/notes/vim.md <CR>", "Open vim cheatsheet" },
+    ["<leader>ot"] = { "<cmd> tabnew ~/dev/notes/telescope.md <CR>", "Open Telescope cheatsheet" },
+    ["<leader>o,"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "Open plugins file" },
+    ["<leader>op"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "Open plugins file" },
   },
 }
 M.telescope = {
   n = {
-    ["<leader>fc"] = { "<cmd>Telescope grep_string<CR>", "Search for current word" },
-    ["<leader>fr"] = { "<cmd>Telescope resume<CR>", "Resume previous Telescope picker" },
+    ["<leader>fc"] = { "<cmd> Telescope grep_string <CR>", "Search for current word" },
+    ["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "Telescope references" },
+    ["<leader>fR"] = { "<cmd> Telescope resume <CR>", "Resume previous Telescope picker" },
     ["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
-    ["<C-P>"] = { "<cmd> Telescope oldfiles<CR>", "Find old files" },
+    -- ["<C-S-p>"] = { "<cmd> Telescope oldfiles additional_args={ previewer=false }<CR>", "Find old files" },
+    ["<leader>fs"] = { "<cmd> Telescope treesitter <CR>", "Open treesitter symbols" },
   },
 }
 M.vimfugitive = {
@@ -154,10 +164,39 @@ M.vimfugitive = {
     },
   },
   v = {
-    ["gu"] = { "<cmd>diffget //2<CR>" },
-    ["gh"] = { "<cmd>diffget //3<CR>" },
+    ["gu"] = { "<cmd> diffget //2 <CR>" },
+    ["gh"] = { "<cmd> diffget //3 <CR>" },
   },
 }
+M.tj = {
+  n = {
+
+  }
+}
+M.treesj = {
+  plugin = true,
+  n = {
+    ["<leader>fj"] = { "<cmd> TSJToggle <CR>", "Format join toggle" },
+  },
+}
+M.dap = {
+  plugin = true,
+  n = {
+    ['<leader>db'] = { "<cmd> DapToggleBreakpoint <CR>", "Add breakpoint at line"},
+    ['<leader>dr'] = { "<cmd> DapContinue <CR>", "Start or continue the debugger"},
+  }
+}
+-- M.dap_js = {
+--   -- plugin = true,
+--   n = {
+--     ['<leader>dpr'] = {
+--       function ()
+--         require('dap-vscode-js').test_method()
+--       end
+--
+--     },
+--   }
+-- }
 -- try rg
 -- vim.cmd("command! -nargs=+ -complete=file Grep noautocmd rg! <args> | redraw! | copen")
 -- vim.cmd("command! -nargs=+ -complete=file LGrep noautocmd rg! <args> | redraw! | lopen")
@@ -189,12 +228,12 @@ vim.cmd [[
 ]]
 
 -- vim-fugitive
--- nmap <space>gg :tab G<CR>g?
--- nnoremap <space>gd :tab G diff<CR>
--- nnoremap <space>gb :G branch<CR>
--- nnoremap <space>gB :G blame<CR>
--- nnoremap <space>gL :GV<CR>
--- nnoremap <space>gl :GV!<CR>
--- nnoremap <space>gf :G fetch --all --prune<CR>
--- nnoremap <space>grm :G rebase origin/main<CR>
+-- nmap <space>gg :tab G <CR>g?
+-- nnoremap <space>gd :tab G diff <CR>
+-- nnoremap <space>gb :G branch <CR>
+-- nnoremap <space>gB :G blame <CR>
+-- nnoremap <space>gL :GV <CR>
+-- nnoremap <space>gl :GV! <CR>
+-- nnoremap <space>gf :G fetch --all --prune <CR>
+-- nnoremap <space>grm :G rebase origin/main <CR>
 return M
