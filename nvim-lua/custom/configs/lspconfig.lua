@@ -5,7 +5,8 @@ local lspconfig = require "lspconfig"
 local configs = require ('lspconfig.configs')
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "tailwindcss" }
+-- local servers = { "html", "cssls", "tsserver", "clangd", "tailwindcss" }
+local servers = { "html", "cssls", "tsserver", "clangd" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
