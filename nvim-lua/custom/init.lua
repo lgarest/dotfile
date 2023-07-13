@@ -16,16 +16,16 @@ local autocmd = vim.api.nvim_create_autocmd
 -- })
 
 -- Changes for Nvim
-vim.opt.colorcolumn = {"80", "100"}
+vim.opt.colorcolumn = { "80", "100" }
 vim.wo.relativenumber = true
 -- incremental searches
 vim.opt.incsearch = true
 
 vim.opt.scrolloff = 8
-vim.opt.isfname:append('@-@')
+vim.opt.isfname:append("@-@")
 
-vim.filetype.add {
-  pattern = {
-    [".*conf.template"] = "nginx",
-  },
-}
+vim.filetype.add({
+	pattern = {
+		[".*conf.template"] = "nginx",
+	},
+})
