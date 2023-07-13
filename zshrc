@@ -223,7 +223,7 @@ show_project_contributors ()
 }
 
 daily () {
-  show_project_contributors;
+  # show_project_contributors;
   echo "";
   curl "v2.wttr.in/$WEATHER_LOC";
   tb;
