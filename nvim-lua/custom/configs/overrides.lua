@@ -1,6 +1,5 @@
 local M = {}
 
-
 M.treesitter = {
 	ensure_installed = {
 		"vim",
@@ -20,9 +19,12 @@ M.treesitter = {
 		--   "python"
 		-- },
 	},
-  context_commentstring = {
+	context_commentstring = {
+		enable = true,
+		enable_autocmd = false,
+	},
+  autotag = {
     enable = true,
-    enable_autocmd = false,
   },
 }
 
@@ -35,17 +37,17 @@ M.mason = {
 		-- web dev stuff
 		"css-lsp",
 		"html-lsp",
-    "eslint_d",
+		"eslint_d",
 		"typescript-language-server",
 		"deno",
 		"prettier",
 		"tailwindcss-language-server",
 		"nginx-language-server",
 
-    -- dap
-    -- "js-debug-adapter",
-    "node-debug2-adapter",
-    -- "chrome-debug-adapter",
+		-- dap
+		-- "js-debug-adapter",
+		"node-debug2-adapter",
+		-- "chrome-debug-adapter",
 
 		-- c/cpp stuff
 		"clangd",
@@ -65,6 +67,15 @@ M.nvimtree = {
 			show = {
 				git = true,
 			},
+		},
+	},
+}
+
+M.telescope = {
+	mappings = {
+		n = {
+			["q"] = require("telescope.actions").close,
+			["<c-d>"] = require("telescope.actions").delete_buffer,
 		},
 	},
 }
