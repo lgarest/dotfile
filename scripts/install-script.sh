@@ -52,3 +52,6 @@ sudo curl \
 git config --global pager.branch false
 git config --global core.editor "nvim"
 github.com/wfxr/forgit
+
+# utils
+npm install --global taskbook

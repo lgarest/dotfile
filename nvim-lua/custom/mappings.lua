@@ -4,7 +4,7 @@ local M = {}
 M.disabled = {
 	n = {
 
-		["<leader>e"] = "", -- remove focus nvimtree diagnostics for current file
+		["<leader>e"] = "", -- remove focus treesitter diagnostics for current file
 
 		["<leader>rn"] = "", -- remove toggle relative number
 
@@ -17,6 +17,8 @@ M.disabled = {
 		["<leader>cm"] = "", -- remove Telescope git_commits <CR>
 
 		["<leader>gr"] = "", -- remove Lsp go to references<CR> -> telescope one
+
+		["<c-n>"] = "", -- remove nvimtree toggle
 	},
 	v = {
 		["J"] = "",
@@ -39,6 +41,7 @@ M.general = {
 		[";"] = { ":", "enter command mode", opts = { nowait = true } },
 
 		["\\e"] = { "<cmd> NvimTreeFindFile! <CR>", "Find file in nvimtree" },
+		["\\n"] = { "<cmd> NvimTreeToggle <CR>", "Open/Close nvimtree" },
 
 		-- rompe
 		["gs"] = { "<cmd> split <CR>gd", "Open definition in split", opts = { remap = true } },
@@ -61,9 +64,9 @@ M.general = {
 		},
 		["<leader>rn"] = {
 			function()
-				vim.cmd("! $(which node) -i %")
+				vim.cmd("! npx tsx %")
 			end,
-			"Run current buffer through node repl",
+			"Run current buffer through node repl (TS)",
 		},
 		["<leader>re"] = {
 			function()
@@ -135,6 +138,10 @@ M.telescope = {
 		["<leader>fR"] = { "<cmd> Telescope resume <CR>", "Resume previous Telescope picker" },
 		["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
 		-- ["<C-S-p>"] = { "<cmd> Telescope oldfiles additional_args={ previewer=false }<CR>", "Find old files" },
+	},
+}
+M.treesitter = {
+	n = {
 		["<leader>fs"] = { "<cmd> Telescope treesitter <CR>", "Open treesitter symbols" },
 	},
 }
@@ -143,7 +150,7 @@ M.vimfugitive = {
 		["<space>gg"] = {
 			function()
 				vim.cmd("tab G")
-				vim.cmd("h fugitive")
+				vim.cmd("h fugitive-staging-maps")
 				vim.cmd("wincmd L")
 				vim.cmd("wincmd h")
 			end,
