@@ -11,25 +11,27 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_CTYPE=UTF-8
 
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+# Docker
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+
 # Dir navigations
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias ll='ls -l'
 alias lo='ls -o'
-alias la='ls -la'
 alias tre='tree -L 3'
-mk() {
-    mkdir $1 && cd $1
-}
-getpass() {
-    cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | head -c $1
-}
-alias genpass='getpass 16'
-def() {
-    curl -s https://api.dictionaryapi.dev/api/v2/entries/en/$1 | json_pp | rg "definition\""
-}
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
@@ -42,20 +44,30 @@ bindkey '^ ' autosuggest-accept
 # Defaults replaced for better commands
 if [ -x "$(command -v exa)" ]; then
 	alias l='exa --icons --long --all --header'
+	alias la='exa --icons --long --all --group -a'
 	alias ls='exa'
   alias ll='exa --icons --long --header'
-	alias la='exa --icons --long --all --group -a'
+else
+	alias l='ls -lah'
+  alias la='ls -la'
+  alias ll='ls -l'
 fi
+
 alias grep='grep --color=auto'
-alias cat='bat'
-alias ping='prettyping --nolegend'
+
+[ -x "$(command -v bat)" ] && alias cat='bat'
+
+[ -x "$(command -v prettyping)" ] && alias ping='prettyping'
+
 alias du="ncdu --color dark -x --exclude .git --exclude node_modules --exclude venv"
 alias fvim='vim $(fzf --height 40%)'
 
 # Vim
 # let g:coc_node_path = trim(system('which node'))
-alias vim="nvim"
-alias v="nvim +CtrlPMRU"
+if [ -x "$(command -v nvim)" ]; then
+  alias vim="nvim"
+  alias v="vim +NvimTreeToggle +'Telescope find_files'"
+fi
 alias ctags="`brew --prefix`/bin/ctags"
 
 # Git shorthands
@@ -66,7 +78,7 @@ alias gitcc="git checkout -"
 alias gitl="git log --graph --decorate -n 40"
 alias gl="gitl -n 20 --oneline"
 alias glol='git log -n 40 --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
-alias glola='git log -n 40 --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'' --all'
+alias glola='git log -n 30 --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'' --all'
 
 alias gitss="clear && git branch && git status"
 alias gitrut="git fetch --all --prune && git rebase upstream/test"
@@ -90,6 +102,7 @@ reviewcandidate() {
 }
 
 # Lazyness
+alias c="clear"
 alias ta="tmux attach || tmux"
 alias venv=". venv/bin/activate"
 alias nud="nvm use default"
@@ -118,8 +131,25 @@ alias tbtl="tb --task @learn"
 alias tbt="tb --task"
 alias tbn="tb --note"
 alias tbd="tb | fzf | cut -d '.' -f 1 | xargs tb -d"
+alias validate="npm run prettier && npm run lint:fix && npm run test"
 
 #### Cool commands
+
+# Generate password
+alias genpass='getpass 16'
+getpass() {
+    cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | head -c $1
+}
+
+# Lookup definition
+def() {
+    curl -s https://api.dictionaryapi.dev/api/v2/entries/en/$1 | json_pp | rg "definition\""
+}
+
+# Create and jump directory
+mk() {
+  mkdir $1 && cd $1
+}
 
 # Weather
 alias weather="curl 'wttr.in/$WEATHER_LOC' && curl 'v2.wttr.in/$WEATHER_LOC'"
@@ -206,6 +236,7 @@ fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
+source $(brew --prefix nvm)/nvm.sh
 # load nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 # load nvm bash_completion
@@ -228,3 +259,26 @@ daily () {
   curl "v2.wttr.in/$WEATHER_LOC";
   tb;
 }
+
+# SSH config
+
+# Check if the current directory or its parents match the allowed paths
+check_allowed_paths() {
+  # Remove ssh keys
+  ssh-add -D 2> /dev/null
+  local current_dir="$PWD"
+  while [ "$current_dir" != "/" ]; do
+    if [[ "$current_dir" == ~/dev/dotfile/* || "$current_dir" == ~/dev/notes/* || "$current_dir" == ~/personal/* ]]; then
+      return 0
+    fi
+    current_dir=$(dirname "$current_dir")
+  done
+  return 1
+}
+
+# Check if allowed paths match and add the appropriate key
+if check_allowed_paths; then
+    ssh-add "$personal_key"
+else
+    ssh-add --apple-use-keychain "$default_key"
+fi
