@@ -22,6 +22,9 @@ vim.wo.relativenumber = true
 vim.opt.incsearch = true
 
 vim.opt.scrolloff = 8
+
+-- mousescroll=ver:5,hor:2
+vim.opt.mousescroll = {'ver:1','hor:2'}
 vim.opt.isfname:append("@-@")
 
 vim.filetype.add({
@@ -29,3 +32,7 @@ vim.filetype.add({
 		[".*conf.template"] = "nginx",
 	},
 })
+
+vim.opt.winbar='%=%m %f'
+
+vim.opt.swapfile = false
