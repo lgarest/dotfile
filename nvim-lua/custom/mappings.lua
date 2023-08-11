@@ -70,7 +70,7 @@ M.general = {
 		},
 		["<leader>re"] = {
 			function()
-				vim.cmd("!npx eslint --config ~/dev/bx-evaluation-and-selection/.eslintrc.cjs --fix %")
+				vim.cmd("!$(which eslint) --config ~/dev/dotfile/.eslintrc.cjs --fix %")
 			end,
 			"Run current buffer through eslint --fix",
 		},
@@ -134,6 +134,7 @@ M.luaSnip = {
 M.telescope = {
 	n = {
 		["<leader>fc"] = { "<cmd> Telescope grep_string <CR>", "Search for current word" },
+		["<leader>fC"] = { "<cmd> Telescope commands <CR>", "Search for commands" },
 		["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "Telescope references" },
 		["<leader>fR"] = { "<cmd> Telescope resume <CR>", "Resume previous Telescope picker" },
 		["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
