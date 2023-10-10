@@ -18,6 +18,8 @@ M.disabled = {
 
 		["<leader>gr"] = "", -- remove Lsp go to references<CR> -> telescope one
 
+    -- ["<leader>fb"] = "", -- remove Telescope buffers
+
 		["<c-n>"] = "", -- remove nvimtree toggle
 	},
 	v = {
@@ -40,12 +42,12 @@ M.general = {
 	n = {
 		[";"] = { ":", "enter command mode", opts = { nowait = true } },
 
-		["\\e"] = { "<cmd> NvimTreeFindFile! <CR>", "Find file in nvimtree" },
+		["\\e"] = { "<cmd> NvimTreeFindFile! <CR>", "Find file in nvimtree [e]xplorer" },
 		["\\n"] = { "<cmd> NvimTreeToggle <CR>", "Open/Close nvimtree" },
 
 		-- rompe
-		["gs"] = { "<cmd> split <CR>gd", "Open definition in split", opts = { remap = true } },
-		["gv"] = { "<cmd> vsplit <CR>gd", "Open definition in vsplit", opts = { remap = true } },
+		["gs"] = { "<cmd> split <CR>gd", "[g]oto definition in [s]plit", opts = { remap = true } },
+		["gv"] = { "<cmd> vsplit <CR>gd", "[g]oto definition in [v]split", opts = { remap = true } },
 		["gw"] = {
 			function()
 				require("leap").leap({ target_windows = require("leap.util").get_enterable_windows() })
@@ -53,26 +55,26 @@ M.general = {
 			"Jump in window",
 		},
 
-		["gF"] = { "<cmd> vsplit <CR>gf", "Open file in vsplit", opts = { remap = true } },
-		["<leader>ts"] = { "<cmd> set spell! <CR>" },
+		["gF"] = { "<cmd> vsplit <CR>gf", "[g]oto [F]ile in vsplit", opts = { remap = true } },
+		["<leader>ts"] = { "<cmd> se[t] [s]pell! <CR>" },
 		["<leader>rp"] = {
 			function()
 				vim.cmd("w!")
 				vim.cmd("!$(which prettier) --config ~/dev/dotfile/prettierrc --write %")
 			end,
-			"Run current buffer through prettier",
+			"[r]un current buffer through [p]rettier",
 		},
 		["<leader>rn"] = {
 			function()
 				vim.cmd("! npx tsx %")
 			end,
-			"Run current buffer through node repl (TS)",
+			"[r]un current buffer through [n]ode repl (TS)",
 		},
 		["<leader>re"] = {
 			function()
-				vim.cmd("!$(which eslint) --config ~/dev/dotfile/.eslintrc.cjs --fix %")
+				vim.cmd("!$(which eslint) --config ~/dev/bx-evaluation-and-selection/packages/eslint/eslint-base.js --fix %")
 			end,
-			"Run current buffer through eslint --fix",
+			"[r]un current buffer through [e]slint --fix",
 		},
 		["<leader>xx"] = { ":. !sh <CR>" },
 
@@ -80,11 +82,11 @@ M.general = {
 			function()
 				require("nvchad_ui.tabufline").close_buffer()
 			end,
-			"Close buffer",
+			"[c]lose [b]uffer",
 		},
 	},
 	v = {
-		["<leader>xx"] = { ":. !sh <CR>" },
+		["<leader>xx"] = { ":. !sh <CR>", "e[x]ecute e[x]ecutable line" },
 		["J"] = { "<cmd> m '>+1 <CR>gv=gv" },
 		["K"] = { "<cmd> m '<-2 <CR>gv=gv" },
 	},
@@ -121,29 +123,33 @@ M.luaSnip = {
 				vim.cmd("vsplit")
 				require("luasnip.loaders").edit_snippet_files()
 			end,
-			"Open snippet files",
+			"[o]pen [s]nippet files",
 		},
-		["<leader>om"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/mappings.lua <CR>", "Open mappings file" },
-		["<leader>on"] = { "<cmd> tabnew ~/dev/notes/ <CR>", "Open notes file" },
-		["<leader>oh"] = { "<cmd> tabnew ~/dev/notes/vim.md <CR>", "Open vim cheatsheet" },
-		["<leader>ot"] = { "<cmd> tabnew ~/dev/notes/telescope.md <CR>", "Open Telescope cheatsheet" },
-		["<leader>o,"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "Open plugins file" },
-		["<leader>op"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "Open plugins file" },
+		["<leader>om"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/mappings.lua <CR>", "[o]pen [m]appings file" },
+		["<leader>on"] = { "<cmd> tabnew ~/dev/notes/ <CR>", "[o]pen [n]otes file" },
+		["<leader>oh"] = { "<cmd> tabnew ~/dev/notes/vim.md <CR>", "[o]pen vim c[h]eatsheet" },
+		["<leader>ot"] = { "<cmd> tabnew ~/dev/notes/telescope.md <CR>", "[o]pen [t]elescope cheatsheet" },
+		["<leader>o,"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "[o]pen plugins file" },
+		["<leader>op"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "[o]pen [p]lugins file" },
 	},
 }
 M.telescope = {
 	n = {
-		["<leader>fc"] = { "<cmd> Telescope grep_string <CR>", "Search for current word" },
-		["<leader>fC"] = { "<cmd> Telescope commands <CR>", "Search for commands" },
-		["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "Telescope references" },
-		["<leader>fR"] = { "<cmd> Telescope resume <CR>", "Resume previous Telescope picker" },
+		["<leader>fc"] = { "<cmd> Telescope grep_string <CR>", "Search/[f]ind [c]urrent word" },
+		["<leader>fC"] = { "<cmd> Telescope commands <CR>", "Search/[f]ind [C]ommands" },
+		["<leader>fr"] = { "<cmd> Telescope registers <CR>", "Search/[f]ind [r]egisters" },
+		["<leader>fM"] = { "<cmd> Telescope marks <CR>", "[f]ind [M]arks" },
+		["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "[g]oto [r]eferences" },
+		["<leader>fR"] = { "<cmd> Telescope resume <CR>", "[R]esume previous Telescope [f]ind" },
 		["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
 		-- ["<C-S-p>"] = { "<cmd> Telescope oldfiles additional_args={ previewer=false }<CR>", "Find old files" },
+		["<leader>fk"] = { "<cmd> Telescope keymaps <CR>", "Search/[f]ind keymaps" },
+		["<leader>fB"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "fzf [f]ind in current [B]uffer" },
 	},
 }
 M.treesitter = {
 	n = {
-		["<leader>fs"] = { "<cmd> Telescope treesitter <CR>", "Open treesitter symbols" },
+		["<leader>fs"] = { "<cmd> Telescope treesitter ignore_symbols={'import'}<CR>", "Open/[f]ind treesitter [s]ymbols" },
 	},
 }
 M.vimfugitive = {
@@ -155,23 +161,31 @@ M.vimfugitive = {
 				vim.cmd("wincmd L")
 				vim.cmd("wincmd h")
 			end,
-			"Open fugitive status",
+			"Open fugitive status / [g]oto [g]it",
 		},
+    -- nmap <space>gg :tab G<CR>g?
+    -- nmap <space>gd :tab G diff<CR>
+    -- nmap <space>gb :G branch<CR>
+    -- nmap <space>gB :G blame<CR>
+    -- nmap <space>gL :GV<CR>
+    -- nmap <space>gl :GV!<CR>
+    -- nmap <space>gf :G fetch --all --prune<CR>
+    -- nmap <space>grm :G rebase origin/main<CR>
 
 		-- remove Telescope git_commits <CR>
-		["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
-		["<space>gL"] = {
-			function()
-				vim.cmd("tab G")
-				vim.cmd("wincmd L")
-				vim.cmd("wincmd h")
-			end,
-			"Open fugitive status",
-		},
+		["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "[g]it [c]ommits" },
+		-- ["<space>gL"] = {
+		-- 	function()
+		-- 		vim.cmd("tab G")
+		-- 		vim.cmd("wincmd L")
+		-- 		vim.cmd("wincmd h")
+		-- 	end,
+		-- 	"Open fugitive status",
+		-- },
 	},
 	v = {
-		["gu"] = { "<cmd> diffget //2 <CR>" },
-		["gh"] = { "<cmd> diffget //3 <CR>" },
+		["gh"] = { "<cmd> diffget //2 <CR>" },
+		["gl"] = { "<cmd> diffget //3 <CR>" },
 	},
 }
 M.tj = {
@@ -180,20 +194,20 @@ M.tj = {
 M.treesj = {
 	plugin = true,
 	n = {
-		["<leader>fj"] = { "<cmd> TSJToggle <CR>", "Format join toggle" },
+		["<leader>fj"] = { "<cmd> TSJToggle <CR>", "[f]ormat [j]oin toggle" },
 	},
 }
 M.dap = {
 	plugin = true,
 	n = {
-		["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "Add breakpoint at line" },
-		["<leader>dr"] = { "<cmd> DapContinue <CR>", "Start or continue the debugger" },
+		["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "[d]ebugger add [b]reakpoint" },
+		["<leader>dr"] = { "<cmd> DapContinue <CR>", "[d]ebugger [r]esume session" },
 	},
 }
 M.undotree = {
 	plugin = true,
 	n = {
-		["<leader>u"] = { "<cmd> UndotreeToggle <CR>", "Toggle undotree" },
+		["<leader>u"] = { "<cmd> UndotreeToggle <CR>", "toggle [u]ndotree" },
 	},
 }
 -- M.dap_js = {

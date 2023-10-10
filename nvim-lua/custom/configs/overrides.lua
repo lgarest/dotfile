@@ -37,17 +37,20 @@ M.mason = {
 		-- web dev stuff
 		"css-lsp",
 		"html-lsp",
-		"eslint_d",
+    "eslint-lsp",
 		"typescript-language-server",
-		"deno",
 		"prettier",
 		"tailwindcss-language-server",
+
+		"hadolint",
 		"nginx-language-server",
+    "dockerfile-language-server",
+    "graphql-language-service-cli",
+    "prisma-language-server",
+    "yaml-language-server",
 
 		-- dap
-		-- "js-debug-adapter",
 		"node-debug2-adapter",
-		-- "chrome-debug-adapter",
 
 		-- c/cpp stuff
 		"clangd",
