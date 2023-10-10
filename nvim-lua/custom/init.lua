@@ -36,3 +36,26 @@ vim.filetype.add({
 vim.opt.winbar='%=%m %f'
 
 vim.opt.swapfile = false
+
+-- vim.g.snipmate_snippets_path = "~/dev/dotfile/snippets/"
+vim.g.vscode_snippets_path="~/dev/dotfile/my_snippets/"
+-- vim.g.snipmate_snippets_path = "~/dev/dotfile/my_snippets/"
+--
+
+local function open_nvim_tree(data)
+
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  if not directory then
+    return
+  end
+
+  -- change to the directory
+  vim.cmd.cd(data.file)
+
+  -- open the tree
+  require("nvim-tree.api").tree.open()
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
