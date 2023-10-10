@@ -33,7 +33,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias lo="ls -o"
-alias tre="tree -L 3"
+alias tre="tree -L 2"
+alias treee="tree -L 3"
 
 # Defaults replaced for better commands
 if [ -x "$(command -v exa)" ]; then
@@ -53,7 +54,7 @@ alias grep="grep --color=auto"
 [ -x "$(command -v prettyping)" ] && alias ping="prettyping"
 
 alias du="ncdu --color dark -x --exclude .git --exclude node_modules --exclude venv"
-alias fvim="vim $(fzf --height 40%)"
+alias fvim='vim $(fzf --height 40%)' # not the same as alias fvim="vim $(fzf --height 40%)"
 
 # Git shorthands
 MAIN_BRANCH="main"
@@ -109,6 +110,8 @@ alias agrep="alias | grep "
 alias psgrep="ps aux | grep "
 alias printers="lpstat -a"
 alias validate="npm run prettier && npm run lint:fix && npm run test"
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
 
 ## Taskbook shorthands
 # https://github.com/klaudiosinani/taskbook/tree/master
@@ -168,6 +171,9 @@ function mk() {
 
 # Weather
 alias weather="curl 'wttr.in/$WEATHER_LOC' && curl 'v2.wttr.in/$WEATHER_LOC'"
+weatherin () {
+  curl wttr.in/$1 && curl v2.wttr.in/$1
+}
 alias moon="curl wttr.in/moon"
 
 # Diff files or directories
