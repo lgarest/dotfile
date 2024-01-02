@@ -38,8 +38,8 @@ vim.opt.winbar='%=%m %f'
 vim.opt.swapfile = false
 
 -- vim.g.snipmate_snippets_path = "~/dev/dotfile/snippets/"
-vim.g.vscode_snippets_path="~/dev/dotfile/my_snippets/"
--- vim.g.snipmate_snippets_path = "~/dev/dotfile/my_snippets/"
+vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/lua/custom/my_snippets"
+-- vim.g.snipmate_snippets_path = "~/dev/dotfile/my_snippets"
 --
 
 local function open_nvim_tree(data)
