@@ -56,7 +56,7 @@ M.general = {
 		},
 
 		["gF"] = { "<cmd> vsplit <CR>gf", "[g]oto [F]ile in vsplit", opts = { remap = true } },
-		["<leader>ts"] = { "<cmd> se[t] [s]pell! <CR>" },
+		["<leader>ts"] = { "<cmd> set spell! <CR>", "se[t] [s]pell!" },
 		["<leader>rp"] = {
 			function()
 				vim.cmd("w!")
@@ -142,6 +142,7 @@ M.telescope = {
 		["<leader>gr"] = { "<cmd> Telescope lsp_references <CR>", "[g]oto [r]eferences" },
 		["<leader>fR"] = { "<cmd> Telescope resume <CR>", "[R]esume previous Telescope [f]ind" },
 		["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
+		-- ["<C-p>"] = { "<cmd> Telescope find_files follow=true<CR>", "Find all" },
 		-- ["<C-S-p>"] = { "<cmd> Telescope oldfiles additional_args={ previewer=false }<CR>", "Find old files" },
 		["<leader>fk"] = { "<cmd> Telescope keymaps <CR>", "Search/[f]ind keymaps" },
 		["<leader>fB"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "fzf [f]ind in current [B]uffer" },
@@ -154,7 +155,7 @@ M.treesitter = {
 }
 M.vimfugitive = {
 	n = {
-		["<space>gg"] = {
+		["<leader>gg"] = {
 			function()
 				vim.cmd("tab G")
 				vim.cmd("h fugitive-staging-maps")
@@ -163,6 +164,10 @@ M.vimfugitive = {
 			end,
 			"Open fugitive status / [g]oto [g]it",
 		},
+        -- ["<leader>gL"] = { "<cmd> GV<CR>" },
+        ["<leader>gl"] = { "<cmd> GV!<CR>" },
+        ["<leader>gsb"] = { "<cmd> G blame<CR>" },
+    -- nmap <space>gB :G blame<CR>
     -- nmap <space>gg :tab G<CR>g?
     -- nmap <space>gd :tab G diff<CR>
     -- nmap <space>gb :G branch<CR>
