@@ -2,14 +2,18 @@ local M = {}
 
 M.treesitter = {
 	ensure_installed = {
-		"vim",
 		"lua",
+		"vim",
+
+		"c",
+
 		"html",
 		"css",
+
 		"javascript",
 		"typescript",
 		"tsx",
-		"c",
+
 		"markdown",
 		"markdown_inline",
 	},
@@ -23,9 +27,9 @@ M.treesitter = {
 		enable = true,
 		enable_autocmd = false,
 	},
-  autotag = {
-    enable = true,
-  },
+	autotag = {
+		enable = true,
+	},
 }
 
 M.mason = {
@@ -37,17 +41,17 @@ M.mason = {
 		-- web dev stuff
 		"css-lsp",
 		"html-lsp",
-    "eslint-lsp",
+		"eslint-lsp",
 		"typescript-language-server",
 		"prettier",
 		"tailwindcss-language-server",
 
 		"hadolint",
 		"nginx-language-server",
-    "dockerfile-language-server",
-    "graphql-language-service-cli",
-    "prisma-language-server",
-    "yaml-language-server",
+		"dockerfile-language-server",
+		"graphql-language-service-cli",
+		"prisma-language-server",
+		"yaml-language-server",
 
 		-- dap
 		"node-debug2-adapter",
