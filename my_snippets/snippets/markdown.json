@@ -1,0 +1,117 @@
+{
+  "h1": {
+    "prefix": "h1",
+    "body": "# ${1:}",
+    "description": "h1"
+  },
+  "h2": {
+    "prefix": "h2",
+    "body": "## ${1:}",
+    "description": "h2"
+  },
+  "h3": {
+    "prefix": "h3",
+    "body": "### ${1:}",
+    "description": "h3"
+  },
+  "h4": {
+    "prefix": "h4",
+    "body": "#### ${1:}",
+    "description": "h3"
+  },
+  "link,url,href": {
+    "prefix": "link,url,href",
+    "body": "[${2:title}](${1:url})",
+    "description": "text: link or url"
+  },
+  "ti,italics": {
+    "prefix": "ti,italics",
+    "body": "_${1:italics}_ ${2:}",
+    "description": "text: italics"
+  },
+  "tb,bold": {
+    "prefix": "tb,bold",
+    "body": "**${1:bold}** ${2:}",
+    "description": "text: bold"
+  },
+  "ts,strikethrough": {
+    "prefix": "ts,strikethrough",
+    "body": "~~${1:strikethrough}~~ ${2:}",
+    "description": "text: strikethrough"
+  },
+  "tq,quote": {
+    "prefix": "tq,quote",
+    "body": "> ${1:quote}",
+    "description": "text: quote"
+  },
+  "th,highlight": {
+    "prefix": "th,highlight",
+    "body": "==${1:highlight}== ${2:}",
+    "description": "text: highlight"
+  },
+  "tc,code": {
+    "prefix": "tc,code",
+    "body": "`${1:inline code}` ${2:}",
+    "description": "text: code"
+  },
+  "tt,table": {
+    "prefix": "tt,table",
+    "body": "| ${1:variable} | ${2:name} |\n| - | - |\n| ${3:a} | ${4:2} |",
+    "description": "text: table"
+  },
+  "tcb,codeblock": {
+    "prefix": "tcb,codeblock",
+    "body": "\\`\\`\\`${1:sh}\n${2:inline code}\n\\`\\`\\`",
+    "description": "text: code"
+  },
+  "tl,list": {
+    "prefix": "tl,list",
+    "body": "${1:list header}:\n- ${2:list item}",
+    "description": "text: list with items"
+  },
+  "td,todo": {
+    "prefix": "td,todo",
+    "body": "- [ ] ${1:todo item}",
+    "description": "text: TODO item"
+  },
+  "tdc,todocompleted": {
+    "prefix": "tdc,todocompleted",
+    "body": "- [x] ${1:todo item completed}",
+    "description": "text: TODO item completed"
+  },
+  "tf,footnote": {
+    "prefix": "tf,footnote",
+    "body": "[^${1:1}]\n\n[^${1:1}]: ${2:footnote}\n",
+    "description": "text: footnote with definition"
+  },
+  "tbd": {
+    "prefix": "tbd",
+    "body": "to be determined",
+    "description": "To be determined"
+  },
+  "tbc": {
+    "prefix": "tbc",
+    "body": "to be clarified",
+    "description": "To be clarified"
+  },
+  "afaik": {
+    "prefix": "afaik",
+    "body": "as far as I know",
+    "description": "As far as I know"
+  },
+  "afair": {
+    "prefix": "afair",
+    "body": "as far as I remember",
+    "description": "As far as I remember"
+  },
+  "mdinit": {
+    "prefix": "mdinit",
+    "body": "<!-- markdownlint-disable MD012 MD013 MD022 MD032 -->\n# ${1:}\n\n[TOC]\n\n${2:}",
+    "description": "Initialize markdown"
+  },
+  "log,entry": {
+    "prefix": "log,entry",
+    "body": "## `date \"+%d-%m-%Y %H:%M\"` ${1:Meeting name}\n\n- ${2:item}",
+    "description": "new log entry"
+  }
+}

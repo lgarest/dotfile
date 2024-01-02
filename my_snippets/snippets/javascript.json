@@ -1,0 +1,217 @@
+{
+  "sd,debug": {
+    "prefix": "sd,debug",
+    "body": "screen.debug(${1:renderer}.container) // @TODO: remove this",
+    "description": "screen.debug"
+  },
+  "desc": {
+    "prefix": "desc",
+    "body": "describe('$1', () => {\n\tit$0\n})",
+    "description": "describe block"
+  },
+  "it": {
+    "prefix": "it",
+    "body": "it('$1', () => {\n\t$0\n})",
+    "description": "it block"
+  },
+  "testgherkin": {
+    "prefix": "testgherkin",
+    "body": "// https://www.guru99.com/gherkin-test-cucumber.html\n\ndescribe('GIVEN: $1', () => {\n\tdescribe('WHEN: $2', () => {\n    it('THEN: $3', () => {\n\t\t\t$0\n\t\t})\n\t})\n})",
+    "description": "full test in the GIVEN WHEN THEN form (gherkin)"
+  },
+  "assert": {
+    "prefix": "assert",
+    "body": "// assert\nexpect(${1:actual}).toEqual(${2:expected})",
+    "description": "assert"
+  },
+  "arrange": {
+    "prefix": "arrange",
+    "body": "// arrange\n$0",
+    "description": "arrange"
+  },
+  "testaaaa": {
+    "prefix": "testaaaa",
+    "body": "// arrange\nconst add = (a, b) => a + b\nconst expected = 5\nconst params = [2, 3]\nlet actual = 0\n\n// assert\nexpect(actual).toEqual(0)\nexpect(params[0]).toEqual(2)\nexpect(params[1]).toEqual(3)\n\n// act\nactual = add(...params)\n\n// assert\nexpect(actual).toEqual(expected)",
+    "description": "arrange assert act assert expand"
+  },
+  "tag": {
+    "prefix": "tag",
+    "body": "\t<${1:tag}>${2:content}</${1:tag}>",
+    "description": "<tag><tag>"
+  },
+  "tag2": {
+    "prefix": "tag2",
+    "body": "\t<${1:tag} ${2:attribute}>${3:content}</${1:tag}>",
+    "description": "<tag attributes=''><tag>"
+  },
+  "new,IntersectionObserver": {
+    "prefix": "new,IntersectionObserver",
+    "body": "const [${2:isVisible}, set${2/\\w+\\s*/\\u$0/}] = useState(false)\nuseEffect(() => {\n\t$0const ${1:element} = document.querySelector('.${1:element}')\n\tif (!${1:element} || !${2:isVisible}) return\n\n\tconst observer = new IntersectionObserver(([e]) => set${2/\\w+\\s*/\\u$0/}(e.isIntersecting), {\n\t\tthreshold: [${3:1}],\n\t\trootMargin: '0px 0px 0px 0px',\n\t\troot: ${4:document.body},\n\t})\n\tobserver.observe(${1:element})\n\tobserverRef.current = observer\n\treturn () => observer.disconnect()\n}, [${2:isVisible}])",
+    "description": "new IntersectionObserver"
+  },
+  "rus,useState": {
+    "prefix": "rus,useState",
+    "body": "const [$1, set${1/\\w+\\s*/\\u$0/}] = useState($3)",
+    "description": "useState"
+  },
+  "useState": {
+    "prefix": "useState",
+    "body": "useState($1)",
+    "description": "useState"
+  },
+  "useEffect,help": {
+    "prefix": "useEffect,help",
+    "body": "/*\n * useEffect(() => {}) // runs on every render\n * useEffect(() => {}, []) // runs on the first render\n * useEffect(() => {}, [deps]) // runs on the first render, and when deps change\n * useEffect(() => { return cleanUpFn}) // runs on the first render, and runs cleanUpFn before unmounting\n*/",
+    "description": "useEffect help"
+  },
+  "rue,useEffect": {
+    "prefix": "rue,useEffect",
+    "body": "useEffect(() => {\n\t${2:codeblock}\n\t${3:return () => \\{$4\\}}\n}, [${1:dependencies}])",
+    "description": "useEffect"
+  },
+  "sfc,component,simple": {
+    "prefix": "sfc,component,simple",
+    "body": "const ${1:Name} = ({ children, className, ...props }) => (\n  <div className={clsx('${1:Name}', className)} {...props}>\n\t\t$0\n  </div>\n)",
+    "description": "small functional component"
+  },
+  "fc,component,simple": {
+    "prefix": "fc,component,simple",
+    "body": "import React from 'react'\nimport clsx from 'clsx'\n\nimport classes from './${1:Name}.module.scss'\n\n/** @type {import(\"./types\").default} */\nconst ${1:Name} = ({ children, className, ...props }) => (\n  <div className={clsx('${1:Name}', className)} {...props}>\n\t\t$0\n  </div>\n)\n\nexport default ${1:Name}",
+    "description": "functional component"
+  },
+  "types": {
+    "prefix": "types",
+    "body": "/** @type {import(\"./types\").default} */",
+    "description": "import types.default"
+  },
+  "fc,component,extended": {
+    "prefix": "fc,component,extended",
+    "body": "import React from 'react'\nimport clsx from 'clsx'\n\nimport classes from './${1:Name}.module.scss'\n\n/** @type {import(\"./types\").default} */\nconst ${1:Name} = ({ children, className, ...props }) => {\n\t$2\n  return (\n\t\t<div className={clsx('${1:Name}', className)} {...props}>\n\t\t\t$0\n\t\t</div>\n\t)\n}\n\nexport default ${1:Name}",
+    "description": "functional component 2"
+  },
+  "context": {
+    "prefix": "context",
+    "body": "// 3rd party dependencies\nimport { createContext, useContext, useState } from 'react'\n\n// absolute imports\n\n// local imports\n\nconst defaults = {\n  isDark: false,\n}\n\nexport const Context = createContext(defaults)\n\nexport const ContextProvider = ({ children }) => {\n  const [isDark, setDark] = useState(defaults.isDark)\n\n  const toggleDark = () => {\n    setDark(!isDark)\n  }\n\n  return <Context.Provider value={{ isDark, toggleDark }}>{children}</Context.Provider>\n}\n\nexport const useContext = () => useContext(Context)",
+    "description": "context with provider"
+  },
+  "useEventContext": {
+    "prefix": "useEventContext",
+    "body": "import { useEventContext } from 'context/EventContext'\n\nconst eventContent = useEventContext({\n\teventCategory: '${1:no-results}',\n\teventAction: '${2:display_all-results}',\n\teventLabel: '${3:text-link_view-all}',\n\teventGA4Name: '${4:engagement_search}',\n)}",
+    "description": "event context"
+  },
+  "td": {
+    "prefix": "td",
+    "body": "// @TODO: ${1:something}",
+    "description": "// @TODO:"
+  },
+  "clv": {
+    "prefix": "clv",
+    "body": "console.log('____ ${1:variable}:', ${1:variable}) // @TODO: delete this",
+    "description": "console.log"
+  },
+  "cl": {
+    "prefix": "cl",
+    "body": "console.log('____ $1') // @TODO: delete this",
+    "description": "console.log"
+  },
+  "afn,arrow,function": {
+    "prefix": "afn,arrow,function",
+    "body": "($1) => $2",
+    "description": "arrow function"
+  },
+  "afn2,arrow,function": {
+    "prefix": "afn2,arrow,function",
+    "body": "(${1:}) => {\n\t${2:}\n}",
+    "description": "Arrow function () => {}"
+  },
+  "aafn": {
+    "prefix": "aafn",
+    "body": "const $1 = $2 => $3",
+    "description": "anoymous arrow function"
+  },
+  "caf": {
+    "prefix": "caf",
+    "body": "const $1 = $2 => $3",
+    "description": "anoymous arrow function"
+  },
+  "rc": {
+    "prefix": "rc",
+    "body": "const $1 = () => (\n\t$3\n)",
+    "description": "refactorComponent"
+  },
+  "tern": {
+    "prefix": "tern",
+    "body": "${1:condition} ? ${2:true} : ${3:false}",
+    "description": "ternary singleline"
+  },
+  "tern2": {
+    "prefix": "tern2",
+    "body": "${1:condition}\n\t? ${2:true}\n\t: ${3:false}",
+    "description": "ternary multiline"
+  },
+  "tern3,nested": {
+    "prefix": "tern3,nested",
+    "body": "${1:age < 18}\n\t? ${2:'young'}\n\t: ${3:age < 30}\n\t? ${4:'young adult'}\n\t: ${6:'adult'}",
+    "description": "ternary nested"
+  },
+  "switch": {
+    "prefix": "switch",
+    "body": "const ${1:specie} = {\n  '${2:human}': ${3:'homo sapiens sapiens'},\n  '${3:dog}': ${4:'canis familiaris'},\n  '${5:cat}': ${6:'felis catus'},\n  ${7:undefined}: ${8:'unknown'}\n}[${9:}'human']",
+    "description": "no switch case allowed"
+  },
+  "imports": {
+    "prefix": "imports",
+    "body": "// 3rd party dependencies\n\n// absolute imports\n\n// local imports",
+    "description": "show imports"
+  },
+  "import,statement": {
+    "prefix": "import,statement",
+    "body": "import ${2:React} from '${1:react}'",
+    "description": "import statement"
+  },
+  "/*": {
+    "prefix": "/*",
+    "body": "/*\n * $0\n */",
+    "description": "multiline comment"
+  },
+  "rur,useRef": {
+    "prefix": "rur,useRef",
+    "body": "const $1 = useRef(${2:null})",
+    "description": "useRef"
+  },
+  "comp": {
+    "prefix": "comp",
+    "body": "const ${1:Name} = ({ children, className, ...props }) => (\n  <div className={clsx('${1:Name}', className)} {...props}>\n\t\t$0\n  </div>\n)",
+    "description": "small functional component"
+  },
+  "newfc,component,simple": {
+    "prefix": "newfc,component,simple",
+    "body": "import React from 'react'\nimport clsx from 'clsx'\n\nimport classes from './${1:Name}.module.scss'\n\n/** @type {import(\"./types\").default} */\nconst ${1:Name} = ({ children, className, ...props }) => (\n  <div className={clsx('${1:Name}', className)} {...props}>\n\t\t$0\n  </div>\n)\n\nexport default ${1:Name}",
+    "description": "new functional component"
+  },
+  "newfc,component,extended": {
+    "prefix": "newfc,component,extended",
+    "body": "import React from 'react'\nimport clsx from 'clsx'\n\nimport classes from './${1:Name}.module.scss'\n\n/** @type {import(\"./types\").default} */\nconst ${1:Name} = ({ children, className, ...props }) => {\n\t$2\n  return (\n\t\t<div className={clsx('${1:Name}', className)} {...props}>\n\t\t\t$0\n\t\t</div>\n\t)\n}\n\nexport default ${1:Name}",
+    "description": "new functional component 2"
+  },
+  "dyn": {
+    "prefix": "dyn",
+    "body": "import dynamic from 'next/dynamic'\nconst $1 = dynamic(() => import('$2'))",
+    "description": "dynamic(() => import ('X'))"
+  },
+  "isDev": {
+    "prefix": "isDev",
+    "body": "const dev = process.env.NODE_ENV !== 'production'",
+    "description": "process.env.NODE_ENV is dev"
+  },
+  "isProd": {
+    "prefix": "isProd",
+    "body": "const prod = process.env.NODE_ENV === 'production'",
+    "description": "process.env.NODE_ENV is prod"
+  },
+  "newsoftwarecategory": {
+    "prefix": "newsoftwarecategory",
+    "body": "{\n\tid: '${1:accounting}',\n\ttitle: '${1:accounting}',\n\turl: '${2:url}',\n\ticon: ['ic', '${3:iconname}'],\n},",
+    "description": "softwarecategory"
+  }
+}
