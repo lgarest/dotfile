@@ -8,36 +8,33 @@ local b = null_ls.builtins
 local formatting = b.formatting
 local lint = b.diagnostics
 
-local sources = {
+-- for autoformat on save
+local format_on_save = function(client, bufnr)
+	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_clear_autocmds({
+			group = augroup,
+			buffer = bufnr,
+		})
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = augroup,
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format({ bufnr = bufnr })
+			end,
+		})
+	end
+end
 
-	-- webdev stuff
-	-- formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
-	formatting.prettier.with({
-		filetypes = {
-			"html",
-			"css",
-			"json",
-			"md",
-			"typescriptreact",
-			"typescript",
-			"javascriptreact",
-			"javascript",
-		},
-	}), -- so prettier works only on these filetypes
-	formatting.markdownlint,
-	lint.markdownlint,
-	lint.shellcheck,
-	lint.hadolint,
-	-- lint.eslint_d,
-
-	-- Lua
-	formatting.stylua,
-
-	-- cpp
-	formatting.clang_format,
+local opts = {
+	sources = {
+		formatting.prettierd,
+		formatting.stylua,
+		formatting.markdownlint,
+		lint.markdownlint,
+		lint.shellcheck,
+		lint.hadolint,
+	},
+	on_attach = format_on_save, -- for autoformat on save
 }
-
-null_ls.setup({
-	debug = true,
-	sources = sources,
-})
+return opts
