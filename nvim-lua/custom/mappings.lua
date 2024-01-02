@@ -66,7 +66,7 @@ M.general = {
 		},
 		["<leader>rn"] = {
 			function()
-				vim.cmd("! npx tsx %")
+				vim.cmd("! bun %")
 			end,
 			"[r]un current buffer through [n]ode repl (TS)",
 		},
