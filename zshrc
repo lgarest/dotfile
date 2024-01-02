@@ -48,6 +48,8 @@ else
   alias ll="ls -l"
 fi
 
+alias rm="safe-rm"
+
 alias grep="grep --color=auto"
 [ -x "$(command -v bat)" ] && alias cat="bat"
 
