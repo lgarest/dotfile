@@ -46,6 +46,8 @@ M.mason = {
 		"prettier",
 		"tailwindcss-language-server",
 
+    -- extra web stuff
+		"markdownlint",
 		"hadolint",
 		"nginx-language-server",
 		"dockerfile-language-server",
