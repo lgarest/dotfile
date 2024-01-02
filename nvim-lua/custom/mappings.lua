@@ -80,7 +80,7 @@ M.general = {
 
 		["<leader>cb"] = {
 			function()
-				require("nvchad_ui.tabufline").close_buffer()
+				require("nvchad.tabufline").close_buffer()
 			end,
 			"[c]lose [b]uffer",
 		},
