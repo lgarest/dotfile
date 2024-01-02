@@ -94,7 +94,12 @@ alias ydiffs="ydiff -s -w 100 --staged"
 if [ -x "$(command -v nvim)" ]; then
   alias vim="nvim"
   alias v="vim +NvimTreeToggle +'Telescope find_files'"
+  alias vz="vim ~/.zshrc"
+  alias vt="vim ~/.config/tmux/tmux.conf"
+  alias vc="vim ~/.config/nvim/"
+  alias notes="cd ~/personal/notes && vim +'Telescope find_files' && cd -"
 fi
+alias sz=". ~/.zshrc"
 alias ctags="`brew --prefix`/bin/ctags"
 
 # Lazyness
