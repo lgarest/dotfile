@@ -1,5 +1,6 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
+local base = require("plugins.configs.lspconfig")
+local on_attach = base.on_attach
+local capabilities = base.capabilities
 
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
@@ -11,7 +12,9 @@ local servers = {
 	"cssls",
 	"tsserver",
 	"clangd",
+	"graphql",
 	"eslint",
+	"tailwindcss",
 }
 
 for _, lsp in ipairs(servers) do
@@ -36,19 +39,16 @@ if not configs.nginx_lsp then
 	}
 end
 
-
 -- check https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local custom_servers = {
-  "nginx_lsp",
-  "dockerls",
-  "graphql",
-  "prismals",
-  "yamlls",
+	"nginx_lsp",
+	"dockerls",
+	"prismals",
+	"yamlls",
 }
 for _, lsp in ipairs(custom_servers) do
 	lspconfig[lsp].setup({})
 end
-
 
 -- lspconfig.pyright.setup { blabla}
 vim.diagnostic.config({
