@@ -118,20 +118,48 @@ alias ff='find . -type f -name'
 ## Taskbook shorthands
 # https://github.com/klaudiosinani/taskbook/tree/master
 alias tbh="agrep tb"
-alias tbc="tb | fzf | cut -d '.' -f 1 | xargs tb --check"
-alias tbtc="tb --task @coding"
-alias tbtt="tb --task @this_week"
-alias tbts="tb --task @setup"
-alias tbtr="tb --task @retro"
-alias tbretro="tb --task @retro"
-alias tbtl="tb --task @learn"
-alias tbt="tb --task"
-alias tbn="tb --note"
-alias tbd="tb | fzf | cut -d '.' -f 1 | xargs tb -d"
+alias tbc="tb | fzf --ansi | cut -d '.' -f 1 | xargs tb --check && tb" # check
+alias tbd="tb | fzf --ansi | cut -d '.' -f 1 | xargs tb -d && tb" # delete
+alias tbs="tb | fzf --ansi | cut -d '.' -f 1 | xargs tb -s && tb" # star
+tbp() { tb -p @"$1" $2 && tb } # priority
+
+alias tbi="tb --timeline"
+alias tbt="tb --task" # taskbook task creation
+alias tbn="tb --note" # taskbook notes
+alias tbl="tb --list" # taskbook list
+alias tblp="tb --list pending"
+alias tbln="tb --list notes"
+alias tbf="tb --find"
+
+#today
+alias tbtt="tbt @today"
+alias tbtn="tbn @today"
+alias tbtl="tb --list today"
+tbtm() { tb -m @"$1" today && tb }
+
+# 1on1
+alias tbst="tbt @1on1"
+alias tbsn="tbn @1on1"
+alias tbsl="tb --list 1on1"
+tbms() { tb -m @"$1" 1on1 && tb }
+
+#recordatorios
+alias tbrt="tbt @recordatorios"
+alias tbrn="tbn @recordatorios"
+alias tbrl="tb --list recordatorios"
+tbmr() { tb -m @"$1" recordatorios && tb }
+
+#viernes
+alias tbvt="tbt @viernes"
+alias tbvt="tbt @viernes"
+alias tbvl="tb --list viernes"
+tbmv() { tb -m @"$1" viernes && tb }
+
 
 gclone() {
   git clone "$1" && cd "$(basename "$1" .git)" && cat README.md
 }
+
 reviewcandidate() {
   cd ~/dev/candidates && gclone "$1" && cp ~/Documents/luis.review.md . && vim luis.review.md
 }
