@@ -4,6 +4,7 @@ M.treesitter = {
 	ensure_installed = {
 		"lua",
 		"vim",
+		"vimdoc",
 
 		"c",
 
@@ -46,7 +47,7 @@ M.mason = {
 		"prettierd", -- prettierd > prettier
 		"tailwindcss-language-server",
 
-    -- extra web stuff
+		-- extra web stuff
 		"markdownlint",
 		"hadolint",
 		"nginx-language-server",
