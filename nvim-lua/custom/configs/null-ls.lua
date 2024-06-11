@@ -1,3 +1,4 @@
+-- custom/configs/null-ls.lua
 local present, null_ls = pcall(require, "null-ls")
 
 if not present then
@@ -29,12 +30,13 @@ end
 local opts = {
 	sources = {
 		formatting.prettierd,
+		-- formatting.biome,
 		formatting.stylua,
 		formatting.markdownlint,
 		lint.markdownlint,
-		lint.shellcheck,
+		-- lint.shellcheck,
 		lint.hadolint,
 	},
-	on_attach = format_on_save, -- for autoformat on save
+	-- on_attach = format_on_save, -- for autoformat on save
 }
 return opts

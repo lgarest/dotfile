@@ -7,6 +7,7 @@ local highlights = require("custom.highlights")
 M.ui = {
 	theme = "catppuccin",
 	theme_toggle = { "catppuccin", "ayu_light" },
+	-- theme_toggle = { "catppuccin" },
 	-- lsp_semantic_tokens = true,
 
 	hl_override = highlights.override,

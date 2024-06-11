@@ -213,10 +213,5 @@
     "prefix": "newsoftwarecategory",
     "body": "{\n\tid: '${1:accounting}',\n\ttitle: '${1:accounting}',\n\turl: '${2:url}',\n\ticon: ['ic', '${3:iconname}'],\n},",
     "description": "softwarecategory"
-  },
-  "Function Statement": {
-    "prefix": "fn",
-    "body": ["function ${1:name}(${2:params}:${3:type}) {", "\t$0", "}"],
-    "description": "Function Statement"
   }
 }

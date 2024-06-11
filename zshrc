@@ -77,10 +77,11 @@ alias gitc="git checkout "
 alias gitcc="git checkout -"
 alias gitl="git log -n 10 --graph --decorate"
 alias gitrom="git fetch --all --prune && git rebase origin/$MAIN_BRANCH"
+alias gitcm="gitc $MAIN_BRANCH && gitrom"
 alias gitrub="git stash -u && git fetch --all --prune && git rebase origin/$(git_current_branch) && git stash pop"
 alias gitrut="git fetch --all --prune && git rebase upstream/test"
 alias gits="git switch"
-alias gitss="clear && git branch && git status"
+alias gitss="clear && git branch --sort=-committerdate && git status"
 alias gl="gitl -n 30 --oneline"
 alias glol="git log -n 20 --graph --pretty='$git_pretty_config'"
 alias glola="git log -n 20 --graph --all --pretty='$git_pretty_config'"
@@ -117,6 +118,7 @@ alias agrep="alias | grep "
 alias psgrep="ps aux | grep "
 alias printers="lpstat -a"
 alias validate="npm run prettier && npm run lint:fix && npm run test"
+alias nuke="rm package-lock.json && turbo run clean && npm i"
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
@@ -168,6 +170,9 @@ gclone() {
 reviewcandidate() {
   cd ~/dev/candidates && gclone "$1" && cp ~/Documents/luis.review.md . && vim luis.review.md
 }
+
+alias view="nvim -m"
+alias rg="rg --hidden --smart-case"
 
 ######### TERMINAL ENHANCEMENTS #########
 
@@ -299,9 +304,9 @@ check_allowed_paths() {
   return 1
 }
 if check_allowed_paths; then
-  ssh-add "$personal_key"
+  ssh-add "$personal_key" 2> /dev/null
 else
-  ssh-add --apple-use-keychain "$default_key"
+  ssh-add --apple-use-keychain "$default_key" 2> /dev/null
 fi
 
 

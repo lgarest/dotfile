@@ -9,6 +9,12 @@ M.override = {
 	Comment = {
 		italic = true,
 	},
+	Cursor = {
+		bg = "teal",
+	},
+	CursorLine = {
+		bg = "grey",
+	},
 }
 
 ---@type HLTable

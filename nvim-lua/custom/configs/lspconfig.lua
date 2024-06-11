@@ -8,13 +8,14 @@ local configs = require("lspconfig.configs")
 -- if you just want default config for the servers then put them in a table
 -- local servers = { "html", "cssls", "tsserver", "clangd", "tailwindcss" }
 local servers = {
-	"html",
-	"cssls",
-	"tsserver",
+	"bashls",
 	"clangd",
+	"cssls",
 	"graphql",
-	"eslint",
+	"html",
 	"tailwindcss",
+	"tsserver",
+	"eslint", -- replaced for biome
 }
 
 for _, lsp in ipairs(servers) do
@@ -41,8 +42,9 @@ end
 
 -- check https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local custom_servers = {
-	"nginx_lsp",
+	-- "biome",
 	"dockerls",
+	"nginx_lsp",
 	"prismals",
 	"yamlls",
 }

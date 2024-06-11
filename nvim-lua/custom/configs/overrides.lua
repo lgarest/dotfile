@@ -45,6 +45,7 @@ M.mason = {
 		"eslint-lsp",
 		"typescript-language-server",
 		"prettierd", -- prettierd > prettier
+		-- "biome",
 		"tailwindcss-language-server",
 
 		-- extra web stuff
@@ -62,6 +63,10 @@ M.mason = {
 		-- c/cpp stuff
 		"clangd",
 		"clang-format",
+
+		-- bash
+		"bash-language-server",
+		"beautysh",
 	},
 }
 

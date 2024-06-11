@@ -36,6 +36,7 @@ vim.filetype.add({
 vim.opt.winbar = "%=%m %f"
 
 vim.opt.swapfile = false
+vim.opt.switchbuf = "vsplit"
 
 -- vim.g.snipmate_snippets_path = "~/dev/dotfile/snippets/"
 vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/lua/custom/my_snippets"
@@ -66,6 +67,8 @@ local function set_indentation(level)
 	vim.o.tabstop = level
 end
 set_indentation(2)
+-- move to setup fn for copilot
+require("custom.configs.copilot")
 
 -- vim.api.nvim_create_autocmd({ "VimEnter" , {
 --   pattern = { "*.md" },
