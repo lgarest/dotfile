@@ -37,11 +37,11 @@ alias tre="tree -L 2"
 alias treee="tree -L 3"
 
 # Defaults replaced for better commands
-if [ -x "$(command -v exa)" ]; then
-  alias l="exa --icons --long --all --header"
-  alias la="exa --icons --long --all --group -a"
-  alias ls="exa"
-  alias ll="exa --icons --long --header"
+if [ -x "$(command -v eza)" ]; then
+  alias l="eza --icons --long --all --header"
+  alias la="eza --icons --long --all --group -a"
+  alias ls="eza"
+  alias ll="eza --icons --long --header"
 else
   alias l="ls -lah"
   alias la="ls -la"
@@ -89,6 +89,8 @@ alias gshowe="git show --name-only -1 | fzf | xargs nvim"
 alias sgitrom="git stash -u && git fetch --all --prune && git rebase origin/$MAIN_BRANCH && git stash pop"
 alias ydiff="ydiff -s -w 100"
 alias ydiffs="ydiff -s -w 100 --staged"
+
+alias rmlock="rm package-lock.json && npm install --package-lock-only"
 
 # Vim
 # let g:coc_node_path = trim(system('which node'))
@@ -288,47 +290,48 @@ daily () {
   tb;
 }
 
-# SSH config
-# Add ssh keys depending on the pwd
-check_allowed_paths() {
-  # Check if the current directory or its parents match the allowed paths
-  # Remove ssh keys
-  ssh-add -D 2> /dev/null
-  local current_dir="$PWD"
-  while [ "$current_dir" != "/" ]; do
-    if [[ "$current_dir" == ~/dev/dotfile/* || "$current_dir" == ~/dev/notes/* || "$current_dir" == ~/personal/* ]]; then
-      return 0
-    fi
-    current_dir=$(dirname "$current_dir")
-  done
-  return 1
-}
-if check_allowed_paths; then
-  ssh-add "$personal_key" 2> /dev/null
-else
-  ssh-add --apple-use-keychain "$default_key" 2> /dev/null
-fi
+# # SSH config
+# # Add ssh keys depending on the pwd
+# check_allowed_paths() {
+#   # Check if the current directory or its parents match the allowed paths
+#   # Remove ssh keys
+#   ssh-add -D 2> /dev/null
+#   local current_dir="$PWD"
+#   while [ "$current_dir" != "/" ]; do
+#     if [[ "$current_dir" == ~/dev/dotfile/* || "$current_dir" == ~/dev/notes/* || "$current_dir" == ~/personal/* ]]; then
+#       return 0
+#     fi
+#     current_dir=$(dirname "$current_dir")
+#   done
+#   return 1
+# }
+# if check_allowed_paths; then
+#   ssh-add --apple-use-keychain "$personal_key" 2> /dev/null
+# else
+#   # ssh-add "$default_key" 2> /dev/null
+#   ssh-add --apple-use-keychain "$default_key"
+# fi
 
 
 ######### THEMES #########
 # PowerLevel10k
 # Displays a p10k segment with the current tmux session
-function prompt_my_tmux_session() {
-  if [[ $(echo $TMUX) ]]; then
-    session="$(tmux display-message -p '#S')"
-    p10k segment -f white -b 199 -t $session
-  fi
-}
+# function prompt_my_tmux_session() {
+#   if [[ $(echo $TMUX) ]]; then
+#     session="$(tmux display-message -p '#S')"
+#     p10k segment -f white -b 199 -t $session
+#   fi
+# }
 
-. $HOMEBREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_CUSTOM_TMUX_SESSION="show_tmux_session"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh virtualenv custom_tmux_session dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
-POWERLEVEL9K_ETC_ICON=''
-POWERLEVEL9K_VCS_GIT_HOOKS=''
+# . $HOMEBREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme
+# POWERLEVEL9K_MODE='nerdfont-complete'
+# POWERLEVEL9K_CUSTOM_TMUX_SESSION="show_tmux_session"
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh virtualenv custom_tmux_session dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
+# POWERLEVEL9K_HOME_ICON=''
+# POWERLEVEL9K_HOME_SUB_ICON=''
+# POWERLEVEL9K_FOLDER_ICON=''
+# POWERLEVEL9K_ETC_ICON=''
+# POWERLEVEL9K_VCS_GIT_HOOKS=''

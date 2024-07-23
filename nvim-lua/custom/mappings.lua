@@ -110,44 +110,44 @@ M.general = {
   },
 }
 
-M.lsp = {
-  n = {
-    -- ["<leader>e"] = {
-    --   function()
-    --     vim.diagnostic.open_float()
-    --   end,
-    --   "Open diagnostic for current line",
-    -- },
-  },
-}
-M.tmux = {
-  n = {
-    ["<C-f>"] = { "<cmd> silent !tmux neww tmux-sessionizer.sh <CR>" },
-    ["<C-s>"] = { "<cmd> silent !tmux neww tmux-fzf-session.sh <CR>" },
-    ["<C-g>"] = { "<cmd> silent !tmux neww lazygit <CR>" },
-    ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", "Window left" },
-    ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", "Window down" },
-    ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", "Window up" },
-    ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", "Window right" },
-  },
-}
-M.luaSnip = {
-  n = {
-    ["<leader>os"] = {
-      function()
-        vim.cmd "vsplit"
-        require("luasnip.loaders").edit_snippet_files()
-      end,
-      "open [s]nippet files",
-    },
-    ["<leader>om"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/mappings.lua <CR>", "open [m]appings file" },
-    ["<leader>on"] = { "<cmd> tabnew ~/dev/notes/ <CR>", "open [n]otes file" },
-    ["<leader>oh"] = { "<cmd> tabnew ~/dev/notes/vim.md <CR>", "open vim c[h]eatsheet" },
-    ["<leader>ot"] = { "<cmd> tabnew ~/dev/notes/telescope.md <CR>", "open [t]elescope cheatsheet" },
-    ["<leader>o,"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "open plugins file" },
-    ["<leader>op"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "open [p]lugins file" },
-  },
-}
+-- M.lsp = {
+--   n = {
+--     -- ["<leader>e"] = {
+--     --   function()
+--     --     vim.diagnostic.open_float()
+--     --   end,
+--     --   "Open diagnostic for current line",
+--     -- },
+--   },
+-- }
+-- M.tmux = {
+--   n = {
+--     ["<C-f>"] = { "<cmd> silent !tmux neww tmux-sessionizer.sh <CR>" },
+--     ["<C-s>"] = { "<cmd> silent !tmux neww tmux-fzf-session.sh <CR>" },
+--     ["<C-g>"] = { "<cmd> silent !tmux neww lazygit <CR>" },
+--     ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", "Window left" },
+--     ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", "Window down" },
+--     ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", "Window up" },
+--     ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", "Window right" },
+--   },
+-- }
+-- M.luaSnip = {
+--   n = {
+--     ["<leader>os"] = {
+--       function()
+--         vim.cmd "vsplit"
+--         require("luasnip.loaders").edit_snippet_files()
+--       end,
+--       "open [s]nippet files",
+--     },
+--     ["<leader>om"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/mappings.lua <CR>", "open [m]appings file" },
+--     ["<leader>on"] = { "<cmd> tabnew ~/dev/notes/ <CR>", "open [n]otes file" },
+--     ["<leader>oh"] = { "<cmd> tabnew ~/dev/notes/vim.md <CR>", "open vim c[h]eatsheet" },
+--     ["<leader>ot"] = { "<cmd> tabnew ~/dev/notes/telescope.md <CR>", "open [t]elescope cheatsheet" },
+--     ["<leader>o,"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "open plugins file" },
+--     ["<leader>op"] = { "<cmd> tabnew ~/.config/nvim/lua/custom/plugins.lua <CR>", "open [p]lugins file" },
+--   },
+-- }
 M.telescope = {
   n = {
     ["<leader>fB"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "fzf find in current [B]uffer" },
@@ -168,14 +168,14 @@ M.telescope = {
     -- ["<C-S-p>"] = { "<cmd> Telescope oldfiles additional_args={ previewer=false }<CR>", "Find old files" },
   },
 }
-M.treesitter = {
-  n = {
-    ["<leader>fs"] = {
-      "<cmd> Telescope treesitter ignore_symbols={'import'}<CR>",
-      "Open/find treesitter [s]ymbols",
-    },
-  },
-}
+-- M.treesitter = {
+--   n = {
+--     ["<leader>fs"] = {
+--       "<cmd> Telescope treesitter ignore_symbols={'import'}<CR>",
+--       "Open/find treesitter [s]ymbols",
+--     },
+--   },
+-- }
 M.vimfugitive = {
   n = {
     ["<leader>gg"] = {
@@ -218,63 +218,63 @@ M.vimfugitive = {
     ["gl"] = { "<cmd> diffget //3 <CR>" },
   },
 }
-M.tj = {
-  n = {},
-}
-M.treesj = {
-  plugin = true,
-  n = {
-    ["<leader>fj"] = { "<cmd> TSJToggle <CR>", "format [j]oin toggle" },
-  },
-}
-M.dap = {
-  plugin = true,
-  n = {
-    ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "[d]ebugger add [b]reakpoint" },
-    ["<leader>dr"] = { "<cmd> DapContinue <CR>", "[d]ebugger [r]esume session" },
-  },
-}
-M.undotree = {
-  plugin = true,
-  n = {
-    ["<leader>u"] = { "<cmd> UndotreeToggle <CR>", "toggle [u]ndotree" },
-  },
-}
-M.copilot = {
-  plugin = true,
-  n = {
-    ["<leader>tc"] = {
-      function()
-        require("custom.configs.copilot").toggle_copilot()
-      end,
-      "[t]oggle [c]opilot",
-    },
-  },
-  i = {
-    -- add lua copilot
-    -- ['<C-y>'] = {
-    --     '<cmd>copilot#Accept("<CR>")<CR>',
-    --   "accept copilot suggestion"
-    -- }
-  },
-}
-M.bettertserrors = {
-  plugin = true,
-  n = {
-    ["<leader>te"] = {
-      function()
-        require("better-ts-errors").toggle()
-      end,
-      "toggle [t]ypescript [e]rrors",
-    },
-    ["<leader>dx"] = {
-      function()
-        require("better-ts-errors").goToDefinition()
-      end,
-      "go to [d]efinition",
-    },
-  },
-}
+-- M.tj = {
+--   n = {},
+-- }
+-- M.treesj = {
+--   plugin = true,
+--   n = {
+--     ["<leader>fj"] = { "<cmd> TSJToggle <CR>", "format [j]oin toggle" },
+--   },
+-- }
+-- M.dap = {
+--   plugin = true,
+--   n = {
+--     ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "[d]ebugger add [b]reakpoint" },
+--     ["<leader>dr"] = { "<cmd> DapContinue <CR>", "[d]ebugger [r]esume session" },
+--   },
+-- }
+-- M.undotree = {
+--   plugin = true,
+--   n = {
+--     ["<leader>u"] = { "<cmd> UndotreeToggle <CR>", "toggle [u]ndotree" },
+--   },
+-- }
+-- M.copilot = {
+--   plugin = true,
+--   n = {
+--     ["<leader>tc"] = {
+--       function()
+--         require("custom.configs.copilot").toggle_copilot()
+--       end,
+--       "[t]oggle [c]opilot",
+--     },
+--   },
+--   i = {
+--     -- add lua copilot
+--     -- ['<C-y>'] = {
+--     --     '<cmd>copilot#Accept("<CR>")<CR>',
+--     --   "accept copilot suggestion"
+--     -- }
+--   },
+-- }
+-- M.bettertserrors = {
+--   plugin = true,
+--   n = {
+--     ["<leader>te"] = {
+--       function()
+--         require("better-ts-errors").toggle()
+--       end,
+--       "toggle [t]ypescript [e]rrors",
+--     },
+--     ["<leader>dx"] = {
+--       function()
+--         require("better-ts-errors").goToDefinition()
+--       end,
+--       "go to [d]efinition",
+--     },
+--   },
+-- }
 -- M.dap_js = {
 --   -- plugin = true,
 --   n = {

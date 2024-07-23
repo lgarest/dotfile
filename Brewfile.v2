@@ -1,7 +1,7 @@
 
 # tap repositories and their packages
 
-tap homebrew/cask-fonts
+# tap homebrew/cask-fonts
 
 tap 1password/tap
 cask 1password-cli

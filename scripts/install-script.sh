@@ -21,7 +21,7 @@ git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins $ZSH_CUSTOM/pl
 # brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install rcmdnk/file/brew-file
-brew file install -f ~/dev/dotfile/Brewfile
+brew file install -f ~/personal/dotfile/Brewfile.v2
 $(brew --prefix)/opt/fzf/install
 
 # pyenv

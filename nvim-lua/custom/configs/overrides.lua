@@ -33,7 +33,7 @@ M.treesitter = {
 	},
 }
 
-M.mason = {
+M.mason = { --migrated
 	ensure_installed = {
 		-- lua stuff
 		"lua-language-server",
