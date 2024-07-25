@@ -108,7 +108,6 @@ if [ -x "$(command -v nvim)" ]; then
   alias notes="cd ~/personal/notes && vim +'Telescope find_files' && cd -"
 fi
 alias sz=". ~/.zshrc"
-alias ctags="`brew --prefix`/bin/ctags"
 
 # Lazyness
 [ -x "$(command -v lazygit)" ] && alias lzg="lazygit"
@@ -183,15 +182,12 @@ alias rg="rg --hidden --smart-case"
 
 ######### TERMINAL ENHANCEMENTS #########
 
-# Zoxide
-[ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
-
-# Fuzzy finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Zsh syntax highlighting
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+# # Zoxide
+# [ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
+#
+# # Fuzzy finder
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#
 ######### KEY BINDINGS #########
 # Key bindings
 bindkey -s ^f "tmux-sessionizer.sh\n"
@@ -242,14 +238,6 @@ vdiff () {
   fi
 }
 
-# OLD sublime configs
-# export SUBLIME_USER_DIR="~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/"
-# export SUBLIME_BCKP_DIR="~/MEGA/backups/sublime.user.folder/"
-# alias sublime-backup="cp -R $SUBLIME_USER_DIR $SUBLIME_BCKP_DIR;\
-# echo Sublime Settings backed up in $SUBLIME_BCKP_DIR"
-# alias sublime-backup-restore="cp -R $SUBLIME_BCKP_DIR $SUBLIME_USER_DIR;\
-# echo Sublime Settings restored into $SUBLIME_USER_DIR"
-
 # export BROWSER="wslview"
 
 #### PATH extensions
@@ -268,14 +256,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 # export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
 [ -x "$(command -v pyenv)" ] && eval "$(pyenv init -)"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-source $(brew --prefix nvm)/nvm.sh
-# load nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
-# load nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 ######### CUSTOM FUNCTIONS #########
 show_project_contributors () {
@@ -316,27 +296,3 @@ daily () {
 #   # ssh-add "$default_key" 2> /dev/null
 #   ssh-add --apple-use-keychain "$default_key"
 # fi
-
-
-######### THEMES #########
-# PowerLevel10k
-# Displays a p10k segment with the current tmux session
-# function prompt_my_tmux_session() {
-#   if [[ $(echo $TMUX) ]]; then
-#     session="$(tmux display-message -p '#S')"
-#     p10k segment -f white -b 199 -t $session
-#   fi
-# }
-
-# . $HOMEBREW_PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme
-# POWERLEVEL9K_MODE='nerdfont-complete'
-# POWERLEVEL9K_CUSTOM_TMUX_SESSION="show_tmux_session"
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh virtualenv custom_tmux_session dir vcs)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
-# POWERLEVEL9K_HOME_ICON=''
-# POWERLEVEL9K_HOME_SUB_ICON=''
-# POWERLEVEL9K_FOLDER_ICON=''
-# POWERLEVEL9K_ETC_ICON=''
-# POWERLEVEL9K_VCS_GIT_HOOKS=''
