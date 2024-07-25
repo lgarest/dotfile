@@ -29,6 +29,8 @@ alias dockernuke="docker system prune --all --volumes"
 
 alias vz="nvim ~/.zshrc"
 alias sz="source ~/.zshrc"
+alias bi="HOMEBREW_NO_AUTO_UPDATE=1 brew install"
+
 ######### Aliases #########
 # Dir navigations
 alias ..="cd .."
