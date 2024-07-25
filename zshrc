@@ -27,6 +27,8 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 alias dockernuke="docker system prune --all --volumes"
 [ -x "$(command -v lazydocker)" ] && alias lzd="lazydocker"
 
+alias vz="nvim ~/.zshrc"
+alias sz="source ~/.zshrc"
 ######### Aliases #########
 # Dir navigations
 alias ..="cd .."
