@@ -3,7 +3,7 @@
 --- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 --- https://lazy.folke.io/spec/lazy_loading
 local plugins = {
-  -- Example on how to override telescope defaults
+	-- Example on how to override telescope defaults
 	-- {
 	-- 	"nvim-telescope/telescope.nvim",
 	-- 	tag = "0.1.8",
@@ -27,18 +27,32 @@ local plugins = {
 	-- 	-- end,
 	-- },
 
-  {"dstein64/vim-startuptime", cmd = "StartupTime" },
+	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
 			require("nvchad.configs.lspconfig").defaults()
 			require("configs.lspconfig")
 		end,
+		-- ft = {
+		-- 	"lua",
+		-- 	"javascript",
+		-- 	"javascriptreact",
+		-- 	"typescript",
+		-- 	"typescriptreact",
+		-- 	"yaml",
+		-- 	"json",
+		-- },
 	},
-
+	{
+		"nvimtools/none-ls.nvim",
+		event = "VeryLazy",
+		opts = function()
+			return require("configs.none-ls")
+		end,
+	},
 	{
 		"williamboman/mason.nvim",
-
 		opts = function()
 			return require("configs.mason")
 		end,
@@ -52,13 +66,14 @@ local plugins = {
 		end,
 	},
 
-  -- Autocompletion
+	-- Autocompletion
 	{
 		"hrsh7th/cmp-calc",
 		event = "VeryLazy",
 		dependencies = {
 			"hrsh7th/nvim-cmp",
 		},
+		-- filetype?
 	},
 	{
 		"lukas-reineke/cmp-rg",
@@ -66,11 +81,16 @@ local plugins = {
 		dependencies = {
 			"hrsh7th/nvim-cmp",
 		},
+		-- filetype?
 	},
 
-  -- Commenting code
+	-- Commenting code
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
+		-- key comment
+		keys = {
+			{ "gc", mode = "n" },
+		},
 	},
 	{
 		"numToStr/Comment.nvim",
@@ -95,10 +115,24 @@ local plugins = {
 	-- 	end,
 	-- },
 
-  -- GIT integration
+	-- GIT integration
 	{
 		"tpope/vim-fugitive",
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		keys = {
+			{
+				"<leader>gg",
+				function()
+					vim.cmd("tab G")
+					vim.cmd("h fugitive-staging-maps")
+					vim.cmd("wincmd L")
+					vim.cmd("wincmd h")
+				end,
+				mode = "n",
+				desc = "Open fugitive status / goto [g]it",
+			},
+		},
+		cmd = { "G", "Git", "Ggrep" },
 	},
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
@@ -111,35 +145,54 @@ local plugins = {
 				changedelete = { text = "~" },
 			},
 		},
+		keys = {
+			{
+				"<leader>gp",
+				"<cmd> Gitsigns preview_hunk<CR>",
+				mode = { "n", "v" },
+			},
+		},
 	},
 	{
 		"junegunn/gv.vim",
-		event = "VeryLazy",
 		dependencies = {
 			"tpope/vim-fugitive",
 		},
+		keys = {
+			{ "<leader>gl", "<cmd> GV<CR>", mode = "n", desc = "git [l]og" },
+			{ "<leader>gL", "<cmd> GV!<CR>", mode = "n", desc = "git [L]og current file" },
+		},
 	},
 
-  -- IDE
+	-- IDE
 	{
 		"stevearc/conform.nvim",
-		-- event = 'BufWritePre', -- uncomment for format on save
+		event = "BufWritePre", -- uncomment for format on save
 		config = function()
 			require("configs.conform")
 		end,
 	},
 	{
 		"tpope/vim-surround",
-		event = "VeryLazy",
+		dependencies = { "tpope/vim-repeat" },
+		keys = {
+			{ "cs" },
+			{ "ys" },
+			{ "ds" },
+			{ "S", mode = "v" },
+		},
 	},
 	{ "echasnovski/mini.ai", version = false },
 	{
 		"tpope/vim-speeddating",
-		event = "VeryLazy",
+		keys = {
+			{ "<C-a>" },
+			{ "<C-x>" },
+		},
 	},
 	{
 		"tpope/vim-repeat",
-		event = "VeryLazy",
+		keys = { { "." } },
 	},
 	{
 		"tpope/vim-abolish",
@@ -154,7 +207,7 @@ local plugins = {
 	},
 	{
 		"christoomey/vim-tmux-navigator",
-    -- lazy=false,
+		-- lazy=false,
 		cmd = {
 			"TmuxNavigateLeft",
 			"TmuxNavigateDown",
@@ -177,7 +230,7 @@ local plugins = {
 			use_default_keymaps = false,
 		},
 		keys = {
-			{ "<leader>fj", mode = { "n" } },
+			{ "<leader>fj", mode = "n" },
 		},
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function(_, opts)
@@ -188,10 +241,13 @@ local plugins = {
 	},
 	{
 		"mbbill/undotree",
-		event = "VeryLazy",
+		-- event = "VeryLazy",
 		config = function(_, _)
 			-- require("core.utils").load_mappings "undotree"
 		end,
+		keys = {
+			{ "<leader>gu", ":UndotreeToggle<CR>", mode = "n", desc = "Toggle undotree" },
+		},
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
@@ -212,7 +268,7 @@ local plugins = {
 		lazy = false,
 	},
 
-  -- Languages support
+	-- Languages support
 	{
 		"preservim/vim-markdown",
 		ft = "markdown",
@@ -268,7 +324,6 @@ local plugins = {
 		--   }
 		-- }
 	},
-
 
 	-- DAP
 	-- {
