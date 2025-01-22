@@ -11,8 +11,9 @@ local options = {
 		-- web dev stuff
 		"html-lsp",
 		"css-lsp",
+		-- "eslint-lsp",
 		"prettierd",
-		-- "biome",
+		"biome",
 		"tailwindcss-language-server",
 		-- "nginx-language-server",
 		"graphql-language-service-cli",

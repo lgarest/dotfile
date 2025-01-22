@@ -213,5 +213,14 @@
     "prefix": "newsoftwarecategory",
     "body": "{\n\tid: '${1:accounting}',\n\ttitle: '${1:accounting}',\n\turl: '${2:url}',\n\ticon: ['ic', '${3:iconname}'],\n},",
     "description": "softwarecategory"
+  },
+  "comment": {
+    "prefix": "comment",
+    "body": [
+      "{/*",
+        "  ",
+        "*/}"
+    ],
+    "description": "comment"
   }
 }

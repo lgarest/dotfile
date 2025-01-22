@@ -2,7 +2,14 @@
 # History 
 export HISTSIZE=50000  # Maximum number of history lines in memory
 export HISTFILESIZE=50000  # Maximum number of history lines on disk
+export HISTFILE=$HOME/.zsh_history  # Maximum number of history lines on disk
 export HISTCONTROL=ignoredups:erasedups  # Ignore duplicate lines
+setopt share_history  # Share command history data
+setopt hist_expire_dups_first  # Expire duplicate entries first when trimming history
+setopt hist_ignore_dups # Do not record an entry that was just recorded again
+setopt hist_verify  # Do not execute immediately upon history expansion
+
+
 # shopt -s histappend  # When the shell exits, append to the history file instead of overwriting it
 # After each command, append to the history file  and reread it
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
@@ -14,12 +21,15 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_CTYPE=UTF-8
 
+######### Aliases #########
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR="vim"
 else
   export EDITOR="nvim"
   alias vim="nvim"
+  alias view="nvim -m"
 fi
 
 # Docker
@@ -27,73 +37,87 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 alias dockernuke="docker system prune --all --volumes"
 [ -x "$(command -v lazydocker)" ] && alias lzd="lazydocker"
 
-alias vz="nvim ~/.zshrc"
+
 alias sz="source ~/.zshrc"
 alias bi="HOMEBREW_NO_AUTO_UPDATE=1 brew install"
 
-######### Aliases #########
 # Dir navigations
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias lo="ls -o"
+
+[ -x "$(command -v zoxide)" ] && alias cd="z" # cd -> zoxide
+
 alias tre="tree -L 2"
 alias treee="tree -L 3"
 
-# Defaults replaced for better commands
 if [ -x "$(command -v eza)" ]; then
-  alias l="eza --icons --long --all --header"
-  alias la="eza --icons --long --all --group -a"
-  alias ls="eza"
-  alias ll="eza --icons --long --header"
+  alias ls="eza --icons=always"
+  # alias l="eza --icons=always --long --all --header"
+  alias l="ls --long --all --header"
+  # alias la="eza --icons=always --long --all --group -a"
+  alias la="ls --long --all --group -a"
+  # alias ll="eza --icons=always --long --header"
+  alias ll="ls --long --header"
 else
   alias l="ls -lah"
   alias la="ls -la"
   alias ll="ls -l"
 fi
+alias lo="ls -o"
 
-alias rm="safe-rm"
+[ -x "$(command -v bat)" ] && alias cat="bat" # cat -> bat
 
 alias grep="grep --color=auto"
-[ -x "$(command -v bat)" ] && alias cat="bat"
+alias rg="rg --hidden --smart-case"
 
-[ -x "$(command -v prettyping)" ] && alias ping="prettyping"
+[ -x "$(command -v safe-rm)" ] && alias rm="safe-rm" # rm -> safe-rm
 
-alias du="ncdu --color dark -x --exclude .git --exclude node_modules --exclude venv"
-alias fvim='vim $(fzf --height 40%)' # not the same as alias fvim="vim $(fzf --height 40%)"
+[ -x "$(command -v prettyping)" ] && alias ping="prettyping" # ping -> prettyping
 
-# Git shorthands
+[ -x "$(command -v ncdu)" ] && alias du="ncdu --color dark -x --exclude .git --exclude node_modules --exclude venv"
+
+######### GIT Aliases #########
+
 MAIN_BRANCH="main"
 
 # Define pretty format for git log
 git_pretty_config="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"
 
-# alias fetch-prs="git fetch --all --prune +refs/pull-requests/*:refs/remotes/origin/pr/*"
-# alias gitrod="git fetch --all --prune && git rebase origin/develop"
-# alias gitromm="git fetch --all --prune && git rebase origin/master"
-# alias gitrud="git fetch --all --prune && git rebase upstream/develop"
-# alias gitrum="git fetch --all --prune && git rebase upstream/$MAIN_BRANCH"
-# alias sgitromm="git stash -u && git fetch --all --prune && git rebase origin/master && git stash pop"
-alias forgith="agrep forgit"
-alias gds="gd --staged"
-alias gitb="git branch"
-alias gitc="git checkout "
-alias gitcc="git checkout -"
-alias gitl="git log -n 10 --graph --decorate"
-alias gitrom="git fetch --all --prune && git rebase origin/$MAIN_BRANCH"
-alias gitcm="gitc $MAIN_BRANCH && gitrom"
-alias gitrub="git stash -u && git fetch --all --prune && git rebase origin/$(git_current_branch) && git stash pop"
-alias gitrut="git fetch --all --prune && git rebase upstream/test"
-alias gits="git switch"
+# STATUS
 alias gitss="clear && git branch --sort=-committerdate && git status"
+
+# CHECKOUT
+alias gits="git switch" # -> gsw
+alias gitc="git checkout " # -> gco
+alias gitcc="git checkout -" # -> gco -
+alias gitb="git branch" # -> gb
+
+# COMMIT
+
+# DIFF
+alias gds="gd --staged"
+alias gshowe="git show --name-only -1 | fzf | xargs nvim"
+alias ydiff="ydiff -s -w 100"
+alias ydiffs="ydiff -s -w 100 --staged"
+
+# LOG
+alias gitl="git log -n 10 --graph --decorate"
 alias gl="gitl -n 30 --oneline"
 alias glol="git log -n 20 --graph --pretty='$git_pretty_config'"
 alias glola="git log -n 20 --graph --all --pretty='$git_pretty_config'"
-alias gshowe="git show --name-only -1 | fzf | xargs nvim"
+
+# REBASE
+alias gitrom="git fetch --all --prune && git rebase origin/$MAIN_BRANCH"
 alias sgitrom="git stash -u && git fetch --all --prune && git rebase origin/$MAIN_BRANCH && git stash pop"
-alias ydiff="ydiff -s -w 100"
-alias ydiffs="ydiff -s -w 100 --staged"
+alias gitcm="gitc $MAIN_BRANCH && gitrom"
+
+# UNUSED
+# alias fetch-prs="git fetch --all --prune +refs/pull-requests/*:refs/remotes/origin/pr/*"
+# alias forgith="agrep forgit"
+# alias gitrub="git stash -u && git fetch --all --prune && git rebase origin/$(git_current_branch) && git stash pop"
+# alias gitrut="git fetch --all --prune && git rebase upstream/test"
 
 alias rmlock="rm package-lock.json && npm install --package-lock-only"
 
@@ -106,79 +130,83 @@ if [ -x "$(command -v nvim)" ]; then
   alias vt="vim ~/.config/tmux/tmux.conf"
   alias vc="vim ~/.config/nvim/"
   alias notes="cd ~/personal/notes && vim +'Telescope find_files' && cd -"
+  alias fvim='vim $(fzf --height 40%)' # not the same as alias fvim="vim $(fzf --height 40%)"
 fi
-alias sz=". ~/.zshrc"
 
 # Lazyness
 [ -x "$(command -v lazygit)" ] && alias lzg="lazygit"
+
 alias c="clear"
 alias ta="tmux attach || tmux"
+# alias nvm="unalias nvm && . ~/.nvm/nvm.sh" # nvm is slow, so I unalias it and load it when needed
 alias nud="nvm use default"
+
+# Find stuff
+alias agrep="alias | grep "
+alias psgrep="ps aux | grep "
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+
 # alias venv=". venv/bin/activate"
 # alias dj="venv/bin/python manage.py "
 # alias djm="dj migrate "
 # alias djsm="dj showmigrations "
 # alias djmm="dj makemigrations "
 
-alias agrep="alias | grep "
-alias psgrep="ps aux | grep "
 alias printers="lpstat -a"
-alias validate="npm run prettier && npm run lint:fix && npm run test"
+alias nrd="npm run dev"
+alias nrt="npm run test "
 alias nuke="rm package-lock.json && turbo run clean && npm i"
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
+alias validate="npm run format && npm run type-check && npm run lint:fix && npm run test"
 
 ## Taskbook shorthands
 # https://github.com/klaudiosinani/taskbook/tree/master
-alias tbh="agrep tb"
-alias tbc="tb | fzf --ansi | cut -d '.' -f 1 | xargs tb --check && tb" # check
-alias tbd="tb | fzf --ansi | cut -d '.' -f 1 | xargs tb -d && tb" # delete
-alias tbs="tb | fzf --ansi | cut -d '.' -f 1 | xargs tb -s && tb" # star
-tbp() { tb -p @"$1" $2 && tb } # priority
-
-alias tbi="tb --timeline"
-alias tbt="tb --task" # taskbook task creation
-alias tbn="tb --note" # taskbook notes
-alias tbl="tb --list" # taskbook list
-alias tblp="tb --list pending"
-alias tbln="tb --list notes"
-alias tbf="tb --find"
-
-#today
-alias tbtt="tbt @today"
-alias tbtn="tbn @today"
-alias tbtl="tb --list today"
-tbtm() { tb -m @"$1" today && tb }
-
-# 1on1
-alias tbst="tbt @1on1"
-alias tbsn="tbn @1on1"
-alias tbsl="tb --list 1on1"
-tbms() { tb -m @"$1" 1on1 && tb }
-
-#recordatorios
-alias tbrt="tbt @recordatorios"
-alias tbrn="tbn @recordatorios"
-alias tbrl="tb --list recordatorios"
-tbmr() { tb -m @"$1" recordatorios && tb }
-
-#viernes
-alias tbvt="tbt @viernes"
-alias tbvt="tbt @viernes"
-alias tbvl="tb --list viernes"
-tbmv() { tb -m @"$1" viernes && tb }
-
+# alias tbh="agrep tb"
+# alias tbc="tb | fzf --ansi | cut -d '.' -f 1 | xargs tb --check && tb" # check
+# alias tbd="tb | fzf --ansi | cut -d '.' -f 1 | xargs tb -d && tb" # delete
+# alias tbs="tb | fzf --ansi | cut -d '.' -f 1 | xargs tb -s && tb" # star
+# tbp() { tb -p @"$1" $2 && tb } # priority
+#
+# alias tbi="tb --timeline"
+# alias tbt="tb --task" # taskbook task creation
+# alias tbn="tb --note" # taskbook notes
+# alias tbl="tb --list" # taskbook list
+# alias tblp="tb --list pending"
+# alias tbln="tb --list notes"
+# alias tbf="tb --find"
+#
+# #today
+# alias tbtt="tbt @today"
+# alias tbtn="tbn @today"
+# alias tbtl="tb --list today"
+# tbtm() { tb -m @"$1" today && tb }
+#
+# # 1on1
+# alias tbst="tbt @1on1"
+# alias tbsn="tbn @1on1"
+# alias tbsl="tb --list 1on1"
+# tbms() { tb -m @"$1" 1on1 && tb }
+#
+# #recordatorios
+# alias tbrt="tbt @recordatorios"
+# alias tbrn="tbn @recordatorios"
+# alias tbrl="tb --list recordatorios"
+# tbmr() { tb -m @"$1" recordatorios && tb }
+#
+# #viernes
+# alias tbvt="tbt @viernes"
+# alias tbvt="tbt @viernes"
+# alias tbvl="tb --list viernes"
+# tbmv() { tb -m @"$1" viernes && tb }
 
 gclone() {
   git clone "$1" && cd "$(basename "$1" .git)" && cat README.md
 }
 
-reviewcandidate() {
-  cd ~/dev/candidates && gclone "$1" && cp ~/Documents/luis.review.md . && vim luis.review.md
-}
+# reviewcandidate() {
+#   cd ~/dev/candidates && gclone "$1" && cp ~/Documents/luis.review.md . && vim luis.review.md
+# }
 
-alias view="nvim -m"
-alias rg="rg --hidden --smart-case"
 
 ######### TERMINAL ENHANCEMENTS #########
 
@@ -251,11 +279,11 @@ export PATH="$HOME/.local/bin:$PATH"
 # notify-send() { wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
 
 # Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
 # export PYTHON_CONFIGURE_OPTS="--enable-framework"
-export PYTHON_CONFIGURE_OPTS="--enable-shared"
-[ -x "$(command -v pyenv)" ] && eval "$(pyenv init -)"
+# export PYTHON_CONFIGURE_OPTS="--enable-shared"
+# [ -x "$(command -v pyenv)" ] && eval "$(pyenv init -)"
 
 ######### CUSTOM FUNCTIONS #########
 show_project_contributors () {

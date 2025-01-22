@@ -22,7 +22,7 @@ map(
 	"n",
 	"<leader>fS",
 	"<cmd> Telescope lsp_dynamic_workspace_symbols ignore_symbols={'import'}<CR>",
-	{ desc = "Open/find treesitter [s]ymbols" }
+	{ desc = "Open/find workspace treesitter [s]ymbols" }
 )
 
 -- Remove unused default mappings
@@ -52,6 +52,7 @@ map("n", "<leader>oh", "<cmd> tabnew ~/personal/notes/vim.md <CR>", { desc = "op
 map("n", "<leader>ot", "<cmd> tabnew ~/personal/notes/telescope.md <CR>", { desc = "open [t]elescope cheatsheet" })
 map("n", "<leader>o,", "<cmd> tabnew ~/.config/nvim/lua/plugins/init.lua <CR>", { desc = "open plugins file" })
 map("n", "<leader>op", "<cmd> tabnew ~/.config/nvim/lua/plugins/init.lua <CR>", { desc = "open [p]lugins file" })
+map("n", "<leader>ol", "<cmd> Lazy <CR>", { desc = "open [l]azy" })
 map("n", "<A-j>", ":m .+1<CR>==")
 map("n", "<A-k>", ":m .-2<CR>==")
 map("v", "<A-j>", ":m '>+1<CR>gv=gv")
@@ -60,6 +61,7 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 -- Toggles
 map("n", "<leader>tr", "<cmd>set rnu!<cr>", { desc = "[t]oggle [r]elative number" })
 map("n", "<leader>ts", "<cmd> set spell! <CR>", { desc = "set [s]pell!" })
+map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "[t]ab[n]ew" })
 
 -- Git / fugitive
 -- map("n", "<leader>gg", function()
@@ -68,9 +70,9 @@ map("n", "<leader>ts", "<cmd> set spell! <CR>", { desc = "set [s]pell!" })
 -- 	vim.cmd("wincmd L")
 -- 	vim.cmd("wincmd h")
 -- end, { desc = "Open fugitive status / goto [g]it" })
--- map("n", "<leader>gl", "<cmd> GV!<CR>", { desc = "git [)l]og" })
--- map("n", "<leader>gb", "<cmd> G blame<CR>", { desc = "git [)b]lame" })
--- map("n", "<leader>gp", "<cmd> Gitsigns preview_hunk<CR>")
+-- map("n", "<leader>gl", "<cmd> Git log -- %<CR>", { desc = "git [l]og" })
+map("n", "<leader>gb", "<cmd> G blame<CR>", { desc = "git [b]lame" })
+map("n", "<leader>gp", "<cmd> Gitsigns preview_hunk<CR>")
 map("v", "gh", "<cmd> diffget //2 <CR>")
 map("v", "gl", "<cmd> diffget //3 <CR>")
 
@@ -83,8 +85,11 @@ map("n", "<leader>fr", "<cmd> Telescope resume <CR>", { desc = "resume previous 
 map("n", "<leader>fR", "<cmd> Telescope registers <CR>", { desc = "Search/find r[e]gisters" })
 map("n", "<leader>fd", "<cmd> Telescope diagnostics <CR>", { desc = "find [d]iagnostics" })
 
+map("n", "<leader>f.", function()
+	require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h") })
+end, { desc = "Find files in current directory" })
 map("n", "<leader>fk", "<cmd> Telescope keymaps <CR>", { desc = "Search/find [k]eymaps" })
-map("n", "<leader>fl", ":Telescope live_grep search_dirs=./", { desc = "Search/find in fo[l]der" })
+map("n", "<leader>fl", ":Telescope live_grep search_dirs=", { desc = "Search/find in fo[l]der" })
 map("n", "<leader>ft", "<cmd>Telescope grep_string search=@TODO<CR>", { desc = "find [t]odos" })
 map("n", "<leader>gr", "<cmd> Telescope lsp_references <CR>", { desc = "goto [r]eferences" })
 map("n", "<leader>gs", "<cmd> Telescope git_status<CR>", { desc = "git [s]tatus" })
@@ -96,6 +101,7 @@ end, { desc = "[S]earch [N]eovim files" })
 
 -- NvimTree
 map("n", "\\e", "<cmd> NvimTreeFindFile! <CR>", { desc = "Find file in nvimtree [e]xplorer" })
+-- map("n", "\\e", "<cmd> NvimTreeFindFileToggle <CR>", { desc = "Find file in nvimtree [e]xplorer" })
 map("n", "\\n", "<cmd> NvimTreeToggle <CR>", { desc = "Open/Close nvimtree" })
 
 -- Leap
@@ -106,7 +112,8 @@ end, { desc = "Jump in window" })
 -- Runners
 map("n", "<leader>rp", function()
 	vim.cmd("w!")
-	vim.cmd("!biome format --write --config-path='/Users/lgarciae/personal/dotfile/biome.json' %")
+	-- vim.cmd("!biome format --write --config-path='/Users/lgarciae/personal/dotfile/biome.json' %")
+	vim.cmd("!prettier --write --config-path='/Users/lgarciae/personal/dotfile/prettierrc' %")
 end, { desc = "run current buffer through [p]rettier" })
 map("n", "<leader>rn", function()
 	vim.cmd("! bun %")
@@ -122,13 +129,17 @@ map("n", "<C-h>", "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" })
 map("n", "<C-j>", "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" })
 map("n", "<C-k>", "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" })
 map("n", "<C-l>", "<cmd> TmuxNavigateRight <CR>", { desc = "Window right" })
-map("n", "<C-f>", "<cmd> silent !tmux neww tmux-sessionizer.sh <CR>")
-map("n", "<C-s>", "<cmd> silent !tmux neww tmux-fzf-session.sh <CR>")
+-- map("n", "<C-h>", "<C-w><C-h>", { desc = "Window left" })
+-- map("n", "<C-j>", "<C-w><C-j>", { desc = "Window down" })
+-- map("n", "<C-k>", "<C-w><C-k>", { desc = "Window up" })
+-- map("n", "<C-l>", "<C-w><C-l>", { desc = "Window right" })
+map("n", "<C-f>", "<cmd> silent !tmux neww ~/bin/tmux-sessionizer.sh <CR>")
+map("n", "<C-s>", "<cmd> silent !tmux neww ~/bin/tmux-fzf-session.sh <CR>")
 
 -- Copilot
-map("i", "<C-y>", 'copilot#Accept("<CR>")', {
-	expr = true,
-	replace_keycodes = false,
-})
+-- map("i", "<C-y>", 'copilot#Accept("<CR>")', {
+-- 	expr = true,
+-- 	replace_keycodes = false,
+-- })
 
 -- ^imap^[lcs])a"n", ^[Bel%ct"<80><fd>5, ^[f,<80><fd>5a {desc=^[A)^[j

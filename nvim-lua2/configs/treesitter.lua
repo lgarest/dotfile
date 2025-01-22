@@ -7,6 +7,7 @@ local M = {
 		"css",
 		"javascript",
 		"typescript",
+		-- "typescriptreact",
 		"tsx",
 		"markdown",
 		"markdown_inline",
@@ -19,7 +20,7 @@ local M = {
 		enable_autocmd = false,
 	},
 	autotag = {
-		enable = true,
+		enable = false,
 	},
 }
 return M

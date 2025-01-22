@@ -11,22 +11,22 @@ local b = null_ls.builtins
 local lint = b.diagnostics
 
 -- for autoformat on save
-local format_on_save = function(client, bufnr)
-	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-	if client.supports_method("textDocument/formatting") then
-		vim.api.nvim_clear_autocmds({
-			group = augroup,
-			buffer = bufnr,
-		})
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = augroup,
-			buffer = bufnr,
-			callback = function()
-				vim.lsp.buf.format({ bufnr = bufnr })
-			end,
-		})
-	end
-end
+-- local format_on_save = function(client, bufnr)
+-- 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- 	if client.supports_method("textDocument/formatting") then
+-- 		vim.api.nvim_clear_autocmds({
+-- 			group = augroup,
+-- 			buffer = bufnr,
+-- 		})
+-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+-- 			group = augroup,
+-- 			buffer = bufnr,
+-- 			callback = function()
+-- 				vim.lsp.buf.format({ bufnr = bufnr })
+-- 			end,
+-- 		})
+-- 	end
+-- end
 
 local opts = {
 	sources = {
@@ -35,8 +35,9 @@ local opts = {
 		-- formatting.stylua,
 		-- formatting.markdownlint,
 		lint.markdownlint,
-		lint.shellcheck,
+		-- lint.shellcheck,
 		lint.hadolint,
+		-- lint.eslint_d,
 	},
 	-- on_attach = format_on_save, -- for autoformat on save
 }

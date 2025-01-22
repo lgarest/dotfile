@@ -40,6 +40,10 @@ vim.opt.swapfile = false
 vim.opt.switchbuf = "vsplit"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 20
+vim.opt.foldcolumn = "auto"
 
 -- @TODO: change for this
 -- local optionss = {
@@ -62,7 +66,8 @@ vim.opt.splitright = true
 -- end
 
 -- vim.g.snipmate_snippets_path = "~/dev/dotfile/snippets/"
-vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/lua/custom/my_snippets"
+-- vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/lua/custom/my_snippets"
+vim.g.vscode_snippets_path = "~/personal/dotfile/my_snippets"
 -- vim.g.snipmate_snippets_path = "~/dev/dotfile/my_snippets"
 --
 

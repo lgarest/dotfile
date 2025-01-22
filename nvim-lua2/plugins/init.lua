@@ -57,10 +57,22 @@ local plugins = {
 			return require("configs.mason")
 		end,
 	},
-
+	{
+		"nvim-tree/nvim-tree.lua",
+		version = "*",
+		cmd = { "NvimTreeFindFileToggle", "NvimTreeFindFile", "NvimTreeFindFile", "NvimTreeToggle", "NvimTreeFocus" },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("nvim-tree").setup({})
+		end,
+		opts = function()
+			return require("nvchad.configs.nvimtree")
+		end,
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		cmd = { "NvimTreeFindFile", "NvimTreeToggle", "NvimTreeFocus" },
 		opts = function()
 			return require("configs.treesitter")
 		end,
@@ -252,12 +264,27 @@ local plugins = {
 	{
 		"NvChad/nvim-colorizer.lua",
 	},
+	-- {
+	-- 	"github/copilot.vim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		-- require("core.utils").load_mappings "copilot"
+	-- 	end,
+	-- },
 	{
-		"github/copilot.vim",
+		"zbirenbaum/copilot.lua",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			-- require("core.utils").load_mappings "copilot"
+			require("copilot").setup({
+        suggestion = {
+          auto_trigger = true,
+          keymap = {
+            accept = "<C-y>",
+          }
+        }
+      })
 		end,
 	},
 	{
@@ -307,23 +334,33 @@ local plugins = {
 			require("nvim-ts-autotag").setup()
 		end,
 	},
-	{
-		"OlegGulevskyy/better-ts-errors.nvim",
-		dependencies = { "MunifTanjim/nui.nvim" },
-		ft = {
-			"typescript",
-			"typescriptreact",
-		},
-		config = function()
-			-- require("core.utils").load_mappings "bettertserrors"
-		end,
-		-- config = {
-		--   keymaps = {
-		--     toggle = '<leader>dd', -- default '<leader>dd'
-		--     go_to_definition = '<leader>dx' -- default '<leader>dx'
-		--   }
-		-- }
-	},
+	-- Same as below
+	-- {
+	-- 	"MunifTanjim/nui.nvim",
+	-- 	lazy = false,
+	-- },
+	-- Disabling it because I'm getting following error
+	--   E5108: Error executing lua ...e/.local/share/nvim/lazy/nui.nvim/lua/nui/popup/init.lua:168: Invalid window id: 1002
+	-- stack traceback:
+	--    [C]: in function 'nvim_open_win'
+	--    ...e/.local/share/nvim/lazy/nui.nvim/lua/nui/popup/init.lua:168: in function '_open_window'
+	--    ...e/.local/share/nvim/lazy/nui.nvim/lua/nui/popup/init.lua:251: in function 'mount'
+	--    ...azy/better-ts-errors.nvim/lua/better-ts-errors/popup.lua:24: in function 'show'
+	--    ...tter-ts-errors.nvim/lua/better-ts-errors/diagnostics.lua:138: in function 'show'
+	--    ...lazy/better-ts-errors.nvim/lua/better-ts-errors/main.lua:31: in function 'toggle'
+	--    ...lazy/better-ts-errors.nvim/lua/better-ts-errors/init.lua:11: in function 'toggle'
+	--    [string ":lua"]:1: in main chunk
+	-- {
+	-- 	"OlegGulevskyy/better-ts-errors.nvim",
+	-- 	dependencies = { "MunifTanjim/nui.nvim" },
+	-- 	ft = {
+	-- 		"typescript",
+	-- 		"typescriptreact",
+	-- 	},
+	-- 	config = {
+	-- 		keymap = "<leader>dd",
+	-- 	},
+	-- },
 
 	-- DAP
 	-- {
