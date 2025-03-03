@@ -114,6 +114,11 @@
     "body": "console.log('____ $1') // @TODO: delete this",
     "description": "console.log"
   },
+  "cld": {
+    "prefix": "cld",
+    "body": "console.dir(${1:variable}, {depth:3}) // @TODO: delete this",
+    "description": "console.log"
+  },
   "afn,arrow,function": {
     "prefix": "afn,arrow,function",
     "body": "($1) => $2",
