@@ -5,12 +5,15 @@
 local M = {}
 
 M.ui = {
-	theme = "onedark",
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
 	-- },
+}
+M.base46 = {
+  theme = "bearded-arc",
+  theme_toggle = { "bearded-arc", "everforest_light" },
 }
 
 return M

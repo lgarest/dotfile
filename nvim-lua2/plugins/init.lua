@@ -2,30 +2,58 @@
 --- @TODO: load only strictly necessary
 --- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 --- https://lazy.folke.io/spec/lazy_loading
+
+local VIEW_WIDTH_FIXED = 30
+local VIEW_WIDTH_MAX = -1 -- fixed to start
+
+function toggle_width_adaptive()
+	if VIEW_WIDTH_MAX == -1 then
+		VIEW_WIDTH_MAX = VIEW_WIDTH_FIXED
+	else
+		VIEW_WIDTH_MAX = -1
+	end
+
+	require("nvim-tree.api").tree.reload()
+end
+function get_view_width_max()
+	return VIEW_WIDTH_MAX
+end
 local plugins = {
 	-- Example on how to override telescope defaults
-	-- {
-	-- 	"nvim-telescope/telescope.nvim",
-	-- 	tag = "0.1.8",
-	-- 	dependencies = { "nvim-lua/plenary.nvim" },
-	-- 	-- opts = function()
-	-- 		-- local conf = require("nvchad.configs.telescope")
-	-- 		-- conf.defaults.vimgrep_arguments = {
-	-- 		-- 	"rg",
-	-- 		-- 	"-L",
-	-- 		-- 	"--vimgrep",
-	-- 		-- 	"--hidden",
-	-- 		-- 	"--color=never",
-	-- 		-- 	"--no-heading",
-	-- 		-- 	"--with-filename",
-	-- 		-- 	"--line-number",
-	-- 		-- 	"--column",
-	-- 		-- 	"--smart-case",
-	-- 		-- }
-	-- 		-- local inspect = require("lib.inspect")
-	-- 		-- print(inspect(conf.defaults))
-	-- 	-- end,
-	-- },
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.8",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+		opts = function()
+			local conf = require("nvchad.configs.telescope")
+			conf.defaults.vimgrep_arguments = {
+				"rg",
+				"-L",
+				"--vimgrep",
+				"--hidden",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+			}
+			-- local inspect = require("lib.inspect")
+			-- print(inspect(conf.defaults))
+		end,
+	},
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		version = "*",
+		config = function()
+			require("telescope").load_extension("frecency")
+		end,
+	},
+
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
 	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
 	{
@@ -65,7 +93,46 @@ local plugins = {
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
-			require("nvim-tree").setup({})
+			require("nvim-tree").setup({
+				filters = {
+					dotfiles = false,
+					git_ignored = false,
+				},
+				view = {
+					width = {
+						min = 30,
+						max = get_view_width_max,
+					},
+				},
+        on_attach = function (bufnr)
+        local opts = { buffer = bufnr }
+        local api = require("nvim-tree.api")
+        api.config.mappings.default_on_attach(bufnr)
+        -- function for left to assign to keybindings
+        local lefty = function ()
+            local node_at_cursor = api.tree.get_node_under_cursor()
+            -- if it's a node and it's open, close
+            if node_at_cursor.nodes and node_at_cursor.open then
+                api.node.open.edit()
+            -- else left jumps up to parent
+            else
+                api.node.navigate.parent()
+            end
+        end
+        -- function for right to assign to keybindings
+        local righty = function ()
+            local node_at_cursor = api.tree.get_node_under_cursor()
+            -- if it's a closed node, open it
+            if node_at_cursor.nodes and not node_at_cursor.open then
+                api.node.open.edit()
+            end
+        end
+        vim.keymap.set("n", "h", lefty , opts )
+        vim.keymap.set("n", "<Left>", lefty , opts )
+        vim.keymap.set("n", "<Right>", righty , opts )
+        vim.keymap.set("n", "l", righty , opts )
+    end,
+			})
 		end,
 		opts = function()
 			return require("nvchad.configs.nvimtree")
@@ -119,14 +186,6 @@ local plugins = {
 		},
 	},
 
-	-- {
-	-- 	"max397574/better-escape.nvim",
-	-- 	event = "InsertEnter",
-	-- 	config = function()
-	-- 		require("better_escape").setup()
-	-- 	end,
-	-- },
-
 	-- GIT integration
 	{
 		"tpope/vim-fugitive",
@@ -144,7 +203,7 @@ local plugins = {
 				desc = "Open fugitive status / goto [g]it",
 			},
 		},
-		cmd = { "G", "Git", "Ggrep" },
+		cmd = { "G", "Git", "Ggrep", "Gdiffsplit", "Gvdiffsplit" },
 	},
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
@@ -179,7 +238,10 @@ local plugins = {
 	-- IDE
 	{
 		"stevearc/conform.nvim",
-		event = "BufWritePre", -- uncomment for format on save
+		event = "BufWritePre",
+		keys = {
+			{ "fm" },
+		},
 		config = function()
 			require("configs.conform")
 		end,
@@ -215,6 +277,10 @@ local plugins = {
 		event = "VeryLazy",
 		config = function()
 			require("leap").add_default_mappings()
+			require("leap").opts.preview_filter = function()
+				return false
+			end
+      vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
 		end,
 	},
 	{
@@ -240,15 +306,15 @@ local plugins = {
 		cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
 		opts = {
 			use_default_keymaps = false,
+      max_join_length = 200,
 		},
 		keys = {
-			{ "<leader>fj", mode = "n" },
+			{ "<leader>fj", mode = "n", desc="[j]oin lines" },
 		},
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function(_, opts)
 			require("treesj").setup(opts)
-			vim.keymap.set("n", "<leader>fj", "<cmd>TSJToggle<cr>")
-			-- require("core.utils").load_mappings "treesj"
+			vim.keymap.set("n", "<leader>fj", "<cmd>TSJToggle<cr>", { desc="[j]oin lines"})
 		end,
 	},
 	{
@@ -264,28 +330,61 @@ local plugins = {
 	{
 		"NvChad/nvim-colorizer.lua",
 	},
-	-- {
-	-- 	"github/copilot.vim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		-- require("core.utils").load_mappings "copilot"
-	-- 	end,
-	-- },
 	{
 		"zbirenbaum/copilot.lua",
 		lazy = false,
 		priority = 1000,
 		config = function()
 			require("copilot").setup({
-        suggestion = {
-          auto_trigger = true,
-          keymap = {
-            accept = "<C-y>",
-          }
-        }
-      })
+				suggestion = {
+					auto_trigger = true,
+					keymap = {
+						accept = "<C-y>",
+					},
+				},
+			})
 		end,
+	},
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		},
+		build = "make tiktoken", -- Only on MacOS or Linux
+		config = function()
+			require("CopilotChat").setup({
+				model = "claude-3.7-sonnet",
+				highlight_headers = false,
+				prompts = {
+					GoodPractices = {
+						prompt = "Apply good practices",
+						system_prompt = "Refactor the following code to improve its clarity and readability, while maintaining its functionality. Remove any switch case in favor of object literal access, use nested ternaries, use implicit arrow return if needed. Be sure to include comments explaining the changes you made.",
+						description = "Refactor the code to apply good practices",
+					},
+				},
+			})
+		end,
+		opts = {
+			-- See Configuration section for options
+		},
+		-- See Commands section for default commands if you want to lazy load on them
+		cmd = {
+			"CopilotChat",
+			"CopilotChatOpen",
+			"CopilotChatToggle",
+			"CopilotChatLoad",
+			"CopilotChatPrompts",
+			"CopilotChatModels",
+			"CopilotChatAgents",
+			-- Opening chat with context
+			"CopilotChatReview",
+			"CopilotChatFix",
+			"CopilotChatOptimize",
+			"CopilotChatDocs",
+			"CopilotChatTests",
+			"CopilotChatCommit",
+		},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
@@ -293,6 +392,15 @@ local plugins = {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		lazy = false,
+		config = function()
+			require("treesitter-context").setup({
+				-- enable = true,
+				max_lines = 3, -- How many lines the window should span. Values <= 0 mean no limit.
+				-- min_window_height = 0, -- Minimum editor window height for context to be shown.
+				line_numbers = true, -- Use floating line numbers.
+				-- separator = nil, -- Separator between current context and content below it.
+			})
+		end,
 	},
 
 	-- Languages support
@@ -303,13 +411,15 @@ local plugins = {
 			require("configs.markdown")
 		end,
 	},
-	{
-		"iamcco/markdown-preview.nvim",
-		ft = "markdown",
-		config = function()
-			vim.cmd(":call mkdp#util#install()")
-		end,
-	},
+{
+  "iamcco/markdown-preview.nvim",
+  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  build = "cd app && yarn install",
+  init = function()
+    vim.g.mkdp_filetypes = { "markdown" }
+  end,
+  ft = { "markdown" },
+},
 	{
 		"jparise/vim-graphql",
 		ft = { "graphql" },
@@ -333,6 +443,39 @@ local plugins = {
 		config = function()
 			require("nvim-ts-autotag").setup()
 		end,
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {},
+		ft = {
+			"markdown",
+			"markdown.mdx",
+			"mdx",
+			"copilot-chat",
+		},
+	},
+	{
+		"MagicDuck/grug-far.nvim",
+		config = function()
+			-- optional setup call to override plugin options
+			-- alternatively you can set options with vim.g.grug_far = { ... }
+			require("grug-far").setup({
+				-- options, see Configuration section below
+				-- there are no required options atm
+				-- engine = 'ripgrep' is default, but 'astgrep' or 'astgrep-rules' can
+				-- be specified
+			})
+		end,
+
+		cmd = {
+			"GrugFar",
+			"GrugFarWithin",
+		},
 	},
 	-- Same as below
 	-- {
@@ -406,22 +549,6 @@ local plugins = {
 	--     -- ensure_installed = { "node2" }, -- in Mason overrides
 	--     automatic_installation = true,
 	--   },
-	-- },
-	-- couldn't get it to work
-	-- {
-	-- 	"barrett-ruth/import-cost",
-	-- 	build = "sh install.sh npm",
-	-- 	config = function()
-	-- 		require("import-cost").setup()
-	-- 	end,
-	-- 	enabled = false,
-	-- },
-
-	-- {
-	-- 	"craftzdog/solarized-osaka.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	opts = {},
 	-- },
 
 	-- All NvChad plugins are lazy-loaded by default

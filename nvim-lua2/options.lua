@@ -33,6 +33,8 @@ vim.opt.isfname:append("@-@")
 vim.filetype.add({
 	pattern = {
 		[".*conf.template"] = "nginx",
+		[".*js"] = "typescriptreact",
+		[".*jsx"] = "typescriptreact",
 	},
 })
 vim.opt.winbar = "%=%m %f"
@@ -105,6 +107,11 @@ set_indentation(2)
 -- }})
 -- move to setup fn for copilot
 -- require("configs.copilot")
+require("telescope").load_extension("fzf")
+
+function toggle_theme()
+	require("base46").toggle_theme()
+end
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
