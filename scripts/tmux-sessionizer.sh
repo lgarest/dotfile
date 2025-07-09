@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-# get the interesting directories in a fzf way
-session=$(find ~ ~/dev ~/personal -type d -maxdepth 2 -mindepth 1 | sort | uniq | fzf)
+# directories to search in
+search_dirs=("$HOME/.config" "$HOME/bin")
+search_dirs+=("$HOME/dev")
+search_dirs+=("$HOME/personal")
+
+# get the directories using fzf way
+session=$(find "${search_dirs[@]}" -type d -maxdepth 1 -mindepth 1 \
+  | sort \
+  | uniq \
+  | fzf --style=full --tmux=center)
 
 # get the desired session name
 session_name=$(basename "$session" | tr . _)
@@ -11,6 +19,4 @@ if ! tmux has-session -t "$session_name"; then
   tmux new-session -s "$session_name" -c "$session" -d
 fi
 
-# jump into the session 
-# Note: we are assuming that we are in tmux and running
 tmux switch-client -t "$session_name"
