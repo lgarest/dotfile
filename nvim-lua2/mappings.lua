@@ -147,7 +147,7 @@ map("n", "gw", function()
 end, { desc = "Jump in window" })
 
 -- Executions/Runners
-map("n", "<leader>xx", ":. !sh <CR>", { desc = "execute current command inline" })
+map("n", "<leader>rx", ":. !sh <CR>", { desc = "execute current command inline" })
 map("n", "<leader>rn", function()
 	vim.cmd("! bun %")
 end, { desc = "execute current buffer through [n]ode repl (TS)" })
