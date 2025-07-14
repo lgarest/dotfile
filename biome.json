@@ -1,15 +1,33 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.7.1/schema.json",
   "organizeImports": { "enabled": true },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
   "javascript": {
     "formatter": {
-      "semicolons": "asNeeded"
-    }
+      "quoteStyle": "single",
+      "trailingCommas": "es5",
+      "lineWidth": 80
+    },
+    "globals": [
+      "it",
+      "describe",
+      "expect",
+      "jest",
+      "before",
+      "beforeAll",
+      "beforeEach",
+      "after",
+      "afterAll",
+      "afterEach"
+    ]
   },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": false,
+      "recommended": true,
       "complexity": {
         "noBannedTypes": "error",
         "noExtraBooleanCast": "error",
@@ -73,6 +91,9 @@
         "noUnsafeNegation": "error",
         "useGetterReturn": "error",
         "useValidTypeof": "error"
+      },
+      "nursery": {
+        "useSortedClasses": "error"
       }
     },
     "ignore": ["node_modules", "*.eslintrc.js", "**/generated/*"]
