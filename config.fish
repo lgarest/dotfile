@@ -45,6 +45,9 @@ alias ta "tmux attach || tmux"
 abbr --add bi "HOMEBREW_NO_AUTO_UPDATE=1 brew install"
 alias kills "tmux kill-session -t (tmux ls | fzf | cut -d ':' -f 1)"
 
+# Agentic development with tmux
+alias agentic "~/personal/dotfile/scripts/tmux-agentic-dev.sh"
+
 # Tree shortcuts
 abbr --add tre "tree -L 2"
 abbr --add treee "tree -L 3"
@@ -57,6 +60,7 @@ abbr --add psgrep "ps aux | grep "
 # =============================================================================
 
 abbr --add gitss "clear && git status && git branch"
+abbr --add ggpush "git push origin (git branch --show-current)"
 function gitcm
     git checkout main && eval (expand_abbr gfa) && eval (expand_abbr grbm)
 end
