@@ -98,6 +98,11 @@ local plugins = {
 					dotfiles = false,
 					git_ignored = false,
 				},
+				git = {
+					enable = true,
+					timeout = 10000, -- 10 seconds instead of default 400ms
+					cwd = nil, -- use git root as cwd
+				},
 				view = {
 					width = {
 						min = 30,

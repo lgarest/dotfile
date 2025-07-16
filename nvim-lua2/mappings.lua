@@ -178,6 +178,14 @@ map("n", "[c", function()
 	require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = true, desc = "Go to [c]ontext" })
 
+-- Copilot
+map("n", "<leader>cct", function()
+	require("configs.copilot").toggle_copilot()
+end, { desc = "[T]oggle copilot" })
+map("n", "<leader>ccs", function()
+	require("configs.copilot").copilot_status()
+end, { desc = "Copilot [s]tatus" })
+
 -- Copilot chat
 map("n", "<leader>ccp", "<cmd> CopilotChatPrompts <CR>", { desc = "Open [c]opilot [p]rompts" })
 map("v", "<leader>ccp", "<cmd> CopilotChatPrompts <CR>", { desc = "[Visual] Open [c]opilot [p]rompts" })
