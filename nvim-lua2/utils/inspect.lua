@@ -1,0 +1,1 @@
+/opt/homebrew/share/lua/5.4/inspect.lua
