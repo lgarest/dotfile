@@ -4,21 +4,21 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 local nvlsp = require("nvchad.configs.lspconfig")
 
+local constants = require("core.constants")
 local lspconfig = require("lspconfig")
--- local servers = { "html", "cssls", "ts_ls", "eslint" }
-local servers = { "html", "cssls", "ts_ls", "biome", "tailwindcss" }
+local servers = constants.lsp.servers
+
+-- Force all clients to use UTF-8 encoding
+capabilities.offsetEncoding = {'utf-8'}
+capabilities.positionEncodings = {'utf-8'}
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = nvlsp.on_attach,
 		on_init = nvlsp.on_init,
-		capabilities = nvlsp.capabilities,
+		capabilities = capabilities,
 	})
-  -- Force all clients to use UTF-8 encoding
-  capabilities.offsetEncoding = {'utf-8'}
-  -- For newer Neovim versions, you might need:
-  capabilities.positionEncodings = {'utf-8'}
 end
 
 
