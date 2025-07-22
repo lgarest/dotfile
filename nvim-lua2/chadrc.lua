@@ -12,8 +12,8 @@ M.ui = {
 	-- },
 }
 M.base46 = {
-  theme = "bearded-arc",
-  theme_toggle = { "bearded-arc", "everforest_light" },
+  theme = "catppuccin",
+  theme_toggle = { "catppuccin", "everforest_light" },
 }
 
 return M
