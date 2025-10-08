@@ -1,4 +1,5 @@
-return {
+
+local M = {
 	defaults = {
 		path_display = {
 			shorten = { len = 3, exclude = { 1, -2, -1 } },
@@ -15,6 +16,7 @@ return {
 				end,
 			},
 		},
+    file_ignore_patterns = { "node_modules", ".git/", "dist", "build", "target", "vendor" },
 	},
 	pickers = {
 		buffers = {
@@ -46,7 +48,9 @@ return {
 			matcher = "fuzzy",
 			show_unindexed = true,
 			show_filter_column = false,
-			ignore_patterns = { "*.git/*", "*/tmp/*" },
+			ignore_patterns = { "*.git/*", "*/tmp/*" }, -- uses telescope's defaults
 		},
 	},
 }
+
+return M
