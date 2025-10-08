@@ -227,5 +227,13 @@
         "*/}"
     ],
     "description": "comment"
+  },
+  "throw error": {
+    "prefix": "throw",
+    "body": [
+      "// @TODO: delete this",
+      "throw new Error('${1:not implemented yet}')"
+    ],
+    "description": "throw non implementation error"
   }
 }
