@@ -1,16 +1,16 @@
 # Dotfiles
 
-A comprehensive configuration setup for macOS and Ubuntu development environments, featuring modern shell configurations, development tools, and editor setups.
+A comprehensive configuration setup for macOS development environments, featuring Fish shell configuration, Neovim (NvChad), tmux, and modern development tools.
 
 ## Features
 
-- **Multi-OS Support**: Automatic detection and installation for macOS and Ubuntu
-- **Modern Shell Setup**: Fish shell with powerful aliases and functions
-- **Development Tools**: Neovim, tmux, fzf, ripgrep, and more
-- **Git Integration**: Enhanced git workflow with useful aliases
-- **Package Management**: Homebrew (macOS) and apt (Ubuntu) integration
-- **Backup System**: Automatic backup of existing dotfiles
-- **Easy Management**: Simple scripts for installation, updates, and maintenance
+- **Shell Setup**: Fish shell with powerful aliases, abbreviations, and functions
+- **Editor**: Neovim with NvChad configuration and modular plugin architecture
+- **Terminal Multiplexer**: tmux with Catppuccin theme and Warp AI integration
+- **Development Tools**: fzf, ripgrep, bat, eza, fd, lazygit, and more
+- **Git Integration**: Enhanced git workflow with lazygit and useful aliases
+- **Package Management**: Homebrew integration with curated package list
+- **Utilities**: Weather scripts, tmux sessionizer, and development helpers
 
 ## Quick Start
 
@@ -37,19 +37,25 @@ curl -fsSL https://raw.githubusercontent.com/lgarest/dotfile/main/install.sh | b
 
 ## What Gets Installed
 
-### macOS
-- **Package Manager**: Homebrew
-- **Shell**: Fish shell, Oh My Zsh with powerlevel10k
-- **Development Tools**: Neovim, tmux, fzf, ripgrep, bat, tree, htop
-- **Programming Languages**: Python (via pyenv), Node.js (via nvm)
-- **Applications**: Various casks from Brewfile
+### Core Tools
+- **Shell**: Fish shell with custom configuration
+- **Editor**: Neovim with NvChad and custom plugin organization
+- **Terminal**: Warp (AI-powered terminal)
+- **Multiplexer**: tmux with custom key bindings and plugins
 
-### Ubuntu
-- **System Update**: Latest packages via apt
-- **Shell**: Fish shell, Oh My Zsh, zsh
-- **Development Tools**: Neovim, tmux, fzf, ripgrep, bat, tree, htop
-- **Programming Languages**: Python, Node.js, npm
-- **Build Tools**: build-essential, curl, git
+### Development Tools
+- **File Management**: eza (modern ls), fd (find alternative), fzf (fuzzy finder)
+- **Code Search**: ripgrep, universal-ctags
+- **Git Tools**: git-delta, lazygit, tig
+- **Languages**: Python (via pyenv), Node.js, Deno
+- **Package Managers**: Homebrew, pnpm, yarn
+- **Utilities**: bat (cat with syntax highlighting), jq, cloc, tree
+
+### GUI Applications (via Homebrew Cask)
+- **Editors**: Zed
+- **API Testing**: Insomnia
+- **Fonts**: JetBrains Mono, Meslo LG Nerd Font, Hack Nerd Font
+- **Utilities**: HiddenBar, CakeBrew
 
 ## Directory Structure
 
@@ -59,14 +65,20 @@ dotfile/
 ├── manage.sh               # Management utility script
 ├── install/
 │   ├── macos.sh            # macOS-specific installation
-│   └── ubuntu.sh           # Ubuntu-specific installation
+│   └── ubuntu.sh           # Ubuntu-specific installation (legacy)
 ├── config.fish             # Fish shell configuration
 ├── tmux.conf               # tmux configuration
-├── vimrc                   # Vim configuration
-├── zshrc                   # Zsh configuration
-├── Brewfile                # Homebrew packages
+├── Brewfile                # Homebrew packages and casks
 ├── nvim-lua2/              # Neovim configuration (NvChad)
+│   ├── core/               # Core utilities and keymaps
+│   ├── configs/            # Plugin configurations
+│   ├── plugins/            # Modular plugin definitions
+│   └── options.lua         # Neovim options
 ├── scripts/                # Utility scripts
+│   ├── tmux-sessionizer.sh # Quick tmux session management
+│   ├── warp-ai-activate.sh # Warp AI integration
+│   └── ...                 # Various utilities
+├── my_snippets/            # Personal code snippets
 └── docs/                   # Documentation
 ```
 
@@ -100,11 +112,12 @@ Use the `manage.sh` script for easy dotfiles management:
 ## Configuration Highlights
 
 ### Fish Shell
-- **Smart Aliases**: Productive shortcuts for common tasks
+- **Modern Tools**: Aliases for eza (ls), bat (cat), and other modern replacements
+- **Git Abbreviations**: Quick git commands (gs, gd, gp, etc.)
 - **FZF Integration**: Fuzzy finding for files, directories, and command history
-- **Git Workflow**: Enhanced git commands and abbreviations
-- **Development Tools**: Node.js, Python, and JavaScript specific aliases
-- **Utility Functions**: Password generation, weather, notifications
+- **Development Helpers**: Node.js, Python, and JavaScript specific commands
+- **Custom Functions**: Package.json scripts runner, directory navigation, weather
+- **Productivity**: Smart abbreviations for common development tasks
 
 ### Tmux
 - **Modern Key Bindings**: Intuitive navigation and window management
@@ -113,10 +126,12 @@ Use the `manage.sh` script for easy dotfiles management:
 - **Warp AI Integration**: Special bindings for Warp terminal AI features
 
 ### Neovim
-- **NvChad Configuration**: Modern Neovim setup with LSP, treesitter, and more
-- **Language Support**: Comprehensive language server configurations
-- **Plugin Management**: Lazy.nvim for efficient plugin loading
-- **Theme**: Bearded Arc theme with light/dark toggle
+- **NvChad Base**: Modern Neovim setup with performance optimizations
+- **Modular Plugins**: Organized by category (LSP, editor, git, UI, completion)
+- **Language Support**: LSP configurations for multiple languages
+- **Plugin Management**: Lazy.nvim with optimized lazy loading
+- **Key Features**: Telescope, Treesitter, Git integration, Copilot
+- **Performance**: ~150ms startup time with lazy loading
 
 ## Key Features
 
@@ -148,7 +163,24 @@ Use the `manage.sh` script for easy dotfiles management:
 
 ### Shell Configuration
 - **Fish**: Edit `config.fish` for Fish shell customizations
-- **Zsh**: Edit `zshrc` for Zsh configurations
+- **Functions**: Fish functions are stored in `~/.config/fish/functions/`
+
+## Notes on Unused Items
+
+The following items exist in the repository but are not actively used:
+
+### Commented Out in Brewfile
+- **Network Tools**: bandwhich, wireshark
+- **Java/JVM**: gradle
+- **Database**: postgresql, mysql-client
+- **System Monitoring**: glances, procs, ytop (using htop instead)
+- **Novelty**: cmatrix, sl
+- **Other**: macvim, liquidprompt, watchman
+
+### Legacy Files
+- **vimrc**: Not present (using Neovim exclusively)
+- **zshrc**: Not present (using Fish shell exclusively)
+- **Ubuntu support**: The ubuntu.sh installer exists but focus is on macOS
 
 ## Troubleshooting
 
@@ -198,8 +230,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) for the zsh framework
-- [NvChad](https://github.com/NvChad/NvChad) for the Neovim configuration
+- [NvChad](https://github.com/NvChad/NvChad) for the Neovim configuration base
 - [Homebrew](https://brew.sh/) for macOS package management
 - [Fish Shell](https://fishshell.com/) for the friendly interactive shell
 - [Tmux](https://github.com/tmux/tmux) for terminal multiplexing
+- [Warp](https://www.warp.dev/) for the AI-powered terminal
+- [Lazy.nvim](https://github.com/folke/lazy.nvim) for Neovim plugin management
+

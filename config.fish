@@ -4,20 +4,25 @@
 # This file contains common configuration that can be shared across machines.
 # Machine-specific configuration should be kept in ~/.config/fish/config.fish
 
+# List of plugins used (for reference):
+
+# jorgebucaran/fisher
+# kidonng/zoxide.fish
+# patrickf1/fzf.fish
+# jorgebucaran/hydro
+# jorgebucaran/nvm.fish
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# Theme config
-set -g theme_powerline_fonts yes
-set -g theme_nerd_fonts yes
-set -g theme_display_git_stashed_verbose yes
-set -g theme_display_git_master_branch yes
-set -g theme_display_git_untracked yes
-set -g theme_display_git_dirty yes
-set -g theme_display_nvm yes
-set -g theme_display_virtualenv yes
-set -g theme_color_scheme zenburn
+# Theme config for hydro
+# jorgebucaran/hydro
+set -g hydro_color_git green
+set -g hydro_color_pwd yellow
+
+set -g extendedglob on
+
 
 # =============================================================================
 # Tool Integration
@@ -26,6 +31,11 @@ set -g theme_color_scheme zenburn
 # ZOXIDE integration
 if type -q zoxide
     alias cd "z"
+end
+
+if type -q eza
+    alias ll "eza -l --group-directories-first --icons"
+    alias la "eza -la --group-directories-first --icons"
 end
 
 
@@ -46,21 +56,32 @@ abbr --add bi "HOMEBREW_NO_AUTO_UPDATE=1 brew install"
 alias kills "tmux kill-session -t (tmux ls | fzf | cut -d ':' -f 1)"
 
 # Agentic development with tmux
-alias agentic "~/personal/dotfile/scripts/tmux-agentic-dev.sh"
+# alias agentic "~/personal/dotfile/scripts/tmux-agentic-dev.sh"
 
 # Tree shortcuts
-abbr --add tre "tree -L 2"
+abbr --add tre "tree -L 2 -I 'node_modules|.git|.next|.turbo|dist|build'"
 abbr --add treee "tree -L 3"
 
 # Search & Find
 abbr --add psgrep "ps aux | grep "
+abbr --add agrep "abbr --show | grep "
 
 # =============================================================================
 # Git Integration (using existing git plugin abbreviations)
 # =============================================================================
 
-abbr --add gitss "clear && git status && git branch"
+abbr --add gitss "clear && git status && git branch -vv"
 abbr --add ggpush "git push origin (git branch --show-current)"
+abbr --add ggpull "git pull origin (git branch --show-current)"
+abbr --add ghpr "gh pr checkout "
+abbr --add gitb "git branch"
+abbr --add gitc "git checkout "
+abbr --add gitcc "git checkout -"
+abbr --add gits "git switch"
+abbr --add gitromm "git fetch --all --prune && git rebase origin/main"
+abbr --add sgitromm "git stash -u && git fetch --all --prune && git rebase origin/main && git stash pop"
+# alias gitrom "git fetch --all --prune && git rebase origin/main"
+alias gitrob "git fetch --all --prune && git rebase origin/(git branch --show-current)"
 function gitcm
     git checkout main && eval (expand_abbr gfa) && eval (expand_abbr grbm)
 end
@@ -82,16 +103,36 @@ end
 alias nrd "npm run dev"
 abbr --add nrt "npm run test "
 abbr --add nrit "npm i && npm run test "
-alias validate "npm run format && npm run type-check && npm run lint:fix && npm run test"
-alias nvml "nvm list"
+if type -q mprocs
+  alias validate "mprocs 'npm run format && npm run lint:fix' 'npm run type-check' 'npm run test'"
+else
+  alias validate "npm run format && npm run type-check && npm run lint:fix && npm run test"
+end
 alias rmlock "rm package-lock.json && npm install --package-lock-only"
 
 # Nuclear option for cleaning JS projects
-alias nuke "find . -type d \\( -name 'node_modules' -o -name '.turbo' -o -name '.next' -o -name '*dist' \\) -prune -exec rm -rf '{}' + find . -name 'package-lock.json' -prune -exec rm -rf '{}' + || true"
+alias nuke "find . -type d \\( -name 'node_modules' -o -name '.turbo' -o -name '.next' -o -name '*dist' \\) -prune -exec rm -rf '{}' +; find . -name 'package-lock.json' -prune -exec rm -rf '{}' +; or true"
 
 # =============================================================================
 # Utility Functions
 # =============================================================================
+
+# Benchmark fish startup time
+function fishbench
+    echo "Benchmarking fish startup time..."
+    echo ""
+    
+    # Run 5 times and show each result
+    echo "Individual runs:"
+    for i in (seq 5)
+        time fish -i -c exit
+    end
+    
+    echo ""
+    echo "To see detailed profile, run:"
+    echo "  fish --profile-startup=/tmp/fish-profile.txt -i -c exit"
+    echo "  sort -nr /tmp/fish-profile.txt | head -20"
+end
 
 # Function to expand abbreviations - useful for using abbr in functions/aliases
 function expand_abbr
@@ -140,6 +181,7 @@ function weatherin
 end
 alias moon "curl wttr.in/moon"
 
+# Utils
 function notify-me
     if $argv and eval $argv
         osascript -e 'display notification "'(string join " " $argv )' -> succeeded!" with title "Automatic notifier"'
@@ -149,13 +191,18 @@ function notify-me
 end
 
 alias confetti "open -g raycast://extensions/raycast/raycast/confetti"
+alias n "~/bin/braindump.sh"
+alias vn "ls ~/personal/notes/dumps/ | fzf --query='' --print-query | xargs -I {} nvim ~/personal/notes/dumps/{}"
+alias tn "ls ~/personal/notes/dumps/ | fzf --query='' --print-query | xargs -I {} tail -n 5 ~/personal/notes/dumps/{}"
+
 
 # =============================================================================
 # fzf Functions (enhanced productivity)
 # =============================================================================
 
 # Search and edit files
-function fe
+# use Ctrl+alt+f
+function ff
     set file (find . -type f | fzf --preview 'head -100 {}')
     if test -n "$file"
         $EDITOR $file
@@ -163,12 +210,16 @@ function fe
 end
 
 # Search and cd to directory
+# use alt+c
+# function fd
+#     set dir (find . -type d | fzf)
+#     if test -n "$dir"
+#         cd $dir
+#     end
+#     pwd
+# end
 function fd
-    set dir (find . -type d | fzf)
-    if test -n "$dir"
-        cd $dir
-    end
-    pwd
+    echo "Use Alt+C to search and cd to directory"
 end
 
 # Search processes and kill
@@ -188,19 +239,27 @@ function fco
 end
 
 # Search command history and execute
+# use Ctrl+R from fzf plugin
+# function fh
+#     set cmd (history | fzf)
+#     if test -n "$cmd"
+#         eval $cmd
+#     end
+# end
 function fh
-    set cmd (history | fzf)
-    if test -n "$cmd"
-        eval $cmd
-    end
+  echo "Use Ctrl+R to search command history"
 end
 
 # Search environment variables
+# Use Ctrl+V from fzf plugin
+# function fenv
+#     set var (env | fzf)
+#     if test -n "$var"
+#         echo $var
+#     end
+# end
 function fenv
-    set var (env | fzf)
-    if test -n "$var"
-        echo $var
-    end
+  echo "Use Ctrl+V to search env variables"
 end
 
 # =============================================================================
@@ -224,6 +283,8 @@ function __fish_setup_tools --on-variable PWD --on-event fish_prompt
     
     if type -q bat
         alias cat "bat"
+        # export PAGER="bat --style=numbers --line-range=all"
+        set -gx MANPAGER bat
     end
     
     if type -q lazygit
@@ -237,19 +298,43 @@ function __fish_setup_tools --on-variable PWD --on-event fish_prompt
     end
 end
 
-# Lazy load fzf and zoxide for faster startup
+# Lazy load plugins for faster startup
 function __fish_load_integrations --on-event fish_prompt
     functions -e __fish_load_integrations
     
     if type -q fzf
+        set -g fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
         fzf --fish | source
+        echo "FZF mappings:
+  cd to directory   Alt+C       
+  files             Ctrl+Alt+F (Ctrl+O to open in nvim)
+  git log           Ctrl+Alt+L  
+  git status        Ctrl+Alt+S  
+  processes         Ctrl+Alt+P  
+  env variables     Ctrl+V
+  "
     end
+
+    echo "Useful aliases:
+  n something       to braindump a quick note
+  vn                to fuzzy find and edit notes
+  v                 to open nvim with file explorer and fuzzy finder
+  vf                to edit and source fish config
+  sf                to source fish config
+  ta                to attach or start tmux session
+  <space>G          to open a new tmux window with lazygit
+  <space>N          to open a new tmux window with logs
+  <space>T          to open a new tmux window with todos
+    "
     
     if type -q zoxide
         zoxide init fish | source
     end
 
+    if test -f ~/.config/fish/functions/nvm.fish
+        source ~/.config/fish/functions/nvm.fish
+    end
     if type -q nvm
-        nvm use lts --silent
+        nvm use --silent $nvm_default_version 2>/dev/null || true
     end
 end

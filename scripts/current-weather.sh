@@ -12,4 +12,5 @@
 # Documentation:
 # @raycast.description Current weather
 
-curl -s "wttr.in/Tolleric?format=3"
+# curl -s "wttr.in/Tolleric?format=3"
+curl -s "wttr.in/Barcelona?format=3"

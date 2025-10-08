@@ -7,8 +7,9 @@
 
 # Optional parameters:
 # @raycast.icon 🌤️
-# @raycast.argument1 { "type": "dropdown", "placeholder": "location", "data": [{"title": "Barcelona", "value": "barcelona"},{"title": "Tolleric", "value": "Tolleric"},{"title": "Current", "value": "Barcelona"}] }
+# @raycast.argument1 { "type": "text", "placeholder": "barcelona" }
 
 # Documentation:
 # @raycast.description Weather in
-curl "wttr.in/$1?n" && curl "v2.wttr.in/$1"
+curl -s "wttr.in/$1?n" && curl -s "v2.wttr.in/$1"
+# __@raycast.argument1 { "type": "dropdown", "placeholder": "location", "data": [{"title": "Barcelona", "value": "barcelona"},{"title": "Tolleric", "value": "Tolleric"},{"title": "Current", "value": "Barcelona"}] }
