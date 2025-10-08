@@ -3,13 +3,13 @@ local options = {
 		lua = { "stylua" },
 		css = { "prettierd" },
 		html = { "prettierd" },
-		typescript = { "biome", "prettierd" },
-		-- typescriptreact = { "biome", "prettierd" },
-		typescriptreact = {
-		    biome = {
-		      append_args = { "--write", "--config-path", "/Users/lgarciae/personal/dotfile/biome.json" },
-		    }
-    },
+		typescript = { "biome" },
+		typescriptreact = { "biome" },
+		-- typescriptreact = {
+		--     biome = {
+		--       append_args = { "--write", "--config-path", "/Users/lgarciae/personal/dotfile/biome.json" },
+		--     }
+		--   },
 		-- 	-- biome = function()
 		-- 	-- 	return {
 		-- 	-- 		command = "biome",
