@@ -21,8 +21,13 @@ vim.filetype.add({
 vim.opt.winbar = "%=%m %f"
 vim.opt.swapfile = false
 vim.opt.switchbuf = "vsplit"
-vim.opt.splitbelow = true
+vim.opt.splitbelow = false -- true
 vim.opt.splitright = true
+
+vim.opt.pumblend = 0 -- disable transparency for popup menus
+vim.opt.showmode = false -- disable showing mode in the command line
+vim.opt.winblend = 0 -- disable transparency for floating windows
+vim.opt.winborder = "rounded" -- set the border style for floating windows
 
 -- Global settings
 vim.g.have_nerd_font = true

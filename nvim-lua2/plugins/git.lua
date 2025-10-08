@@ -10,6 +10,7 @@ return {
           vim.cmd("h fugitive-staging-maps")
           vim.cmd("wincmd L")
           vim.cmd("wincmd h")
+          vim.cmd("wincmd 30 >")
         end,
         mode = "n",
         desc = "Open fugitive status / goto [g]it",

@@ -1,8 +1,8 @@
 local nomap = vim.keymap.del
 
 -- Remove unused inherited default mappings
-nomap("n", "<leader>rn")          -- remove toggle relative number
-nomap("n", "<C-s>")               -- remove save (collides with sessionizer)
+nomap("n", "<leader>rn")          -- remove toggle relative number            -> tr
+nomap("n", "<C-s>")               -- remove save (collides with sessionizer)  -> :w
 nomap("n", "<leader>n")           -- remove toggle relative number
 nomap({ "n", "v" }, "<leader>/")  -- remove toggle comment
 nomap("n", "<leader>cm")          -- remove Telescope git_commits <CR>

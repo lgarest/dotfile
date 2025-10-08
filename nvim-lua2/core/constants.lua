@@ -6,11 +6,11 @@ M.paths = {
   notes = "~/personal/notes/",
   nvim_config = "~/personal/dotfile/nvim-lua2/",
   dotfiles = "~/personal/dotfile/",
-  
+
   -- Config files
-  biome_config = "~/personal/dotfile/biome.json",
-  biome_good_config = "~/personal/dotfile/biome.good.json",
-  
+  biome_config = "/Users/lgarciae/personal/dotfile/biome.json",
+  biome_good_config = "/Users/lgarciae/personal/dotfile/biome-good.json",
+
   -- Scripts
   tmux_sessionizer = "~/bin/tmux-sessionizer.sh",
   tmux_fzf_session = "~/bin/tmux-fzf-session.sh",
@@ -22,7 +22,7 @@ M.files = {
   plugins = "~/.config/nvim/lua/plugins/init.lua",
   vim_cheatsheet = "~/personal/notes/vim.md",
   telescope_cheatsheet = "~/personal/notes/telescope.md",
-  biome_config = "~/personal/dotfile/biome.json",
+  biome_config = "/Users/lgarciae/personal/dotfile/biome.json",
 }
 
 -- LSP servers list

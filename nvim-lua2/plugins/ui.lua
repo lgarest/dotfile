@@ -83,12 +83,13 @@ return {
     build = "make tiktoken", -- Only on MacOS or Linux
     config = function()
       require("CopilotChat").setup({
-        model = "claude-sonnet-4",
+        -- model = "claude-sonnet-4",
+        model = "claude-sonnet-4.5",
         highlight_headers = false,
         prompts = {
           GoodPractices = {
             prompt = "Apply good practices",
-            system_prompt = "Refactor the following code to improve its clarity and readability, while maintaining its functionality. Remove any switch case in favor of object literal access, use nested ternaries, use implicit arrow return if needed. Be sure to include comments explaining the changes you made.",
+            system_prompt = "Refactor the following code to improve its clarity and readability, while maintaining its functionality, embrace native JS functional programming. Remove any switch case in favor of object literal access, use nested ternaries, use implicit arrow return if needed. Be sure to include comments explaining the changes you made.",
             description = "Refactor the code to apply good practices",
           },
         },
@@ -106,6 +107,7 @@ return {
       "CopilotChatReview",
       "CopilotChatFix",
       "CopilotChatOptimize",
+      "CopilotChatGoodPractices",
       "CopilotChatDocs",
       "CopilotChatTests",
       "CopilotChatCommit",
