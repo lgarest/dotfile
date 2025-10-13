@@ -5,7 +5,7 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 local nvlsp = require("nvchad.configs.lspconfig")
 
 local constants = require("core.constants")
-local lspconfig = require("lspconfig")
+local lspconfig = vim.lsp.config
 local servers = constants.lsp.servers
 
 -- Force all clients to use UTF-8 encoding
@@ -14,11 +14,11 @@ capabilities.positionEncodings = {'utf-8'}
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
-		on_attach = nvlsp.on_attach,
-		on_init = nvlsp.on_init,
-		capabilities = capabilities,
-	})
+  vim.lsp.enable(lsp, {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = capabilities
+  })
 end
 
 
