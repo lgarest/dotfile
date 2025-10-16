@@ -25,9 +25,4 @@ M.files = {
   biome_config = "/Users/lgarciae/personal/dotfile/biome.json",
 }
 
--- LSP servers list
-M.lsp = {
-  servers = { "html", "cssls", "ts_ls", "biome", "tailwindcss" }
-}
-
 return M
