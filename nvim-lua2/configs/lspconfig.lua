@@ -1,11 +1,10 @@
 -- EXAMPLE
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
+-- local on_attach = require("nvchad.configs.lspconfig").on_attach
+-- local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
-local nvlsp = require("nvchad.configs.lspconfig")
+-- local nvlsp = require("nvchad.configs.lspconfig")
 
-local constants = require("core.constants")
-local lspconfig = vim.lsp.config
+-- local lspconfig = vim.lsp.config
 local servers = { "html", "cssls", "ts_ls", "biome", "tailwindcss" }
 
 -- Force all clients to use UTF-8 encoding
