@@ -27,9 +27,6 @@ M.toggle_theme = function()
   require("base46").toggle_theme()
 end
 
--- Make theme function global for backward compatibility
-_G.ToggleTheme = M.toggle_theme
-
 -- Lazy load telescope extensions
 M.setup_telescope_extensions = function()
   vim.defer_fn(function()
@@ -58,7 +55,12 @@ M.get_view_width_max = function()
 end
 
 -- Make functions global for backward compatibility
+_G.toggle_theme = M.toggle_theme
+_G.set_indentation = M.set_indentation
 _G.toggle_width_adaptive = M.toggle_width_adaptive
 _G.get_view_width_max = M.get_view_width_max
+
+vim.api.nvim_create_user_command('ToggleTheme', _G.toggle_theme, { desc = 'Toggle UI theme' })
+vim.api.nvim_create_user_command('ToggleWidthAdaptive', _G.toggle_width_adaptive, { desc = 'Toggle adaptive with in NerdTree' })
 
 return M
