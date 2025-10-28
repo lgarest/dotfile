@@ -51,7 +51,7 @@ return {
 					vim.keymap.set("n", "<Left>", lefty, opts)
 					vim.keymap.set("n", "<Right>", righty, opts)
 					vim.keymap.set("n", "l", righty, opts)
-          vim.keymap.del('n', '<C-e>', { buffer = bufnr })
+					vim.keymap.del("n", "<C-e>", { buffer = bufnr })
 				end,
 			})
 		end,
@@ -96,11 +96,12 @@ return {
 		"ggandor/leap.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("leap").add_default_mappings()
 			require("leap").opts.preview_filter = function()
 				return false
 			end
 			vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+			vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
+			vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
 		end,
 	},
 
