@@ -1,0 +1,111 @@
+# If not running interactively, don't do anything (leave this at the top of this file)
+[[ $- != *i* ]] && return
+
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+source ~/.local/share/omarchy/default/bash/rc
+
+# Add your own exports, aliases, and functions here.
+#
+# Make an alias for invoking commands you use constantly
+# alias p='python'
+export PATH="$HOME/.local/bin:$PATH"
+export MANPAGER="bat -l man"
+
+if command -v eza &>/dev/null; then
+  alias ll='eza -lh --group-directories-first --icons=auto'
+  alias lt='eza --tree --level=2 --long --icons --git --ignore-glob="*node_modules*"'
+fi
+
+## @TODO source my dotfiles
+if command -v trash &>/dev/null; then
+  alias rm='trash'
+  alias trash-list='lt ~/.local/share/Trash/'
+fi
+if command -v nvim &>/dev/null; then
+  alias vim='nvim'
+  alias v='vim .'
+fi
+if command -v bat &>/dev/null; then
+  alias cat='bat'
+fi
+if command -v lazygit &>/dev/null; then
+  alias lzg='lazygit'
+fi
+if command -v lazydocker &>/dev/null; then
+  alias lzd='lazydocker'
+fi
+alias la='ls -la'
+alias ....='cd'
+
+alias vf='vim ~/.bashrc && source ~/.bashrc'
+alias vt='vim ~/.config/tmux/tmux.conf && tmux source-file ~/.config/tmux/tmux.conf'
+alias vc='vim ~/.config'
+
+alias gitls='git log --decorate --graph'
+alias gitl='gitls --oneline'
+alias gitlog='gitl --all'
+alias gitlg='git log --regexp-ignore-case --grep'
+
+alias gitc="echo \"Use git switch instead of git checkout\""
+alias gits="git switch"
+alias gitb='git branch'
+alias gitbd='gitb --delete'
+alias gitbD='git push origin --delete'
+alias gitbdf='gitb | fzf --multi | xargs git branch --delete'
+alias gitss='clear && gitb --all && git status'
+alias gitr1='git reset --soft HEAD^1'
+alias gitrom='git fetch --all --prune && git rebase origin master'
+alias sgitrom='clear && git stash -u && gitrom && git stash pop'
+alias ggpush='git push --set-upstream origin $(git branch --show-current)'
+alias ggpull='git pull --rebase origin $(git branch --show-current)'
+
+alias agrep='alias | rg'
+alias venv='. .venv/bin/activate && echo "✅ venv loaded $(python --version)" || echo "No .venv found ❌"'
+
+## @TODO source my dotfiles
+
+# pnpm
+export PNPM_HOME="/home/lgarest/.local/share/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# bun
+export BUN_HOME="/home/lgarest/.bun/bin"
+case ":$PATH:" in
+*":$BUN_HOME:"*) ;;
+*) export PATH="$BUN_HOME:$PATH" ;;
+esac
+
+. "$HOME/.local/share/../bin/env"
+
+# opencode
+export PATH=/home/lgarest/.opencode/bin:$PATH
+export PATH="$HOME/bin:$PATH"
+
+md() {
+  mkdir -p "$1" && z "$1"
+}
+
+export PATH="$HOME/bin:$PATH"
+NOTES_DIR=~/dev/notes
+DUMPS_DIR="$NOTES_DIR/dumps"
+alias dump='echo "Remember to use vn and tn too" && braindump.sh'
+alias vn='command ls $DUMPS_DIR | fzf --query="" --print-query | xargs -I {} nvim $DUMPS_DIR/{}'
+alias tn='command ls $DUMPS_DIR | fzf --query="" --print-query | xargs -I {} tail -n 5 $DUMPS_DIR/{}'
+
+# Git commit monitor (runs every 5 minutes before prompt)
+_git_commit_monitor() {
+  local now last
+  now=$(date +%s)
+  last=$(cat ~/.git-commit-last-check 2>/dev/null || echo 0)
+
+  if ((now - last >= 300)); then
+    echo "$now" >~/.git-commit-last-check
+    ~/dev/scripts/git-commit-check 2>/dev/null
+  fi
+}
+
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;}_git_commit_monitor"
