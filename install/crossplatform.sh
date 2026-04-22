@@ -19,6 +19,7 @@ mkdirs() {
 
 main() {
   mkdirs
+  install_scripts
   install_shell_configs
 }
 main
