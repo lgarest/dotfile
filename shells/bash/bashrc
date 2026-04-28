@@ -98,13 +98,22 @@ alias tn='command ls $DUMPS_DIR | fzf --query="" --print-query | xargs -I {} tai
 
 # Git commit monitor (runs every 5 minutes before prompt)
 _git_commit_monitor() {
-  local now last
+  local now last result_file
   now=$(date +%s)
   last=$(cat ~/.git-commit-last-check 2>/dev/null || echo 0)
 
+  # Print results from a previous background run if ready
+  result_file=~/.git-commit-result
+  if [[ -f "$result_file" ]]; then
+    cat "$result_file"
+    rm -f "$result_file"
+  fi
+
   if ((now - last >= 300)); then
     echo "$now" >~/.git-commit-last-check
-    ~/dev/scripts/git-commit-check 2>/dev/null
+    # Fire and forget — write output to file for next prompt
+    (~/dev/scripts/git-commit-check >"$result_file" 2>/dev/null) &
+    disown
   fi
 }
 
