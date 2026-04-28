@@ -84,7 +84,6 @@ esac
 
 # opencode
 export PATH=/home/lgarest/.opencode/bin:$PATH
-export PATH="$HOME/bin:$PATH"
 
 md() {
   mkdir -p "$1" && z "$1"
