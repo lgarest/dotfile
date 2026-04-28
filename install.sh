@@ -4,13 +4,17 @@ set -euo pipefail
 
 DOTFILE_DIR="$HOME/dev/dotfile"
 
-check_prerequisites() {
-  echo "Prerequisites..."
-  if ! command -v git >/dev/null 2>&1; then
-    echo "  -> git (not installed)"
-    echo "sudo apt install git | yay -S git | brew install git"
+check_command() {
+  if ! command -v $1 >/dev/null 2>&1; then
+    echo "  -> $1 (not installed)"
+    echo "Install it first sudo apt install $1 | yay -S $1 | brew install $1"
     exit 1
   fi
+}
+
+check_prerequisites() {
+  echo "Checking prerequisites..."
+  check_command git
   echo "  -> git (installed)"
   echo "  -> passed"
 }
@@ -25,33 +29,44 @@ detect_platform() {
   fi
 }
 
-main() {
-  check_prerequisites
-
+install_dotfiles() {
   if [[ ! -d "$DOTFILE_DIR" ]]; then
     mkdir -p "$DOTFILE_DIR"
     git clone https://github.com/lgarest/dotfile "$DOTFILE_DIR"
   else
     echo "Dotfile repo already present at $DOTFILE_DIR, skipping clone..."
   fi
+}
 
+install_platform() {
+  echo "Detecting platform..."
   local platform
   platform=$(detect_platform)
-  echo "Platform detected: $platform"
+  echo "    -> platform detected: $platform"
 
   case "$platform" in
-    omarchy)
-      bash "$DOTFILE_DIR/install/omarchy.sh"
-      ;;
-    macos)
-      bash "$DOTFILE_DIR/install/macos.sh"
-      ;;
-    *)
-      echo "No platform-specific setup available. Run the appropriate script from $DOTFILE_DIR/install/ manually."
-      ;;
+  omarchy)
+    echo "    -> running omarchy setup..."
+    bash "$DOTFILE_DIR/install/omarchy.sh"
+    ;;
+  macos)
+    echo "    -> running macos setup..."
+    bash "$DOTFILE_DIR/install/macos.sh"
+    ;;
+  *)
+    echo "No platform-specific setup available. Run the appropriate script from $DOTFILE_DIR/install/ manually."
+    ;;
   esac
+}
 
+main() {
+  check_prerequisites
+  install_dotfiles
+  bash "$DOTFILE_DIR/install/crossplatform.sh"
+  install_platform
   echo "Installation -> complete"
 }
 
-main
+echo "$(detect_platform)"
+
+# main
