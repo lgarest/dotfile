@@ -25,6 +25,7 @@ fi
 if command -v nvim &>/dev/null; then
   alias vim='nvim'
   alias v='vim .'
+  alias vimf='nvim $(fzf)'
 fi
 if command -v bat &>/dev/null; then
   alias cat='bat'
