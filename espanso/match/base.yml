@@ -1,0 +1,66 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+
+# yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
+
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print the current date
+  # https://docs.rs/chrono/latest/chrono/format/strftime/index.html#specifiers
+  - trigger: ":utcnow"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: date
+        params:
+          format: "%+"
+
+  - trigger: ":now"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: date
+        params:
+          format: "%A %d %b %Y %H:%M"
+
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%d/%m/%Y"
+
+
+  - trigger: ":time"
+    replace: "{{datetime}}"
+    vars:
+      - name: datetime
+        type: date
+        params:
+          format: "%H:%M:%S"
+
+  - trigger: ":research"
+    replace: "Write it into ./claude_plan.md"
+
+  - trigger: ":plan"
+    replace: "Write it into ./claude_tasks.md"
+
+  - trigger: ":exec"
+    replace: "Execute in order what's in ./claude_tasks.md and validate that everything is working properly"
+
+  # And much more! For more information, visit the docs: https://espanso.org/docs/

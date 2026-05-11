@@ -1,0 +1,52 @@
+
+matches:
+  - trigger: ":uptime"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo $(uptime)"
+
+  - trigger: ":@gmail"
+    replace: "luisgarciaestrades@gmail.com"
+
+  - trigger: ":blockemail"
+    replace: "q8i5ftlwa@mozmail.com"
+
+  - trigger: ":allowemail"
+    replace: "e30ainmxo@mozmail.com"
+
+  - trigger: ":fake-uuid"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo $(uuidgen)"
+
+  - trigger: ":fake-auth-bearer"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo \"Authorization: Bearer <TOKEN>\""
+
+  - trigger: ":fake-secret-key"
+    replace: "this-is-not-a-real-hs256-secret-key"
+
+  - trigger: ":shebang"
+    replace: "#! /usr/bin/env bash"
+
+  - trigger: ":python-zen"
+    replace: "{{poem}}"
+    vars:
+      - name: poem
+        type: script
+        params:
+          args:
+            - python
+            - -c
+            - |
+              import this

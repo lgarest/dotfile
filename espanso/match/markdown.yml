@@ -1,0 +1,6 @@
+matches:
+  - trigger: ":mdinit"
+    replace: "<!-- markdownlint-disable MD012 MD013 MD051 MD060 -->"
+
+  - trigger: ":td"
+    replace: "- [ ] task"

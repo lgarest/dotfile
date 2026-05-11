@@ -1,0 +1,205 @@
+matches:
+
+  - regex: ":newmatch"
+    replace: |
+      - regex: "(code|c)(all|re)(all|us)"
+        label: "Code - React - useState"
+        replace: "|"
+
+  - regex: "(code|c)(all|re)(all|fc)"
+    label: "Code - React - FunctionComponent"
+    replace: |
+        import clsx from 'clsx'
+        import classes from './name.module.scss'
+
+        type Props = { className: string, children: ReactNode}
+        const Name = ({ children, className, ...props }: Props) => {
+          // code
+          return (
+            <div className={clsx('Name', className)} {...props}>
+              { children }
+            </div>
+          )
+        }
+
+  - regex: "(code|c)(all|re)(all|us)"
+    label: "Code - React - useState"
+    replace: |
+      const [active, setActive] = useState(false)
+
+  - regex: "(code|c)(all|re)(all|ue)"
+    label: "Code - React - useEffect"
+    replace: |
+      useEffect(() => {
+        console.log('constant', constant)
+        return () => {}
+      }, [constant])
+
+  - regex: "(code|c)(all|re)(all|io)"
+    label: "Code - React - IntersectionObserver"
+    replace: |
+      const observerRef = useRef(null)
+      const [isVisible, setVisible] = useState(false)
+
+      const callbackFn = ([entry]) => setVisible(entry.isIntersecting)
+      const options = {
+        root: document.body, // or null, or elsewhere
+        rootMargin: "0px 0px 0px 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
+
+      useEffect(() => {
+        const observer = new IntersectionObserver(callbackFn, options)
+        containerRef.current && observer.observe(containerRef.current)
+        return () => {
+          containerRef.current && observer.unobserve(containerRef.current)
+        }
+      }, [containerRef, options])
+
+  - trigger: "@TOD"
+    replace: "// @TODO: $|$"
+
+  - trigger: ":clv"
+    replace: "console.log('____ value', value) // @TODO: delete this"
+
+  - trigger: "(=>"
+    replace: "() => $|$"
+
+  - trigger: ":caf"
+    replace: "const a = (b) => c"
+
+  - trigger: "/**"
+    replace: |
+      /**
+      * Somecomment
+      */
+
+  - trigger: ":tag"
+    replace: "<{{form1.tag}} {{form1.attr}}>{{form1.content}}</{{form1.tag}}>"
+    vars:
+      - name: "form1"
+        type: form
+        params:
+          layout: "Tag: [[tag]] Attributes: [[attr]] Content: [[content]]" 
+
+
+  - regex: "(code|c)(all|re)(all|im)"
+    label: "Code - React - imports"
+    replace: |
+      // 3rd party dependencies
+      // absolute imports
+      // local imports
+
+  - regex: "(code|c)(all|re)(all|cx)"
+    label: "Code - React - createContext"
+    replace: |
+      import { createContext, FunctionComponent, useContext, useState } from 'react'
+
+      interface DarkThemeContextType{
+        isDark: boolean
+        toggleDark?: () => void
+      }
+      const defaults = {
+        isDark: false,
+      }
+
+      export const DarkThemeContext = createContext<DarkThemeContextType>(defaults)
+
+      export const ContextProvider = ({ children }) => {
+        const [isDark, setDark] = useState(defaults.isDark)
+
+        const toggleDark = () => {
+          setDark(!isDark)
+        }
+
+        return <DarkThemeContext.Provider value={{ isDark, toggleDark }}>{children}</DarkThemeContext.Provider>
+      }
+
+      export const useDarkThemeContext = () => {
+        if (!DarkThemeContext) throw new Error('DarkThemeContext must be used inside a DarkThemeContextProvider')
+        useContext(DarkThemeContext)
+      }
+
+  - regex: "(code|c)(all|re)(all|cc)"
+    label: "Code - Next.js - Client Component"
+    replace: |
+      'use client'
+
+      const Name = () => {
+        return <div></div>
+      }
+      export default Name
+
+  - regex: "(code|c)(all|re)(all|pg)"
+    label: "Code - Next.js - Page with params"
+    replace: |
+      type Props = { params: Promise<{ id: string }> }
+
+      export default async function Page({ params }: Props) {
+        const { id } = await params
+        return <div></div>
+      }
+
+  - regex: "(code|c)(all|re)(all|sa)"
+    label: "Code - Next.js - Server Action"
+    replace: |
+      'use server'
+
+      export async function actionName(formData: FormData) {
+        const value = formData.get('field')
+      }
+
+  - regex: "(code|c)(all|re)(all|as)"
+    label: "Code - React 19 - useActionState"
+    replace: |
+      const [state, action, isPending] = useActionState(serverAction, null)
+
+  - regex: "(code|c)(all|re)(all|op)"
+    label: "Code - React 19 - useOptimistic"
+    replace: |
+      const [optimisticItems, addOptimistic] = useOptimistic(
+        items,
+        (state, newItem) => [...state, newItem]
+      )
+
+  - regex: "(code|c)(all|re)(all|tr)"
+    label: "Code - React - useTransition"
+    replace: |
+      const [isPending, startTransition] = useTransition()
+
+      startTransition(async () => {
+        // async work
+      })
+
+  - regex: "(code|c)(all|re)(all|rt)"
+    label: "Code - Next.js - Route Handler"
+    replace: |
+      export async function GET(request: Request) {
+        return Response.json({ data: null })
+      }
+
+      export async function POST(request: Request) {
+        const body = await request.json()
+        return Response.json({ data: null })
+      }
+
+  - regex: "(code|c)(all|re)(all|sp)"
+    label: "Code - React - Suspense"
+    replace: |
+      <Suspense fallback={<div>Loading...</div>}>
+        <Name />
+      </Suspense>
+
+  - regex: "(code|c)(all|re)(all|er)"
+    label: "Code - Next.js - error.tsx"
+    replace: |
+      'use client'
+
+      export default function Error({ error, reset }: { error: Error; reset: () => void }) {
+        return (
+          <div>
+            <p>{error.message}</p>
+            <button onClick={reset}>Try again</button>
+          </div>
+        )
+      }
