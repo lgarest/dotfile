@@ -60,6 +60,11 @@ alias gitrom='git fetch --all --prune && git rebase origin master'
 alias sgitrom='clear && git stash -u && gitrom && git stash pop'
 alias ggpush='git push --set-upstream origin $(git branch --show-current)'
 alias ggpull='git pull --rebase origin $(git branch --show-current)'
+alias validate='npm run lint && npm run format && npm run test'
+
+gclone() {
+  git clone "$1" && z "$1" && v
+}
 
 alias agrep='alias | rg'
 alias venv='. .venv/bin/activate && echo "✅ venv loaded $(python --version)" || echo "No .venv found ❌"'
