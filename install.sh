@@ -69,4 +69,4 @@ main() {
 
 echo "$(detect_platform)"
 
-# main
+main
