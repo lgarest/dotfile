@@ -36,11 +36,32 @@ fi
 if command -v lazydocker &>/dev/null; then
   alias lzd='lazydocker'
 fi
+
+# if command -v mise &> /dev/null; then
+#   eval "$(mise activate bash)"
+# fi
+#
+# if [[ $- == *i* ]] && [[ ${TERM:-} != "dumb" ]] && command -v starship &> /dev/null; then
+#   eval "$(starship init bash)"
+# fi
+#
+# if command -v zoxide &> /dev/null; then
+#   eval "$(zoxide init bash)"
+# fi
+#
+# if command -v try &> /dev/null; then
+#   try() {
+#     unset -f try
+#     eval "$(SHELL=/bin/bash command try init ~/Work/tries)"
+#     try "$@"
+#   }
+# fi
 alias la='ls -la'
 alias ....='cd'
 
 alias vf='vim ~/.bashrc && source ~/.bashrc'
 alias vt='vim ~/.config/tmux/tmux.conf && tmux source-file ~/.config/tmux/tmux.conf'
+alias t='tmux attach || tmux new -s Work'
 alias vc='vim ~/.config'
 
 alias gitls='git log --decorate --graph'
