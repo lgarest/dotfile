@@ -1,0 +1,1 @@
+/home/lgarest/.config/omarchy/current/theme/neovim.lua
