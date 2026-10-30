@@ -57,14 +57,17 @@ install_platform() {
     echo "No platform-specific setup available. Run the appropriate script from $DOTFILE_DIR/install/ manually."
     ;;
   esac
+  echo "Installation -> complete"
 }
 
 main() {
   check_prerequisites
   install_dotfiles
+  echo "Installing crossplatform..."
   bash "$DOTFILE_DIR/install/crossplatform.sh"
+  echo "Crossplatform -> complete"
+
   install_platform
-  echo "Installation -> complete"
 }
 
 echo "$(detect_platform)"

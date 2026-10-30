@@ -43,6 +43,7 @@ command_exists() {
 
 # Install Homebrew
 install_homebrew() {
+
   if ! command_exists brew; then
     info "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -51,9 +52,9 @@ install_homebrew() {
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>~/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
-    success "Homebrew installed"
+    success "  -> Homebrew (installed)"
   else
-    info "Homebrew already installed"
+    info "  -> Homebrew (skipped)"
   fi
 }
 
@@ -61,17 +62,17 @@ install_homebrew() {
 install_brew_packages() {
   info "Installing packages from Brewfile..."
   brew bundle --file="$DOTFILES_DIR/packages/Brewfile"
-  success "Brew packages installed"
+  success "  -> Brew packages (installed)"
 }
 
 # Setup directories
 setup_directories() {
   info "Setting up directories..."
-  mkdir -p ~/.config/fish
+  # mkdir -p ~/.config/fish
   mkdir -p ~/.config/nvim
   mkdir -p ~/dev
   mkdir -p ~/venvs
-  success "Directories created"
+  success "  -> Directories created"
 }
 
 # Install tmux plugin manager
@@ -79,19 +80,22 @@ install_tmux_plugins() {
   info "Installing tmux plugin manager..."
   if [[ ! -d ~/.tmux/plugins/tpm ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    success "TMux plugin manager installed"
+    success "  -> tmux plugin manager (installed)"
   else
-    info "TMux plugin manager already installed"
+    info "  -> tmux plugin manager (skipped)"
   fi
 }
 
 # Setup shell configurations
 setup_shell() {
   info "Setting up shell configurations..."
-
-  # Fish shell setup (if any specific setup is needed)
-  info "Fish shell will be configured via config.fish"
-
+  info "Installing zimfw..."
+  if ! command -v zimfw brew >/dev/null 2>&1; then
+    curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+    success "  -> zimfw (installed)"
+  else
+    success "  -> zimfw (skipped)"
+  fi
   success "Shell configuration completed"
 }
 
@@ -106,9 +110,9 @@ setup_development() {
 
   # Setup pyenv
   if command_exists pyenv; then
-    info "Installing Python 3.11 via pyenv..."
-    pyenv install 3.11.9 || true
-    pyenv global 3.11.9
+    info "Installing Python 3.14 via pyenv..."
+    pyenv install 3.14 || true
+    pyenv global 3.14
 
     # Create Python virtual environment for neovim
     if [[ ! -d ~/venvs/py3nvim ]]; then
@@ -121,11 +125,12 @@ setup_development() {
   fi
 
   # Setup Node.js
-  if command_exists nvm; then
-    info "Installing Node.js LTS via nvm..."
-    nvm install --lts
-    nvm use --lts
-    npm install -g neovim prettier
+  if command_exists mise; then
+    info "Installing Node.js LTS via mise..."
+    mise use -g node@lts
+    # nvm install --lts
+    # nvm use --lts
+    mise use -g npm:neovim npm:prettier biome@2.5
   fi
 }
 
@@ -135,11 +140,12 @@ symlink_dotfiles() {
 
   # Create symlinks for dotfiles
   ln -svf "$DOTFILES_DIR/tmux.conf" "$HOME/.tmux.conf"
-  ln -svf "$DOTFILES_DIR/config.fish" "$HOME/.config/fish/config.fish"
+  # ln -svf "$DOTFILES_DIR/config.fish" "$HOME/.config/fish/config.fish"
+  ln -svf "$DOTFILES_DIR/markdownlint-cli2.yaml" "$HOME/.markdownlint-cli2.yaml"
 
   # Symlink nvim configuration
-  if [[ -d "$DOTFILES_DIR/nvim-lua2" ]]; then
-    ln -svf "$DOTFILES_DIR/nvim-lua2" "$HOME/.config/nvim"
+  if [[ -d "$DOTFILES_DIR/nvim-lua" ]]; then
+    ln -svf "$DOTFILES_DIR/nvim-lua" "$HOME/.config/nvim"
   fi
 
   success "Dotfiles symlinked"
@@ -159,7 +165,7 @@ main() {
   setup_directories
   install_homebrew
   install_brew_packages
-  setup_shell
+  # setup_shell
   install_tmux_plugins
   setup_development
   symlink_dotfiles

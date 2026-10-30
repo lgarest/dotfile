@@ -27,13 +27,33 @@ install_scripts() {
   else
     echo "Bin directory already present at ~/bin, skipping dir creation..."
   fi
-  ln --force --symbolic --verbose $DOTFILE_DIR/scripts/tmux-fzf-session.sh ~/bin/
-  ln --force --symbolic --verbose $DOTFILE_DIR/scripts/tmux-sessionizer.sh ~/bin/
-  ln --force --symbolic --verbose $DOTFILE_DIR/scripts/braindump.sh ~/bin/
+  ln -fsv $DOTFILE_DIR/scripts/tmux-fzf-session.sh ~/bin/
+  ln -fsv $DOTFILE_DIR/scripts/tmux-sessionizer.sh ~/bin/
+  ln -fsv $DOTFILE_DIR/scripts/braindump.sh ~/bin/
 }
 
 install_shell_configs() {
-  ln --force --symbolic --verbose $DOTFILE_DIR/shells/bash/bashrc ~/.bashrc
+  ln -fsv $DOTFILE_DIR/shells/bash/bashrc ~/.bashrc
+  ln -fsv $DOTFILE_DIR/shells/zsh/.zshrc ~/.zshrc
+}
+
+install_cross_tools() {
+
+  if ! command -v mise >/dev/null 2>&1; then
+    curl -fsSL https://mise.run | sh
+    echo 'eval "$(~/.local/bin/mise activate zsh)"' >>~/.zshrc
+    mise completion bash --install
+  else
+    echo "mise already exists"
+    echo "  -> git (already installed)"
+  fi
+
+  if ! command -v claude >/dev/null 2>&1; then
+    curl -fsSL https://claude.ai/install.sh | bash
+  else
+    echo "  -> claude (already installed)"
+  fi
+
 }
 
 main() {
@@ -42,7 +62,9 @@ main() {
   install_notes
   install_scripts
   install_shell_configs
+  install_cross_tools
 }
 
 # main
-install_scripts
+#install_scripts
+install_cross_tools
