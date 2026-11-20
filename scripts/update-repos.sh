@@ -5,12 +5,25 @@
 # are not checked out anywhere. Anything else is skipped and logged.
 # Repos are updated in parallel, UPDATE_REPOS_JOBS at a time (default 8).
 #
-# Usage: update-repos.sh [repo-dir...]   (default: every repo in ~/dev)
+# Usage: update-repos.sh [repo-dir...]
+# Without arguments: every repo in ~/dev, plus the dirs listed one per line in
+# ~/.config/update-repos/repos (kept out of the dotfiles; "~/" is expanded).
 
 export GIT_TERMINAL_PROMPT=0
 export GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=15"
 
-if [ $# -gt 0 ]; then REPOS=("$@"); else REPOS=(~/dev/*/); fi
+EXTRA_REPOS_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/update-repos/repos
+
+if [ $# -gt 0 ]; then
+  REPOS=("$@")
+else
+  REPOS=(~/dev/*/)
+  if [ -f "$EXTRA_REPOS_FILE" ]; then
+    while IFS= read -r dir; do
+      [ -n "$dir" ] && REPOS+=("${dir/#\~/$HOME}")
+    done < "$EXTRA_REPOS_FILE"
+  fi
+fi
 BASE_BRANCHES=(main master development)
 
 log() { printf '%s %-38s %s\n' "$(date '+%F %T')" "$1" "$2"; }
