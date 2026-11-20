@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- Runs ~/bin/update-repos.sh every 2 hours and once at login.
+<!-- Runs ~/bin/update-repos.sh Mon-Fri at 8:30 (or on wake, if asleep then).
      Install: cp scripts/com.user.update-repos.plist ~/Library/LaunchAgents/
               launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.user.update-repos.plist
      Log:     ~/Library/Logs/update-repos.log -->
@@ -14,10 +14,14 @@
     <string>-c</string>
     <string>"$HOME/bin/update-repos.sh" &gt;&gt; "$HOME/Library/Logs/update-repos.log" 2&gt;&amp;1</string>
   </array>
-  <key>StartInterval</key>
-  <integer>7200</integer>
-  <key>RunAtLoad</key>
-  <true/>
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Weekday</key><integer>1</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Weekday</key><integer>2</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Weekday</key><integer>3</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Weekday</key><integer>4</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>30</integer></dict>
+    <dict><key>Weekday</key><integer>5</integer><key>Hour</key><integer>8</integer><key>Minute</key><integer>30</integer></dict>
+  </array>
   <key>LowPriorityIO</key>
   <true/>
 </dict>
