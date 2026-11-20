@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Runs ~/bin/update-repos.sh every 2 hours and once at login.
+     Install: cp scripts/com.user.update-repos.plist ~/Library/LaunchAgents/
+              launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.user.update-repos.plist
+     Log:     ~/Library/Logs/update-repos.log -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.user.update-repos</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-c</string>
+    <string>"$HOME/bin/update-repos.sh" &gt;&gt; "$HOME/Library/Logs/update-repos.log" 2&gt;&amp;1</string>
+  </array>
+  <key>StartInterval</key>
+  <integer>7200</integer>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>LowPriorityIO</key>
+  <true/>
+</dict>
+</plist>
