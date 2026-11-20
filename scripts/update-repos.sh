@@ -3,6 +3,7 @@
 # Per repo: fetch --all --prune, fast-forward the checked-out branch when the
 # working tree is clean, and fast-forward main/master/development when they
 # are not checked out anywhere. Anything else is skipped and logged.
+# Repos are updated in parallel, UPDATE_REPOS_JOBS at a time (default 8).
 #
 # Usage: update-repos.sh [repo-dir...]   (default: every repo in ~/dev)
 
@@ -53,17 +54,25 @@ update_base_branches() {
   done
 }
 
-log "-" "start"
-for repo in "${REPOS[@]}"; do
-  [ -d "$repo/.git" ] || continue
+update_repo() {
+  local repo=$1 name
+  [ -d "$repo/.git" ] || return
   name=$(basename "$repo")
-  cd "$repo" || continue
-  [ -n "$(git remote)" ] || continue
+  cd "$repo" || return
+  [ -n "$(git remote)" ] || return
   if ! git fetch --all --prune --quiet 2>/dev/null; then
     log "$name" "FETCH FAILED"
-    continue
+    return
   fi
   update_current_branch "$name"
   update_base_branches "$name"
-done
+}
+
+if [ "$1" = --one ]; then
+  update_repo "$2"
+  exit 0
+fi
+
+log "-" "start"
+printf '%s\0' "${REPOS[@]}" | xargs -0 -n1 -P "${UPDATE_REPOS_JOBS:-8}" "$0" --one
 log "-" "done"
